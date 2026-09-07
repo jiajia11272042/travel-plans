@@ -32,8 +32,8 @@
   a{color:var(--brand2);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .note{background:var(--soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
-  .tabs{display:flex;gap:8px;margin-bottom:14px;}
-  .tabs button{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:8px 18px;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .tabs button{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:8px 16px;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;}
   .tabs button.active{background:var(--brand);color:#fff;}
   ul.prep{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
   ul.prep li{margin:4px 0;}
@@ -44,8 +44,8 @@
 <body>
 <header>
   <h1>🌏 2026 澳大利亚 + 新西兰 旅行计划</h1>
-  <p>北京 → 墨尔本(3 晚) → 皇后镇(5 晚) → 悉尼(2 晚) → 北京</p>
-  <p>9.30 晚出发（转机）/ 10.12 晨到京 · 2 人 · 自然风光为主 + 人文点缀 · 悉尼直飞回京便宜</p>
+  <p>北京 → 墨尔本 → 皇后镇（可含蒂卡波/库克山）→ 悉尼 → 北京</p>
+  <p>9.30 晚出发（转机）/ 10.12 晨到京 · 2 人 · 自然风光为主 + 人文点缀</p>
 </header>
 
 <div class="wrap">
@@ -54,9 +54,9 @@
     <h2>行前须知（一次性）</h2>
     <ul class="prep">
       <li><b>签证：</b>新西兰用 <b>NZeTA</b>（持澳签从澳直飞新可用，约 <span class="price">NZD 120</span>）；<b>澳洲签证须 multiple entry</b>（从新西兰再入境悉尼要用到）。</li>
-      <li><b>住宿：</b>墨尔本 CBD 3 晚(10.1–10.3)；皇后镇镇中心 5 晚(10.4–10.8)<b>同一处不换酒店</b>；悉尼 CBD 2 晚(10.9–10.10)。参考酒店见页尾。</li>
+      <li><b>住宿：</b>墨尔本 CBD 2–3 晚；皇后镇镇中心 5–6 晚（+蒂卡波版含<b>蒂卡波 2 晚</b>）；悉尼 CBD 2 晚(10.9–10.10)。参考酒店见页尾。</li>
       <li><b>支付：</b>带 Visa/万事达 + Apple Pay 基本够刷；各备少量现金；刷卡选<b>本地货币结算</b>（别选人民币 DCC）。</li>
-      <li><b>自驾（选自驾版才需）：</b>中国驾照 + <b>英文翻译件</b>随身；<b>右舵左行</b>；租车确认<b>能否开砂石路</b>（合同多禁行）。</li>
+      <li><b>自驾（自驾/蒂卡波版才需）：</b>中国驾照 + <b>英文翻译件</b>随身；<b>右舵左行</b>；租车确认<b>能否开砂石路</b>（合同多禁行）。</li>
       <li><b>其它：</b>入境澳新<b>食品必须申报</b>、勿带果肉种子；南半球春天 UV 强，备防晒；紧急电话 澳 000 / 新 111；不用给小费。</li>
     </ul>
   </section>
@@ -66,7 +66,9 @@
     <div class="tabs">
       <button id="btn-drive" class="active" onclick="showTab('drive')">🚗 自驾版</button>
       <button id="btn-nodrive" onclick="showTab('nodrive')">🚌 不自驾版</button>
+      <button id="btn-tekapo" onclick="showTab('tekapo')">🏔 +蒂卡波(自驾环线)</button>
     </div>
+    <p class="rn" style="margin:0 0 12px">🚗/🚌 两版：墨尔本 3 晚 + 皇后镇 5 晚。　🏔 +蒂卡波版：墨尔本减 1 天(2 晚)，皇后镇一带 6 晚(含蒂卡波 2 晚)，<b>先去远处再回皇后镇</b>、少走回头路。</p>
 
     <div id="tab-drive">
       <table>
@@ -113,6 +115,30 @@
         </tbody>
       </table>
     </div>
+
+    <div id="tab-tekapo" style="display:none">
+      <table>
+        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
+        <tbody>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra</td></tr>
+          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
+          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
+          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡</td></tr>
+          <tr><td><b>10.2</b></td><td>墨尔本（仅 1 整天，精华）<ul class="hl"><li>涂鸦巷 · 皇后市场 · NGV 美术馆 · Lygon St 咖啡（此版时间紧，略过大洋路）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区</td></tr>
+          <tr><td><b>10.3</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h；今日不租车</td></tr>
+          <tr><td><b>10.4</b></td><td>米尔福德峡湾一日团（西南方向）<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">跟团巴士，不租车；峡湾无信号，带驱虫液</td></tr>
+          <tr><td><b>10.5</b></td><td>🚗 <b>自驾去远处：皇后镇 → 蒂卡波/库克山（东北）</b><ul class="hl"><li>途经 瓦纳卡(#湖中树) → Lindis Pass → 蒂卡波湖</li><li>傍晚 好牧羊人教堂 + <b>暗夜星空观星</b></li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">租车(10.5–7)+观星</span></td><td class="rn">皇后镇取车；单程约 3h；观星 Dark Sky Project <span class="price">~NZD 100+</span></td></tr>
+          <tr><td><b>10.6</b></td><td>库克山 Aoraki + 蒂卡波<ul class="hl"><li><b>胡克谷步道 Hooker Valley Track</b>（看冰川湖，往返 3h，平缓）</li><li>蒂卡波湖畔、鲁冰花（季节）</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill no">—</span></td><td class="rn">库克山村距蒂卡波约 1h；也可住库克山村</td></tr>
+          <tr><td><b>10.7</b></td><td>🚗 <b>自驾返回：蒂卡波 → 皇后镇</b><ul class="hl"><li>途经 克伦威尔水果小镇 / 箭镇淘金古镇(人文)</li></ul></td><td class="stay">皇后镇</td><td><span class="pill no">—</span></td><td class="rn">傍晚皇后镇还车；单程约 3h</td></tr>
+          <tr><td><b>10.8</b></td><td><b>机动日</b>（皇后镇）：格林诺奇/跳伞/温泉/快艇/看几维鸟等，见「机动日活动池」</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
+          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 · 海港大桥；晚 <b>歌剧院看演出</b></li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b></td></tr>
+          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步；新南威尔士美术馆（免费，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
+          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮 / 皇家植物园，或 Taronga 动物园(考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787 <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">晚退房/行李寄存</td></tr>
+          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
+        </tbody>
+      </table>
+      <div class="note">🏔 <b>蒂卡波版要点：</b>先去远处(蒂卡波/库克山)住 2 晚再回皇后镇，走环线不走回头路；峡湾(西南)与蒂卡波(东北)方向相反已分开。租车 10.5–10.7 三天；此版墨尔本只 1 整天、略过大洋路，换来南岛星空与库克山冰川。</div>
+    </div>
   </section>
 
   <section id="pool">
@@ -140,8 +166,9 @@
     <table>
       <thead><tr><th>城市（晚数）</th><th>建议区域</th><th>参考酒店</th><th>参考价/晚</th></tr></thead>
       <tbody>
-        <tr><td>墨尔本（3 晚）</td><td>CBD，Flinders St / Collins St 一带</td><td>性价比 Pegasus/Oaks；中端 Novotel on Collins/Vibe；品质 The Westin/Grand Hyatt</td><td class="price">AUD 180~500</td></tr>
-        <tr><td>皇后镇（5 晚，同一处）</td><td>镇中心 Town Centre / 湖滨</td><td>就近餐厅、团接送点、租车点；多数含免费停车</td><td class="price">NZD 200~400</td></tr>
+        <tr><td>墨尔本（2–3 晚）</td><td>CBD，Flinders St / Collins St 一带</td><td>性价比 Pegasus/Oaks；中端 Novotel on Collins/Vibe；品质 The Westin/Grand Hyatt</td><td class="price">AUD 180~500</td></tr>
+        <tr><td>皇后镇（5–6 晚，同一处）</td><td>镇中心 Town Centre / 湖滨</td><td>就近餐厅、团接送点、租车点；多数含免费停车</td><td class="price">NZD 200~400</td></tr>
+        <tr><td>蒂卡波（+蒂卡波版 2 晚）</td><td>Lake Tekapo 湖畔 / 库克山村 Mt Cook Village</td><td>湖景 Peppers Bluewater、YHA；库克山村 The Hermitage</td><td class="price">NZD 200~450</td></tr>
         <tr><td>悉尼（2 晚）</td><td>Circular Quay / Town Hall</td><td>近歌剧院与机场火车；性价比 Metro Aspire/Song，海景 Pullman Quay Grand</td><td class="price">AUD 200~750</td></tr>
       </tbody>
     </table>
@@ -152,10 +179,10 @@
 
 <script>
   function showTab(t){
-    document.getElementById('tab-drive').style.display = (t==='drive')?'':'none';
-    document.getElementById('tab-nodrive').style.display = (t==='nodrive')?'':'none';
-    document.getElementById('btn-drive').classList.toggle('active', t==='drive');
-    document.getElementById('btn-nodrive').classList.toggle('active', t==='nodrive');
+    ['drive','nodrive','tekapo'].forEach(function(x){
+      document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
+      document.getElementById('btn-'+x).classList.toggle('active', x===t);
+    });
   }
 </script>
 </body>
