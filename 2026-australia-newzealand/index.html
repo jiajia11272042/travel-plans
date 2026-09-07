@@ -3,515 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 澳大利亚 + 新西兰 10 天旅行计划</title>
+<title>2026 澳大利亚 + 新西兰 旅行计划</title>
 <style>
   :root{
-    --bg:#0f1720; --card:#ffffff; --ink:#1f2933; --muted:#6b7280;
-    --brand:#0e7490; --brand2:#0891b2; --accent:#f59e0b; --line:#e5e7eb;
-    --ok:#059669; --warn:#dc2626; --soft:#f0f9ff;
+    --card:#fff; --ink:#1f2933; --muted:#6b7280; --brand:#0e7490; --brand2:#0891b2;
+    --line:#e5e7eb; --ok:#059669; --soft:#f0f9ff; --warn:#dc2626;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-    color:var(--ink); background:#f4f6f8; line-height:1.6;
-  }
-  header{
-    background:linear-gradient(135deg,#0e7490,#0891b2 55%,#22d3ee);
-    color:#fff; padding:48px 20px 40px; text-align:center;
-  }
-  header h1{margin:0 0 8px; font-size:28px; letter-spacing:.5px;}
-  header p{margin:4px 0; opacity:.95; font-size:15px;}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 16px 60px;}
-  section{
-    background:var(--card); border-radius:14px; padding:22px 22px 26px;
-    margin:22px 0; box-shadow:0 2px 10px rgba(15,23,42,.06);
-  }
-  h2{
-    font-size:20px; margin:0 0 16px; padding-left:12px;
-    border-left:5px solid var(--brand); color:var(--brand);
-  }
-  h3{font-size:16px; margin:18px 0 10px; color:var(--brand2);}
-  table{width:100%; border-collapse:collapse; font-size:14px; margin:8px 0;}
-  th,td{border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
-  th{background:var(--soft); color:var(--brand); font-weight:600; white-space:nowrap;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:#f4f6f8;line-height:1.6;}
+  header{background:linear-gradient(135deg,#0e7490,#0891b2 55%,#22d3ee);color:#fff;padding:42px 20px 34px;text-align:center;}
+  header h1{margin:0 0 8px;font-size:26px;}
+  header p{margin:3px 0;opacity:.95;font-size:14px;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 14px 60px;}
+  section{background:var(--card);border-radius:14px;padding:20px;margin:20px 0;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  h2{font-size:19px;margin:0 0 14px;padding-left:11px;border-left:5px solid var(--brand);color:var(--brand);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);color:var(--brand);font-weight:600;}
   tr:nth-child(even) td{background:#fafcfe;}
-  .pill{display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600;}
-  .yes{background:#ecfdf5; color:var(--ok);}
-  .no{background:#f3f4f6; color:var(--muted);}
-  .drive{background:#fef3c7; color:#b45309;}
-  a{color:var(--brand2); text-decoration:none;}
+  td .hl{margin:4px 0 0;padding-left:18px;}
+  td .hl li{margin:2px 0;}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+  .yes{background:#ecfdf5;color:var(--ok);}
+  .no{background:#f3f4f6;color:var(--muted);}
+  .price{color:#b45309;font-weight:600;white-space:nowrap;}
+  .rn{font-size:12.5px;color:var(--muted);}
+  a{color:var(--brand2);text-decoration:none;}
   a:hover{text-decoration:underline;}
-  .note{background:var(--soft); border:1px solid #bae6fd; border-radius:10px; padding:14px 16px; margin:14px 0; font-size:14px;}
-  .warn{background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:14px 16px; margin:14px 0; font-size:14px;}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:8px;}
-  .stat{background:var(--soft); border-radius:10px; padding:14px; text-align:center;}
-  .stat .n{font-size:22px; font-weight:700; color:var(--brand);}
-  .stat .l{font-size:12px; color:var(--muted); margin-top:2px;}
-  ul{margin:8px 0; padding-left:20px;}
-  li{margin:4px 0;}
-  .day{border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; background:#fff;}
-  .day .dh{font-size:16px; font-weight:700; color:var(--brand); margin:0 0 8px;}
-  .day .meta{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--muted); margin-bottom:10px; padding-bottom:10px; border-bottom:1px dashed var(--line);}
-  .day .meta span b{color:var(--ink);}
-  .day ol{margin:6px 0 0; padding-left:20px;}
-  .must{background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:8px 12px; margin-top:10px; font-size:13px;}
-  footer{text-align:center; color:var(--muted); font-size:12px; padding:20px;}
-  .toc{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
-  .toc a{background:rgba(255,255,255,.18); color:#fff; padding:6px 12px; border-radius:20px; font-size:13px;}
-  .toc a:hover{background:rgba(255,255,255,.32); text-decoration:none;}
-  @media(max-width:640px){
-    table{font-size:12.5px;} th,td{padding:7px 6px;}
-    header h1{font-size:22px;}
-  }
+  .note{background:var(--soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
+  .tabs{display:flex;gap:8px;margin-bottom:14px;}
+  .tabs button{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:8px 18px;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;}
+  .tabs button.active{background:var(--brand);color:#fff;}
+  ul.prep{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
+  ul.prep li{margin:4px 0;}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:18px;}
+  @media(max-width:640px){table{font-size:12px;}th,td{padding:6px 6px;}header h1{font-size:21px;}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🌏 2026 澳大利亚 + 新西兰 10 天旅行计划</h1>
-  <p>北京 → 悉尼 → 皇后镇（新西兰南岛）→ 转机（悉尼/墨尔本/奥克兰择便宜）→ 北京</p>
-  <p>出发 10.1 · 返回 10.11 · 10.12 上班 · 2 人 · 自然风光为主，人文点缀</p>
-  <div class="toc">
-    <a href="#overview">总览</a>
-    <a href="#visa">签证</a>
-    <a href="#itinerary">逐日行程</a>
-    <a href="#detail">每日详解</a>
-    <a href="#return">返程</a>
-    <a href="#stay">住宿</a>
-    <a href="#car">皇后镇租车</a>
-    <a href="#freeday">10.9–10.10 机动日</a>
-    <a href="#comms">通讯与支付</a>
-    <a href="#wildlife">野生动物</a>
-    <a href="#timezone">时差</a>
-    <a href="#booking">预订清单</a>
-    <a href="#budget">预算</a>
-    <a href="#tips">提醒</a>
-  </div>
+  <h1>🌏 2026 澳大利亚 + 新西兰 旅行计划</h1>
+  <p>北京 → 悉尼(3 晚) → 皇后镇(5 晚) → 转机回京 · 10.1 出发 / 10.11 前到京</p>
+  <p>2 人 · 自然风光为主 + 人文点缀</p>
 </header>
 
 <div class="wrap">
 
-  <section id="overview">
-    <h2>行程总览</h2>
-    <div class="grid">
-      <div class="stat"><div class="n">10 天</div><div class="l">10.1 – 10.11</div></div>
-      <div class="stat"><div class="n">2 城</div><div class="l">悉尼 3 晚 · 皇后镇 5 晚</div></div>
-      <div class="stat"><div class="n">4 段</div><div class="l">飞行航段</div></div>
-      <div class="stat"><div class="n">2 人</div><div class="l">自然 + 人文</div></div>
-    </div>
-    <p style="margin-top:14px">路线：<b>北京 → 悉尼（3 晚）→ 皇后镇（5 晚）→ 转机回京</b>。砍掉墨尔本、返程转机点（悉尼/墨尔本/奥克兰）出票前比价再定，节奏更轻松。10 月初澳新均为初春，15–25℃，早晚凉，带薄外套。</p>
+  <section id="prep">
+    <h2>行前须知（一次性）</h2>
+    <ul class="prep">
+      <li><b>签证：</b>新西兰用 <b>NZeTA</b>（持澳签从澳直飞新可用，约 <span class="price">NZD 120</span>）；<b>澳洲签证须 multiple entry</b>（回程若经澳转机要再入境）。</li>
+      <li><b>住宿：</b>悉尼 CBD（Circular Quay/Town Hall 一带）3 晚；皇后镇镇中心 5 晚<b>同一处，不换酒店</b>。参考酒店见页尾。</li>
+      <li><b>支付：</b>带 Visa/万事达 + Apple Pay 基本够刷；各备少量现金应急；刷卡选<b>本地货币结算</b>（别选人民币 DCC）。</li>
+      <li><b>自驾（选自驾版才需）：</b>中国驾照 + <b>英文翻译件</b>随身；<b>右舵左行</b>；租车确认<b>能否开砂石路</b>（合同多禁行）。</li>
+      <li><b>其它：</b>入境澳新<b>食品必须申报</b>、勿带果肉种子；南半球春天 UV 强，备防晒；紧急电话 澳 000 / 新 111；不用给小费。</li>
+    </ul>
   </section>
 
-  <section id="visa">
-    <h2>签证与入境要点</h2>
-    <div class="note">
-      <b>新西兰：用 NZeTA，不必办完整访客签证。</b> 2025 年 11 月起，持有效澳大利亚签证、从澳洲直接前往新西兰的中国护照持有人，可用 NZeTA 入境，停留最长 3 个月。本行程「悉尼入境澳洲 → 直飞皇后镇」正好符合。费用约 NZD 120（申请费约 17 + 旅游环保税 IVL 100），手机 App 申请，通常几十小时内批。
+  <section id="plan">
+    <h2>逐日行程</h2>
+    <div class="tabs">
+      <button id="btn-drive" class="active" onclick="showTab('drive')">🚗 自驾版</button>
+      <button id="btn-nodrive" onclick="showTab('nodrive')">🚌 不自驾版</button>
     </div>
-    <div class="warn">
-      <b>澳大利亚签证必须是 multiple entry（已确认）。</b> 10.10 经悉尼转机回京会再次触及澳洲入境，需多次往返签证。NZeTA 前提：澳签在<b>登机时有效</b>、且<b>从澳洲直飞新西兰</b>（非仅在澳转机）。
+
+    <!-- 共用表头行说明 -->
+    <div id="tab-drive">
+      <table>
+        <thead><tr><th style="width:64px">日期</th><th>行程 / 游玩内容</th><th style="width:120px">需预订</th><th style="width:230px">备注</th></tr></thead>
+        <tbody>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地悉尼机场买 Telstra；峡湾一带无信号</td></tr>
+          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
+          <tr><td><b>10.1</b></td><td>北京 → 悉尼（国航直飞 ~11h）</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 悉尼比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
+          <tr><td><b>10.2</b></td><td>悉尼海港核心<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</li></ul></td><td><span class="pill no">—</span></td><td class="rn">抵达日轻松倒时差；机场 Airport Link 火车进城；办 Opal 卡</td></tr>
+          <tr><td><b>10.3</b></td><td>悉尼 海岸+艺术+演出<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步（6km，2–3h）</li><li>新南威尔士美术馆（免费；欧洲古典/澳洲/原住民/当代，Naala Badu 现代馆，南半球顶级）</li><li>晚：歌剧院看演出（歌剧/交响/芭蕾）</li></ul></td><td><span class="pill yes">歌剧院票必订</span></td><td class="rn">演出：sydneyoperahouse.com</td></tr>
+          <tr><td><b>10.4</b></td><td>悉尼（A/B 二选一）<ul class="hl"><li><b>A 轻松</b>：Manly 渡轮(30min 海港全景) + Manly 海滩 + 皇家植物园(麦考利夫人石椅)</li><li><b>B 蓝山团</b>亮点：Echo Point 三姐妹峰 / Scenic World 最陡索道 / Leura 小镇 / 可选 Featherdale 看考拉袋鼠 <span class="price">~AUD 150~200</span></li></ul></td><td><span class="pill yes">选 B 需订团</span></td><td class="rn">想看考拉袋鼠：选含 Featherdale 的 B，或市区 Taronga 动物园</td></tr>
+          <tr><td><b>10.5</b></td><td>悉尼 → 皇后镇（~3h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山，山顶滑板车 <span class="price">~NZD 60</span></li></ul></td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h（皇后镇比北京快 5h）；今日不租车</td></tr>
+          <tr><td><b>10.6</b></td><td>米尔福德峡湾一日团<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">单程 4h 高山路交给巴士；峡湾无信号，带驱虫液防沙蝇</td></tr>
+          <tr><td><b>10.7</b></td><td>🚗 <b>自驾·瓦纳卡 Wanaka</b><ul class="hl"><li>Crown Range 山路 / Roys Peak 观景 / #湖中树 / 瓦纳卡镇</li></ul></td><td><span class="pill yes">租车(10.7–8)</span></td><td class="rn">早上皇后镇取车：apexcarrentals.com / gorentals.co.nz；<b>确认可否开砂石路</b>；带驾照+英文翻译件</td></tr>
+          <tr><td><b>10.8</b></td><td>🚗 <b>自驾·格林诺奇 + 箭镇</b><ul class="hl"><li>格林诺奇/天堂谷(魔戒取景地) · 箭镇淘金古镇+华人矿工村(人文)</li></ul></td><td><span class="pill no">—</span></td><td class="rn">傍晚皇后镇还车；之后不再需车</td></tr>
+          <tr><td><b>10.9</b></td><td><b>机动日</b>：从下方「机动日活动池」自选（跳伞/温泉/快艇/蹦极/蒸汽船牧场/徒步/看几维鸟/酒庄）</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
+          <tr><td><b>10.10<br>–10.11</b></td><td><b>返程</b>：皇后镇 → 北京，经 <b>悉尼/墨尔本/奥克兰</b> 转机（择便宜）。具体 10.10 或 10.11 出发看机票；若 10.10 下午/晚班机则上午仍可机动</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 回程拨慢；<b>务必 10.11 当天到京</b>（10.12 上班）；奥克兰转机免再入澳，悉尼/墨尔本转机需澳签 multiple entry</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="tab-nodrive" style="display:none">
+      <table>
+        <thead><tr><th style="width:64px">日期</th><th>行程 / 游玩内容</th><th style="width:120px">需预订</th><th style="width:230px">备注</th></tr></thead>
+        <tbody>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地悉尼机场买 Telstra；峡湾一带无信号</td></tr>
+          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
+          <tr><td><b>10.1</b></td><td>北京 → 悉尼（国航直飞 ~11h）</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 悉尼比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
+          <tr><td><b>10.2</b></td><td>悉尼海港核心<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</li></ul></td><td><span class="pill no">—</span></td><td class="rn">抵达日轻松倒时差；机场 Airport Link 火车进城；办 Opal 卡</td></tr>
+          <tr><td><b>10.3</b></td><td>悉尼 海岸+艺术+演出<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步（6km，2–3h）</li><li>新南威尔士美术馆（免费；欧洲古典/澳洲/原住民/当代，Naala Badu 现代馆，南半球顶级）</li><li>晚：歌剧院看演出（歌剧/交响/芭蕾）</li></ul></td><td><span class="pill yes">歌剧院票必订</span></td><td class="rn">演出：sydneyoperahouse.com</td></tr>
+          <tr><td><b>10.4</b></td><td>悉尼（A/B 二选一）<ul class="hl"><li><b>A 轻松</b>：Manly 渡轮(30min 海港全景) + Manly 海滩 + 皇家植物园(麦考利夫人石椅)</li><li><b>B 蓝山团</b>亮点：Echo Point 三姐妹峰 / Scenic World 最陡索道 / Leura 小镇 / 可选 Featherdale 看考拉袋鼠 <span class="price">~AUD 150~200</span></li></ul></td><td><span class="pill yes">选 B 需订团</span></td><td class="rn">想看考拉袋鼠：选含 Featherdale 的 B，或市区 Taronga 动物园</td></tr>
+          <tr><td><b>10.5</b></td><td>悉尼 → 皇后镇（~3h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山，山顶滑板车 <span class="price">~NZD 60</span></li></ul></td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h（皇后镇比北京快 5h）</td></tr>
+          <tr><td><b>10.6</b></td><td>米尔福德峡湾一日团<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">单程 4h 高山路交给巴士；峡湾无信号，带驱虫液防沙蝇</td></tr>
+          <tr><td><b>10.7</b></td><td>🚌 <b>Arrowtown &amp; Wanaka Highlights 小团一日游</b>（~6h，含接送）<ul class="hl"><li>箭镇 + Crown Range + Cardrona 酒馆 + 瓦纳卡(#湖中树/湖畔) <span class="price">~NZD 150~200</span></li></ul></td><td><span class="pill yes">小团建议订</span></td><td class="rn">GetYourGuide/Klook/Viator；此团<b>打包箭镇+瓦纳卡</b>，故 10.8 可空出</td></tr>
+          <tr><td><b>10.8</b></td><td>🚌 <b>格林诺奇深度</b>（含接送，二选一）或转机动活动<ul class="hl"><li>达特河喷射船 Dart River Wilderness Jet <span class="price">~NZD 250+</span></li><li>「Safari of the Scenes」魔戒取景地 4WD 团</li></ul></td><td><span class="pill yes">建议订</span></td><td class="rn">全程含接送，无需开车</td></tr>
+          <tr><td><b>10.9</b></td><td><b>机动日</b>：从下方「机动日活动池」自选（跳伞/温泉/快艇/蹦极/蒸汽船牧场/徒步/看几维鸟/酒庄）</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
+          <tr><td><b>10.10<br>–10.11</b></td><td><b>返程</b>：皇后镇 → 北京，经 <b>悉尼/墨尔本/奥克兰</b> 转机（择便宜）。具体 10.10 或 10.11 出发看机票；若 10.10 下午/晚班机则上午仍可机动</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 回程拨慢；<b>务必 10.11 当天到京</b>（10.12 上班）；奥克兰转机免再入澳，悉尼/墨尔本转机需澳签 multiple entry</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <section id="itinerary">
-    <h2>逐日行程总表</h2>
+  <section id="pool">
+    <h2>机动日活动池（10.9 / 10.10 自选）</h2>
+    <p style="color:var(--muted);font-size:13px">最后一天半机动时间，按时长自由组合：一般"一个全天 + 一个半天 + 弹性闲逛"。多数含镇上接送。</p>
     <table>
-      <thead>
-        <tr>
-          <th>日期</th><th>飞机 / 交通</th><th>住宿</th><th>自驾</th>
-          <th>游玩内容</th><th>需预约</th><th>预约网址</th>
-        </tr>
-      </thead>
+      <thead><tr><th>活动</th><th>类型</th><th>时长</th><th>价格</th><th>需预约</th><th>网址</th></tr></thead>
       <tbody>
-        <tr>
-          <td><b>9.28 周一</b></td><td>行前办理（线上）</td><td>—</td><td><span class="pill no">—</span></td>
-          <td><b>提交 NZeTA</b>（持澳签从澳赴新，约 NZD120）。通常 72 小时内批，<b>最迟 9.30 前提交</b></td>
-          <td><span class="pill yes">必办</span></td>
-          <td><a href="https://www.immigration.govt.nz/new-zealand-visas/apply-for-a-visa/about-visa/nzeta">immigration.govt.nz/nzeta</a>（或 NZeTA App）</td>
-        </tr>
-        <tr>
-          <td>10.1 周四</td><td>北京→悉尼（国航，约 11h，红眼）</td><td>✈️ 飞机上</td>
-          <td><span class="pill no">—</span></td><td>登机出发</td>
-          <td><span class="pill yes">机票</span></td>
-          <td><a href="https://www.skyscanner.com">skyscanner.com</a> / <a href="https://www.trip.com">trip.com</a></td>
-        </tr>
-        <tr>
-          <td>10.2 周五</td><td>机场→CBD 坐 Airport Link 火车</td><td>🏨 悉尼 CBD（Circular Quay 一带）</td>
-          <td><span class="pill no">—</span></td>
-          <td>环形码头、歌剧院外景、岩石区 The Rocks、海港大桥</td>
-          <td><span class="pill no">否</span></td><td>—</td>
-        </tr>
-        <tr>
-          <td>10.3 周六</td><td>市内火车 / 巴士</td><td>🏨 悉尼 CBD</td>
-          <td><span class="pill no">—</span></td>
-          <td>上午邦迪海滩 + 邦迪-库吉海岸徒步；下午<b>新南威尔士美术馆</b>；<b>晚上歌剧院看演出</b></td>
-          <td><span class="pill yes">演出票</span></td>
-          <td>演出：<a href="https://www.sydneyoperahouse.com">sydneyoperahouse.com</a>　美术馆：<a href="https://www.artgallery.nsw.gov.au">artgallery.nsw.gov.au</a>（免费）</td>
-        </tr>
-        <tr>
-          <td>10.4 周日</td><td>渡轮 / 火车</td><td>🏨 悉尼 CBD</td>
-          <td><span class="pill no">—</span></td>
-          <td><b>A/B 二选一</b>：A 轻松市区+海港（Manly 渡轮/皇家植物园）｜ B 蓝山一日团（详见「每日详解」）</td>
-          <td><span class="pill no">选订</span></td>
-          <td>蓝山团：<a href="https://www.klook.com">klook.com</a> / <a href="https://www.getyourguide.com">getyourguide.com</a></td>
-        </tr>
-        <tr>
-          <td>10.5 周一</td><td>悉尼→皇后镇（Jetstar/Qantas，约 3h，+2h 时差）</td><td>🏨 皇后镇镇中心</td>
-          <td><span class="pill no">—</span></td>
-          <td>天空缆车 Skyline 俯瞰瓦卡蒂普湖、镇上湖边散步</td>
-          <td><span class="pill yes">机票+缆车</span></td>
-          <td>机票：<a href="https://www.skyscanner.com">skyscanner.com</a>　缆车：<a href="https://www.skyline.co.nz">skyline.co.nz</a></td>
-        </tr>
-        <tr>
-          <td>10.6 周二</td><td>峡湾一日游巴士（镇上接送）</td><td>🏨 皇后镇镇中心</td>
-          <td><span class="pill no">—</span></td>
-          <td>米尔福德峡湾巴士 + 游船（南岛头号自然景观）</td>
-          <td><span class="pill yes">必约</span></td>
-          <td><a href="https://www.realnz.com">realnz.com</a> 或 <a href="https://www.klook.com">klook.com</a></td>
-        </tr>
-        <tr>
-          <td>10.7 周三</td><td>早上皇后镇取车</td><td>🏨 皇后镇镇中心</td>
-          <td><span class="pill drive">自驾</span></td>
-          <td>翻 Crown Range 去瓦纳卡：Roys Peak 观景、#湖中树、瓦纳卡湖畔</td>
-          <td><span class="pill yes">租车</span></td>
-          <td><a href="https://www.apexcarrentals.com">apexcarrentals.com</a> / <a href="https://www.gorentals.co.nz">gorentals.co.nz</a></td>
-        </tr>
-        <tr>
-          <td>10.8 周四</td><td>傍晚还车</td><td>🏨 皇后镇镇中心</td>
-          <td><span class="pill drive">自驾</span></td>
-          <td>格林诺奇 Glenorchy 魔戒风光、箭镇 Arrowtown 淘金古镇（人文）</td>
-          <td><span class="pill no">同上租车</span></td>
-          <td>同上</td>
-        </tr>
-        <tr>
-          <td>10.9 周五</td><td>镇上步行 / 项目含接送</td><td>🏨 皇后镇镇中心</td>
-          <td><span class="pill no">—</span></td>
-          <td><b>机动日</b>：从「10.9–10.10 机动日活动池」按时长自选（跳伞/温泉/快艇/酒庄/徒步/闲逛）</td>
-          <td><span class="pill no">按所选</span></td>
-          <td>见「机动日活动池」</td>
-        </tr>
-        <tr>
-          <td>10.10 周六</td><td>皇后镇→北京（转机，红眼回）；若下午/晚班机则上午仍是机动时间</td><td>✈️ 飞机上</td>
-          <td><span class="pill no">—</span></td>
-          <td><b>机动 + 返程</b>：视返程时间，上午/白天可再补一个活动池项目，再转机回京（见「返程路线」）</td>
-          <td><span class="pill yes">机票</span></td>
-          <td><a href="https://www.skyscanner.com">skyscanner.com</a> / <a href="https://www.trip.com">trip.com</a></td>
-        </tr>
-        <tr>
-          <td>10.11 周日</td><td>抵达北京</td><td>🏠 到家</td>
-          <td><span class="pill no">—</span></td>
-          <td>到京休整，次日 10.12 正常上班</td>
-          <td><span class="pill no">—</span></td><td>—</td>
-        </tr>
+        <tr><td>NZONE 跳伞（9,000–15,000ft）</td><td>刺激/俯瞰雪山湖泊</td><td>3–4h</td><td class="price">NZD 340~540</td><td><span class="pill yes">必约</span></td><td><a href="https://www.nzoneskydive.co.nz">nzoneskydive.co.nz</a></td></tr>
+        <tr><td>Shotover 喷射快艇</td><td>峡谷刺激</td><td>2–2.5h</td><td class="price">NZD 169</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.shotoverjet.com">shotoverjet.com</a></td></tr>
+        <tr><td>卡瓦劳大桥蹦极（全球首座）</td><td>冒险/人文</td><td>2–3h</td><td class="price">NZD 235</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.bungy.co.nz">bungy.co.nz</a></td></tr>
+        <tr><td>Onsen 温泉泡池</td><td>休闲/观景</td><td>~1h+接送</td><td class="price">NZD 100+</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.onsen.co.nz">onsen.co.nz</a></td></tr>
+        <tr><td>TSS 蒸汽船 + Walter Peak 牧场（<b>高地牛/美利奴羊/红鹿</b>+剪羊毛牧羊犬）</td><td>人文/休闲/动物</td><td>1.5–4h</td><td class="price">NZD 105 起</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
+        <tr><td>Kiwi Birdlife Park（<b>几维鸟 Kiwi、高山鹦鹉 Kea</b>）</td><td>本土野生动物</td><td>1–2h</td><td class="price">NZD 55</td><td><span class="pill no">否</span></td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td></tr>
+        <tr><td>Ben Lomond / Tiki Trail 徒步</td><td>自然</td><td>2h–全天</td><td class="price">免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
+        <tr><td>Gibbston Valley 酒庄品酒团</td><td>美食/人文</td><td>半天 4–5h</td><td class="price">NZD 100~200</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.gibbstonvalley.com">gibbstonvalley.com</a></td></tr>
+        <tr><td>镇上闲逛 / 湖滨</td><td>休闲</td><td>弹性</td><td class="price">免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
       </tbody>
     </table>
-  </section>
-
-  <section id="detail">
-    <h2>每日详解（每天：住宿 · 交通 · 行程 · 必备）</h2>
-    <p style="color:var(--muted);font-size:13px">每天一张卡片，四块信息一眼扫清：🏨 当晚住哪 · 🚗 交通/自驾 · 📍 行程（1/2/3）· ⚠️ 必备/预约。皇后镇 5 晚<b>同一个住处</b>，自驾期间不用换酒店。</p>
-
-    <div class="day">
-      <div class="dh">📅 9.28 周一 · 行前必办</div>
-      <div class="meta"><span>💻 <b>线上办理</b></span></div>
-      <ol>
-        <li><b>提交 NZeTA</b>——持澳签从澳直飞新西兰即可用，约 NZD120，官网或 App 申请。</li>
-      </ol>
-      <div class="must">⚠️ 通常 72 小时内批，<b>最迟 9.30 前提交</b>；确认澳洲签证为 multiple entry。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.1 周四 · 北京 → 悉尼</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>飞机上（红眼）</span><span>✈️ <b>交通：</b>国航直飞约 11h</span></div>
-      <ol><li>晚间从北京首都/大兴机场起飞，夜间飞往悉尼。</li></ol>
-      <div class="must">⚠️ 提前订好机票；随身带护照、澳签、NZeTA 确认信。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.2 周五 · 悉尼（抵达 + 海港核心）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>悉尼 CBD（Circular Quay 一带）</span><span>🚆 <b>交通：</b>机场 Airport Link 火车进城 + 步行</span></div>
-      <ol>
-        <li><b>环形码头 Circular Quay</b>——海港交通枢纽，看歌剧院和大桥的最佳起点。</li>
-        <li><b>悉尼歌剧院（外景）</b>——标志性贝壳造型、世界文化遗产，外围广场拍照。</li>
-        <li><b>岩石区 The Rocks</b>——悉尼最早的殖民街区，鹅卵石老街、集市与历史酒馆。</li>
-        <li><b>海港大桥 Harbour Bridge</b>——钢铁拱桥地标，可步行过桥或桥墩公园远观。</li>
-      </ol>
-      <div class="must">⚠️ 办 Opal 交通卡（可绑手机刷）；抵达日行程宜轻松，倒时差。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.3 周六 · 悉尼（海岸 + 艺术 + 演出）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>悉尼 CBD</span><span>🚆 <b>交通：</b>市内火车/巴士（Opal）</span></div>
-      <ol>
-        <li><b>邦迪海滩 Bondi Beach</b>——悉尼最著名的城市海滩，冲浪与海滨文化。</li>
-        <li><b>邦迪-库吉海岸徒步</b>——约 6km 海崖步道，途经 Tamarama、Bronte 海滩（2–3h）。</li>
-        <li><b>新南威尔士美术馆 Art Gallery of NSW</b>——免费；风格横跨欧洲古典、澳洲本土、原住民与当代艺术，2022 新增 Naala Badu 现代馆，建筑通透临港，南半球顶级。</li>
-        <li><b>歌剧院看演出（晚）</b>——在 Joan Sutherland 剧场或音乐厅看歌剧/交响/芭蕾，兼体验建筑内部。</li>
-      </ol>
-      <div class="must">⚠️ <b>歌剧院演出票务必提前订</b>（sydneyoperahouse.com，热门场次抢手）。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.4 周日 · 悉尼（A / B 二选一）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>悉尼 CBD</span><span>🚆/🚌 <b>交通：</b>A 渡轮火车｜B 跟团大巴</span></div>
-      <p style="margin:4px 0"><b>方案 A：轻松市区 + 海港（免费、留在市区、自由）</b></p>
-      <ol>
-        <li><b>Manly 渡轮</b>——环形码头坐渡轮约 30min 到 Manly，沿途海港与歌剧院全景，性价比最高的"海上观光"。</li>
-        <li><b>Manly 海滩</b>——北岸度假氛围海滩，海滨漫步 + 午餐。</li>
-        <li><b>皇家植物园 Royal Botanic Garden</b>——环抱海港的免费植物园，麦考利夫人石椅是歌剧院+大桥同框机位。</li>
-      </ol>
-      <p style="margin:8px 0 4px"><b>方案 B：蓝山一日团（看自然山景，整天在外，约 7:00 出发）</b></p>
-      <ol>
-        <li><b>Echo Point 观景台</b>——眺望三姐妹峰(Three Sisters)砂岩奇峰与蓝色山谷。</li>
-        <li><b>Scenic World</b>——乘世界最陡斜坡缆车/索道深入雨林峡谷。</li>
-        <li><b>Leura 小镇</b>——蓝山里的花园小镇，咖啡午餐。</li>
-        <li><b>（可选含）Featherdale 野生动物园</b>——近距离喂袋鼠、看考拉。</li>
-      </ol>
-      <div class="must">⚠️ 想轻松/省钱/留市区 → A；想看山景+考拉袋鼠 → 选<b>含 Featherdale 的 B</b> 团（提前订）。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.5 周一 · 悉尼 → 皇后镇（抵达）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>皇后镇镇中心（<b>连住 5 晚同一处</b>，10.5–10.9）</span><span>✈️ <b>交通：</b>Jetstar/Qantas 约 3h，落地拨快 2h</span></div>
-      <ol>
-        <li><b>天空缆车 Skyline Gondola</b>——登 Bob's Peak 俯瞰瓦卡蒂普湖与 Remarkables 雪山，山顶可玩滑板车。</li>
-        <li><b>湖滨漫步</b>——镇中心湖边花园、Steamer Wharf 码头，傍晚看湖山日落。</li>
-      </ol>
-      <div class="must">⚠️ 今日不租车（缆车+步行即可）；缆车建议提前订。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.6 周二 · 米尔福德峡湾（跟团一日）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>皇后镇镇中心（同一处）</span><span>🚌 <b>交通：</b>一日游巴士镇上接送（<b>不租车</b>）</span></div>
-      <ol>
-        <li><b>沿途停靠</b>——Te Anau 湖区、镜湖(Mirror Lakes)、Homer 隧道等高山风光。</li>
-        <li><b>峡湾游船</b>——巡游看米特峰(Mitre Peak)、悬瀑与海狗栖息岩，南岛头号自然景观。</li>
-      </ol>
-      <div class="must">⚠️ 峡湾团<b>必约</b>；单程 4h 高山路交给巴士（早 10 月可能有雪）；峡湾无手机信号、带驱虫液防沙蝇。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.7 周三 · 瓦纳卡 Wanaka（自驾第 1 天）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>皇后镇镇中心（同一处，不换酒店）</span><span>🚗 <b>交通：</b>自驾（早上取车）</span></div>
-      <ol>
-        <li><b>Crown Range 山路</b>——新西兰最高铺装公路，途中观景台俯瞰皇后镇盆地。</li>
-        <li><b>Roys Peak 步道</b>——网红观景点（全程往返较长，可只走到观景台位）。</li>
-        <li><b>#ThatWanakaTree 湖中孤树</b>——瓦纳卡湖标志性打卡点。</li>
-        <li><b>瓦纳卡镇</b>——安静的湖畔小镇，咖啡午餐。</li>
-      </ol>
-      <div class="must">⚠️ <b>租车（仅租 10.7–10.8 两天）：</b>早上在皇后镇机场或镇中心取车（apexcarrentals.com / gorentals.co.nz）；带<b>中国驾照 + 英文翻译件</b>；<b>右舵左行</b>；租车合同通常<b>禁开砂石路</b>，取车确认。</div>
-      <div class="note"><b>🚌 不自驾替代：</b>① <b>「Arrowtown &amp; Wanaka Highlights」小团一日游</b>——约 6h、10:00 出发、酒店接送，覆盖箭镇 + Crown Range + Cardrona 酒馆 + 瓦纳卡(#湖中树/湖畔)，约 NZD 150~200（GetYourGuide/Klook/Viator）；<b>此团把瓦纳卡+箭镇打包一天</b>，则 10.8 可空出改玩格林诺奇或机动活动。② 或格林诺奇深度：达特河喷射船 / 魔戒取景地 4WD 团。全程含接送、无需开车。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.8 周四 · 格林诺奇 + 箭镇（自驾第 2 天）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>皇后镇镇中心（同一处，不换酒店）</span><span>🚗 <b>交通：</b>自驾（傍晚还车）</span></div>
-      <ol>
-        <li><b>格林诺奇 Glenorchy / 天堂镇 Paradise</b>——瓦卡蒂普湖尽头，魔戒/霍比特人取景地，湖山绝景。</li>
-        <li><b>箭镇 Arrowtown</b>——19 世纪淘金古镇，历史街区与华人矿工村遗址，秋色闻名（人文）。</li>
-      </ol>
-      <div class="must">⚠️ 傍晚在皇后镇还车；之后（10.9）不再需要车，项目均含接送。</div>
-      <div class="note"><b>🚌 不自驾替代（公交 + 品酒团）：</b>① 上午坐 Orbus 2 路公交到箭镇 Arrowtown（自助逛淘金古镇、华人矿工村）；② 下午 Gibbston 酒庄 hop-on 品酒团（含接送，串 3–4 家酒庄）。自然+人文美食不变，全程不碰方向盘。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.9 – 10.10 · 皇后镇机动日 + 返程</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>10.9 皇后镇（同一处）｜10.10 飞机上</span><span>🚌/✈️ <b>交通：</b>项目含接送；10.10 转机回京</span></div>
-      <p style="margin:4px 0">最后一天半为机动时间：若返程是 <b>10.10 下午/晚班机</b>或 <b>10.11 早班机</b>，则 10.9 全天 + 10.10 上午都可自由安排。从下方「机动日活动池」按时长组合，一般"一个全天 + 一个半天 + 弹性闲逛"：</p>
-      <ol>
-        <li><b>刺激类：</b>NZONE 跳伞（3–4h）/ Shotover 快艇（2–2.5h）/ 卡瓦劳蹦极（2–3h）。</li>
-        <li><b>休闲类：</b>Onsen 温泉（~1h）/ TSS 蒸汽船+Walter Peak 牧场（1.5–4h）/ 镇上闲逛。</li>
-        <li><b>自然/动物：</b>Ben Lomond 徒步（全天）/ Kiwi Birdlife Park 看几维鸟·kea（1–2h）。</li>
-        <li><b>美食人文：</b>Gibbston 酒庄品酒（半天，用酒庄团接送，<b>别自驾</b>）。</li>
-      </ol>
-      <div class="must">⚠️ 详价格/预约见「机动日活动池」章节；返程路线（悉尼/墨尔本/奥克兰）见「返程路线」，<b>务必 10.11 当天到京</b>。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 10.11 周日 · 抵达北京</div>
-      <div class="meta"><span>🏠 <b>住宿：</b>到家</span><span>✈️ <b>交通：</b>抵京</span></div>
-      <ol><li>到京休整，倒时差，次日 10.12 正常上班。</li></ol>
-    </div>
-  </section>
-
-  <section id="return">
-    <h2>返程路线（出票前比价再定）</h2>
-    <p>皇后镇回北京不锁死悉尼，三条主流转机路线哪条便宜走哪条：</p>
-    <table>
-      <thead><tr><th>路线</th><th>再入境澳洲</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>皇后镇→<b>悉尼</b>→北京</td><td>是（需澳签多次往返）</td><td>悉尼直飞北京，班次多</td></tr>
-        <tr><td>皇后镇→<b>墨尔本</b>→北京</td><td>是（同上）</td><td>墨尔本也直飞北京，看票价</td></tr>
-        <tr><td>皇后镇→<b>奥克兰</b>→北京</td><td><b>否</b>（全程不碰澳洲）</td><td>NZ 国内~2h 到奥克兰再直飞北京，最省心</td></tr>
-      </tbody>
-    </table>
-    <div class="warn"><b>唯一硬约束：必须 10.11 当天到京</b>（10.12 上班），选能当天到的航班。走奥克兰不依赖澳签多次往返；走悉尼/墨尔本须确保澳签为 multiple entry（已确认）。</div>
+    <div class="note"><b>酒庄提示：</b>去酒庄别自驾（酒驾严查），用酒庄团接送；Gibbston 就在卡瓦劳蹦极桥路上，可"酒庄+看蹦极"串半天。</div>
   </section>
 
   <section id="stay">
-    <h2>住宿推荐</h2>
-    <h3>悉尼（10.2–10.4，3 晚）· 建议 Circular Quay 或 Town Hall / 中央车站一带</h3>
+    <h2>住宿参考</h2>
     <table>
-      <thead><tr><th>档次</th><th>参考酒店</th><th>位置优势</th><th>参考价（澳元/晚）</th></tr></thead>
+      <thead><tr><th>城市（晚数）</th><th>建议区域</th><th>参考酒店</th><th>参考价/晚</th></tr></thead>
       <tbody>
-        <tr><td>性价比</td><td>Metro Aspire Hotel、Song Hotel Sydney</td><td>近中央车站，去蓝山/机场方便</td><td>200~260</td></tr>
-        <tr><td>中端</td><td>Vibe Hotel Darling Harbour、Novotel Darling Harbour</td><td>达令港步行到位</td><td>300~380</td></tr>
-        <tr><td>品质海景</td><td>Pullman Quay Grand、InterContinental Sydney</td><td>出门即歌剧院与渡轮码头</td><td>500~750</td></tr>
-      </tbody>
-    </table>
-    <h3>皇后镇（10.5–10.9，5 晚）· 建议住镇中心（Town Centre / 湖滨）</h3>
-    <p>餐厅、跳伞与峡湾团集合点都在步行范围，租车取还也方便。多数住宿含免费停车（自驾日停车无忧）。</p>
-  </section>
-
-  <section id="car">
-    <h2>皇后镇租车方案（峡湾团与自驾分开，车零闲置）</h2>
-    <ul>
-      <li><b>10.5 落地当天：</b>不租车（缆车 + 镇上步行即可）</li>
-      <li><b>10.6 米尔福德峡湾：</b>跟团巴士，不租车</li>
-      <li><b>10.7 早上取车 → 10.8 傍晚还车：</b>只租连续 2 天跑瓦纳卡、格林诺奇 + 箭镇</li>
-      <li><b>10.9 跳伞日：</b>NZONE 含镇上接送，不用车</li>
-    </ul>
-    <div class="note">这样米尔福德（10.6）与自驾（10.7–8）完全错开，车只租真正自驾的 2 天。取车点：皇后镇机场或镇中心。租车合同通常<b>禁止开砂石路</b>，取车确认。新西兰<b>右舵左行</b>，与澳洲一致；早 10 月山区路段可能有雪，峡湾走团正为此。</div>
-  </section>
-
-  <section id="freeday">
-    <h2>10.9 – 10.10 机动日活动池（按返程航班灵活安排）</h2>
-    <p>最后两天为机动时间：若返程是 <b>10.10 下午</b> 或 <b>10.11 早上</b> 的航班，则 10.9 + 10.10（含 10.10 上午）都可自由安排。从下表按时长自由组合，一般"一个全天 + 一个半天 + 若干弹性闲逛"即可填满。多数项目含镇上接送。</p>
-    <table>
-      <thead><tr><th>活动</th><th>类型</th><th>时长</th><th>参考价</th><th>需预约</th><th>预约网址</th></tr></thead>
-      <tbody>
-        <tr><td>镇上闲逛 / 湖滨</td><td>休闲</td><td>1–3h 弹性</td><td>免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
-        <tr><td>Onsen 温泉泡池</td><td>休闲/观景</td><td>~1h + 接送</td><td>~NZD 100+/人</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.onsen.co.nz">onsen.co.nz</a></td></tr>
-        <tr><td>NZONE 跳伞</td><td>刺激</td><td>约 3–4h</td><td>~NZD 340~540</td><td><span class="pill yes">必约</span></td><td><a href="https://www.nzoneskydive.co.nz">nzoneskydive.co.nz</a> / <a href="https://www.klook.com">klook.com</a></td></tr>
-        <tr><td>Shotover 喷射快艇</td><td>峡谷刺激</td><td>约 2–2.5h</td><td>~NZD 169</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.shotoverjet.com">shotoverjet.com</a></td></tr>
-        <tr><td>卡瓦劳大桥蹦极</td><td>冒险/人文</td><td>约 2–3h（含往返）</td><td>~NZD 235</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.bungy.co.nz">bungy.co.nz</a></td></tr>
-        <tr><td>TSS Earnslaw 蒸汽船 + Walter Peak 牧场（高地牛/美利奴羊/红鹿，含剪羊毛与牧羊犬表演）</td><td>人文/休闲</td><td>游船 1.5h／含牧场 3.5–4h</td><td>~NZD 105 起</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
-        <tr><td>皇后镇山 / Tiki Trail 徒步</td><td>自然</td><td>2–3h</td><td>免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
-        <tr><td>Ben Lomond 徒步</td><td>自然（体力向）</td><td>全天 6–8h</td><td>免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
-        <tr><td>Gibbston Valley 酒庄品酒（跟团）</td><td>美食/人文</td><td>半天 4–5h</td><td>~NZD 100~200</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.gibbstonvalley.com">gibbstonvalley.com</a></td></tr>
-      </tbody>
-    </table>
-    <div class="note">
-      <b>酒庄品酒说明：</b>单个酒庄 cellar door 散客通常可 walk-in，但旺季/洞穴品鉴/餐配酒建议提前约。<b>去酒庄不要自驾（酒驾严查）</b>——建议参加半日酒庄团（含接送，品 3–4 家）或雇司机，酒庄团需提前订。Gibbston 距皇后镇约 25min，正好在去卡瓦劳蹦极桥路上，可"酒庄 + 看蹦极"串成半天。酒庄不占自驾日（10.7–8），放在机动日用团接送更合适。
-    </div>
-  </section>
-
-  <section id="comms">
-    <h2>通讯与支付</h2>
-    <h3>📱 手机卡（澳洲 + 新西兰）</h3>
-    <table>
-      <thead><tr><th>方案</th><th>推荐</th><th>参考价</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>eSIM（最省事）</td><td>Airalo / Nomad，可装澳新两地或买大洋洲区域包</td><td>视流量</td><td>落地即用，不用换卡，适合两国连玩</td></tr>
-        <tr><td>澳洲当地卡</td><td>Telstra（郊区覆盖最好），Optus/Vodafone 市区够用</td><td>AUD 30 起</td><td>机场/便利店可买</td></tr>
-        <tr><td>新西兰当地卡</td><td>One NZ 或 Spark（南岛/峡湾覆盖最好）</td><td>NZD 20~40</td><td>机场/门店可买</td></tr>
-      </tbody>
-    </table>
-    <div class="note"><b>米尔福德峡湾 / Fiordland 一带基本无信号</b>，无论哪家卡都一样，提前下载离线地图与行程。国内运营商漫游按天收费（约 25~30 元/天），10 天偏贵，不如 eSIM 划算。</div>
-
-    <h3>💳 现金 vs 刷卡</h3>
-    <ul>
-      <li>澳新都<b>高度无现金化</b>，Visa / Mastercard + 手机 Apple Pay 几乎处处能刷（含小店、公交、市集），<b>带 Visa 基本就够</b>。</li>
-      <li>各备<b>少量现金应急</b>（约 AUD 100~200、NZD 100~200）：个别小摊、乡镇、信号故障、给司机等。</li>
-      <li>用国内卡可能有<b>货币转换手续费</b>，尽量用免外汇费的卡。</li>
-      <li>刷卡若问"按本地货币还是人民币结算"，<b>永远选本地货币（澳元/纽元）</b>，选人民币(DCC)汇率更坑。</li>
-      <li>银联部分地方能用但不如 Visa 普及，别只带银联。单人携带等值 10,000 以上现金须申报。</li>
-    </ul>
-  </section>
-
-  <section id="wildlife">
-    <h2>野生动物观赏</h2>
-    <h3>🇦🇺 悉尼：考拉 / 袋鼠（市区看不到野生，需动物园）</h3>
-    <table>
-      <thead><tr><th>地点</th><th>看点</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>塔龙加动物园 Taronga Zoo</td><td>考拉、袋鼠</td><td>坐渡轮到，海港景观一流，半天</td></tr>
-        <tr><td>Featherdale Wildlife Park</td><td>近距离喂袋鼠、看考拉</td><td>在去蓝山路上，<b>10.4 选含 Featherdale 的蓝山团</b>可一举两得</td></tr>
-        <tr><td>WILD LIFE Sydney Zoo（达令港）</td><td>以考拉为主</td><td>市区内小型，时间紧可选</td></tr>
-      </tbody>
-    </table>
-    <h3>🇳🇿 新西兰：特有物种（本土几乎无陆生哺乳动物，以珍稀鸟类闻名）</h3>
-    <ul>
-      <li><b>几维鸟 Kiwi</b>：国鸟，夜行不会飞。皇后镇 <b>Kiwi Birdlife Park</b> 可看（约 1–2h，含 kea 等本土鸟）。</li>
-      <li><b>啄羊鹦鹉 Kea</b>：世界唯一高山鹦鹉，聪明爱拆东西，米尔福德/山口一带可能野遇。</li>
-      <li><b>新西兰海狗 fur seal</b>：米尔福德峡湾游船常见趴在岩石上。</li>
-      <li><b>企鹅（黄眼/蓝企鹅）、海豚</b>：峡湾偶尔可见。</li>
-    </ul>
-    <div class="note">想稳妥看到 kiwi 和 kea，去皇后镇 Kiwi Birdlife Park（可放进 10.9–10.10 机动日，约 1–2h）；峡湾游船（10.6）顺便看海狗。</div>
-  </section>
-
-  <section id="booking">
-    <h2>预订清单（按优先级）</h2>
-    <table>
-      <thead><tr><th>#</th><th>事项</th><th>时间点</th><th>平台</th><th>可退</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>NZeTA（新西兰电子授权）</td><td>9.28 提交（最迟 9.30）</td><td>immigration.govt.nz/nzeta</td><td>—</td></tr>
-        <tr><td>2</td><td>三段机票（京-悉、悉-皇后镇、皇后镇-悉-京）</td><td>越早越便宜</td><td>skyscanner / trip.com</td><td>视票价</td></tr>
-        <tr><td>3</td><td>悉尼歌剧院演出票</td><td>10.3 晚</td><td>sydneyoperahouse.com</td><td>一般不退</td></tr>
-        <tr><td>4</td><td>米尔福德峡湾一日团</td><td>10.6</td><td>realnz.com / klook</td><td>选可免费取消</td></tr>
-        <tr><td>5</td><td>10.9 自由活动项目（跳伞/温泉/快艇等，如选需预约的）</td><td>10.9</td><td>见「10.9 自由活动备选」</td><td>选可免费取消</td></tr>
-        <tr><td>6</td><td>皇后镇租车（2 天）</td><td>10.7–10.8</td><td>apexcarrentals / gorentals</td><td>视条款</td></tr>
-        <tr><td>7</td><td>天空缆车 Skyline</td><td>10.5</td><td>skyline.co.nz</td><td>视条款</td></tr>
-        <tr><td>8</td><td>蓝山一日团（可选）</td><td>10.4</td><td>klook / getyourguide</td><td>选可免费取消</td></tr>
+        <tr><td>悉尼（3 晚）</td><td>Circular Quay / Town Hall / 达令港</td><td>性价比 Metro Aspire·Song；中端 Vibe/Novotel Darling Harbour；海景 Pullman Quay Grand</td><td class="price">AUD 200~750</td></tr>
+        <tr><td>皇后镇（5 晚，同一处）</td><td>镇中心 Town Centre / 湖滨</td><td>就近餐厅、团接送点、租车点；多数含免费停车</td><td class="price">NZD 200~400</td></tr>
       </tbody>
     </table>
   </section>
 
-  <section id="budget">
-    <h2>预算参考（单人，澳元）</h2>
-    <table>
-      <thead><tr><th>项目</th><th>估算</th></tr></thead>
-      <tbody>
-        <tr><td>国际往返机票（京-悉 / 悉-京）</td><td>1,500</td></tr>
-        <tr><td>悉尼-皇后镇 + 皇后镇-悉尼机票</td><td>350~600</td></tr>
-        <tr><td>住宿（8 晚）</td><td>2,000</td></tr>
-        <tr><td>米尔福德峡湾团 + 跳伞 + 缆车</td><td>800~1,000</td></tr>
-        <tr><td>皇后镇租车（2 天）+ 油费</td><td>200~300</td></tr>
-        <tr><td>餐饮</td><td>900</td></tr>
-        <tr><td>市内交通 + 门票 + 杂费</td><td>500</td></tr>
-        <tr><td>NZeTA + 保险 + 备用金</td><td>1,000</td></tr>
-        <tr><th>单人合计</th><th>约 7,500~8,000（两人约 15,000~16,000）</th></tr>
-      </tbody>
-    </table>
-    <p style="color:var(--muted);font-size:13px">跳伞对比：皇后镇 NZONE 约 NZD 340~540（雪山湖泊自然景），迪拜棕榈岛约 AED 2,749 / USD 680（城市人工岛景）。皇后镇约为迪拜一半价格且更符合自然主题，本次直接在皇后镇跳。</p>
-  </section>
-
-  <section id="timezone">
-    <h2>时差（2026 年 10 月，两地均夏令时）</h2>
-    <table>
-      <thead><tr><th>地点</th><th>时区</th><th>与北京时差</th></tr></thead>
-      <tbody>
-        <tr><td>北京</td><td>UTC+8</td><td>基准</td></tr>
-        <tr><td>悉尼</td><td>10.2–10.3 为 +10；<b>10.4 起夏令时 +11</b></td><td>快 2~3h</td></tr>
-        <tr><td>皇后镇（新西兰）</td><td>+13（夏令时，9.27 已开始）</td><td>快 5h</td></tr>
-      </tbody>
-    </table>
-    <div class="note">
-      <b>澳新之间：新西兰比悉尼快 2 小时。</b> 关键拨表节点：
-      <ul>
-        <li><b>10.4 凌晨</b>：悉尼进入夏令时，当地钟拨快 1 小时（周日别误了早班团）。</li>
-        <li><b>10.5 悉尼→皇后镇</b>：落地拨快 2 小时。</li>
-        <li><b>10.10 皇后镇→悉尼转机</b>：拨慢 2 小时，转机接驳按当地时间算，别算错。</li>
-        <li>皇后镇比北京快 5h；红眼回京当天(10.11)留出倒时差缓冲，别硬撑到 10.12 太累。</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="tips">
-    <h2>实用提醒</h2>
-    <ul>
-      <li><b>交通卡：</b>悉尼用 Opal，皇后镇镇内步行为主；两地机场往返坐火车/大巴，不建议打车。</li>
-      <li><b>驾照：</b>新西兰自驾需中国驾照 + 官方英文翻译件随身携带；右舵左行需适应。</li>
-      <li><b>歌剧院演出：</b>到官网 What's On 按 10.3 选，首看推荐悉尼交响乐团音乐会或歌剧/芭蕾，热门场次早订。</li>
-      <li><b>美术馆：</b>新南威尔士美术馆免费，含新建 Naala Badu（Sydney Modern）现代馆，世界级馆藏。</li>
-      <li><b>入境生物安全：</b>澳新都极严，食品必须申报，勿带果肉/种子/蜂蜜；徒步鞋清理干净泥土。</li>
-      <li><b>紫外线强：</b>南半球春天 UV 高，备防晒、墨镜、帽子；峡湾带驱虫液防沙蝇。</li>
-      <li><b>紧急电话：</b>澳洲 000，新西兰 111。不用给小费。</li>
-      <li><b>返程死线：</b>10.11 必须到京，10.12 上班；返程航班挑当天到京的，别踩线。</li>
-    </ul>
-  </section>
-
-  <footer>
-    生成于 2026-09-07 · 本计划为草案，具体日期/航班/预订以出票与签证结果为准
-  </footer>
+  <footer>生成于 2026-09-07 · 草案，具体日期/航班/预订以出票与签证结果为准</footer>
 </div>
+
+<script>
+  function showTab(t){
+    document.getElementById('tab-drive').style.display = (t==='drive')?'':'none';
+    document.getElementById('tab-nodrive').style.display = (t==='nodrive')?'':'none';
+    document.getElementById('btn-drive').classList.toggle('active', t==='drive');
+    document.getElementById('btn-nodrive').classList.toggle('active', t==='nodrive');
+  }
+</script>
 </body>
 </html>
