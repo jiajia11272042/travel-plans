@@ -3,461 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2027 西班牙 + 葡萄牙 9 天旅行计划</title>
+<title>2027 葡萄牙 + 西班牙 旅行计划</title>
 <style>
   :root{
-    --bg:#0f1720; --card:#ffffff; --ink:#1f2933; --muted:#6b7280;
-    --brand:#0e7490; --brand2:#0891b2; --accent:#f59e0b; --line:#e5e7eb;
-    --ok:#059669; --warn:#dc2626; --soft:#f0f9ff;
+    --card:#fff; --ink:#1f2933; --muted:#6b7280; --brand:#0e7490; --brand2:#0891b2;
+    --line:#e5e7eb; --ok:#059669; --soft:#f0f9ff; --warn:#dc2626;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-    color:var(--ink); background:#f4f6f8; line-height:1.6;
-  }
-  header{
-    background:linear-gradient(135deg,#0e7490,#0891b2 55%,#22d3ee);
-    color:#fff; padding:48px 20px 40px; text-align:center;
-  }
-  header h1{margin:0 0 8px; font-size:28px; letter-spacing:.5px;}
-  header p{margin:4px 0; opacity:.95; font-size:15px;}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 16px 60px;}
-  section{
-    background:var(--card); border-radius:14px; padding:22px 22px 26px;
-    margin:22px 0; box-shadow:0 2px 10px rgba(15,23,42,.06);
-  }
-  h2{
-    font-size:20px; margin:0 0 16px; padding-left:12px;
-    border-left:5px solid var(--brand); color:var(--brand);
-  }
-  h3{font-size:16px; margin:18px 0 10px; color:var(--brand2);}
-  table{width:100%; border-collapse:collapse; font-size:14px; margin:8px 0;}
-  th,td{border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top;}
-  th{background:var(--soft); color:var(--brand); font-weight:600; white-space:nowrap;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:#f4f6f8;line-height:1.6;}
+  header{background:linear-gradient(135deg,#0e7490,#0891b2 55%,#22d3ee);color:#fff;padding:42px 20px 34px;text-align:center;}
+  header h1{margin:0 0 8px;font-size:26px;}
+  header p{margin:3px 0;opacity:.95;font-size:14px;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 14px 60px;}
+  section{background:var(--card);border-radius:14px;padding:20px;margin:20px 0;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  h2{font-size:19px;margin:0 0 14px;padding-left:11px;border-left:5px solid var(--brand);color:var(--brand);}
+  h3{font-size:15px;margin:14px 0 6px;color:var(--brand2);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);color:var(--brand);font-weight:600;}
   tr:nth-child(even) td{background:#fafcfe;}
-  .pill{display:inline-block; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600;}
-  .yes{background:#ecfdf5; color:var(--ok);}
-  .no{background:#f3f4f6; color:var(--muted);}
-  .train{background:#fef3c7; color:#b45309;}
-  a{color:var(--brand2); text-decoration:none;}
+  td .hl{margin:4px 0 0;padding-left:18px;}
+  td .hl li{margin:2px 0;}
+  .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+  .yes{background:#ecfdf5;color:var(--ok);}
+  .no{background:#f3f4f6;color:var(--muted);}
+  .price{color:#b45309;font-weight:600;white-space:nowrap;}
+  .rn{font-size:12.5px;color:var(--muted);}
+  a{color:var(--brand2);text-decoration:none;}
   a:hover{text-decoration:underline;}
-  .note{background:var(--soft); border:1px solid #bae6fd; border-radius:10px; padding:14px 16px; margin:14px 0; font-size:14px;}
-  .warn{background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:14px 16px; margin:14px 0; font-size:14px;}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:8px;}
-  .stat{background:var(--soft); border-radius:10px; padding:14px; text-align:center;}
-  .stat .n{font-size:22px; font-weight:700; color:var(--brand);}
-  .stat .l{font-size:12px; color:var(--muted); margin-top:2px;}
-  ul{margin:8px 0; padding-left:20px;}
-  li{margin:4px 0;}
-  .day{border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0; background:#fff;}
-  .day .dh{font-size:16px; font-weight:700; color:var(--brand); margin:0 0 8px;}
-  .day .meta{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; color:var(--muted); margin-bottom:10px; padding-bottom:10px; border-bottom:1px dashed var(--line);}
-  .day .meta span b{color:var(--ink);}
-  .day ol{margin:6px 0 0; padding-left:20px;}
-  .must{background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:8px 12px; margin-top:10px; font-size:13px;}
-  footer{text-align:center; color:var(--muted); font-size:12px; padding:20px;}
-  .toc{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
-  .toc a{background:rgba(255,255,255,.18); color:#fff; padding:6px 12px; border-radius:20px; font-size:13px;}
-  .toc a:hover{background:rgba(255,255,255,.32); text-decoration:none;}
-  @media(max-width:640px){
-    table{font-size:12.5px;} th,td{padding:7px 6px;}
-    header h1{font-size:22px;}
-  }
+  .note{background:var(--soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
+  .warn{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
+  ul.prep{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
+  ul.prep li{margin:4px 0;}
+  ul.food{margin:4px 0 0;padding-left:20px;font-size:13.5px;}
+  ul.food li{margin:3px 0;}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:18px;}
+  @media(max-width:640px){table{font-size:12px;}th,td{padding:6px 6px;}header h1{font-size:21px;}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🇵🇹🇪🇸 2027 葡萄牙 + 西班牙 9 天旅行计划</h1>
-  <p>北京 → 里斯本（3 晚）→ 塞维利亚（2 晚）→ 马德里（2 晚）→ 北京</p>
-  <p>出发 3.6 · 返回 3.14 · 3.15 上班 · 2 人 · 避开法雅节/复活节周 · 阳光 + 美食 + 艺术古迹</p>
-  <div class="toc">
-    <a href="#overview">总览</a>
-    <a href="#visa">签证（重点）</a>
-    <a href="#itinerary">逐日行程</a>
-    <a href="#detail">每日详解</a>
-    <a href="#transport">城际交通</a>
-    <a href="#stay">住宿</a>
-    <a href="#food">餐厅推荐</a>
-    <a href="#porto">波尔图（可选）</a>
-    <a href="#comms">通讯与支付</a>
-    <a href="#timezone">时差</a>
-    <a href="#booking">预订清单</a>
-    <a href="#budget">预算</a>
-    <a href="#tips">提醒</a>
-  </div>
+  <h1>🇵🇹🇪🇸 2027 葡萄牙 + 西班牙 旅行计划</h1>
+  <p>北京 → 里斯本(3 晚) → 塞维利亚(2 晚) → 马德里(2 晚) → 北京 · 3.6 出发 / 3.14 到京</p>
+  <p>2 人 · 阳光 + 美食 + 艺术古迹 · 避开法雅节(3.15–19)/复活节周(3.21–28)</p>
 </header>
 
 <div class="wrap">
 
-  <section id="overview">
-    <h2>行程总览</h2>
-    <div class="grid">
-      <div class="stat"><div class="n">9 天</div><div class="l">3.6 – 3.14</div></div>
-      <div class="stat"><div class="n">3 城</div><div class="l">里斯本 3 晚 · 塞维利亚 2 晚 · 马德里 2 晚</div></div>
-      <div class="stat"><div class="n">2 国</div><div class="l">葡萄牙 + 西班牙（申根）</div></div>
-      <div class="stat"><div class="n">2 人</div><div class="l">阳光 + 美食 + 艺术</div></div>
-    </div>
-    <p style="margin-top:14px">路线：<b>里斯本进、马德里出</b>（不同点进出联程票）。里斯本没有直飞北京、马德里有国航直飞，故这样安排最顺；中间塞维利亚正好衔接两国，不走回头路。3 月初伊比利亚为初春，葡 15–18℃、西南部 16–20℃，晴多雨少，早晚微凉带薄外套。<b>请假 3.8–3.12（5 天）+ 前后两个周末</b>，避开法雅节（3.15–19）与复活节周（3.21–28，最贵最挤）。</p>
-  </section>
-
   <section id="visa">
-    <h2>签证与入境要点（本行程重点）</h2>
+    <h2>签证与入境（重点）</h2>
     <div class="warn">
-      <b>办哪国签证：西班牙申根签。</b> 西葡都是申根国，<b>一个申根签两国通用</b>。规则是向"主要目的地（停留晚数最多）"申请——本行程西班牙 4 晚 &gt; 葡萄牙 3 晚，所以<b>向西班牙申请</b>；即使从里斯本入境也没问题（申根签由任一成员国签发都可从任意申根国入境）。三样材料要一致：机票（里斯本进/马德里出）+ 酒店预订 + 行程单，都体现"西班牙住得最多"。
+      <b>办西班牙申根签。</b> 西葡都是申根国，一签两国通用；向"停留晚数最多的国家"申请——本行程<b>西班牙 4 晚 &gt; 葡萄牙 3 晚，故办西班牙签</b>；从里斯本入境不影响。机票(里斯本进/马德里出)、酒店预订、行程单三者要一致，都体现"西班牙住得最多"。
     </div>
-    <div class="note">
-      <b>何时开始办：</b>最早可在出行前 <b>6 个月</b>递交（即 2026 年 9 月起即可）。签证中心<b>预约号常紧张</b>，建议尽早抢预约；<b>正式递交建议 2027 年 1 月左右</b>（出行前约 6–8 周），出签一般 <b>15 个日历日</b>、旺季可能延长，务必留足缓冲。<b>本人须到 BLS 西班牙签证中心录指纹</b>（首次申根、或近 59 个月没录过指纹者必须到场；一般无面试问话）。
-    </div>
-    <h3>办理流程</h3>
-    <ol>
-      <li>确定行程与机酒（可先用"可免费取消"的预订）。</li>
-      <li>网上填写申根签证申请表，<b>BLS 西班牙签证中心</b>官网预约递交时间。</li>
-      <li>本人到签证中心：交材料 + 录指纹/拍照 + 缴费。</li>
-      <li>等待出签（约 15 个日历日），领取或邮寄。</li>
-    </ol>
+    <ul class="prep">
+      <li><b>在哪预约：</b>BLS 西班牙签证中心官网 <a href="https://spain.blscn.cn">spain.blscn.cn</a>（认准官网防山寨）。你在<b>北京领区</b> → 北京 BLS 中心（该领区还含济南/沈阳/武汉/西安）。</li>
+      <li><b>何时办：</b>最早出行前 <b>6 个月</b>可递交；预约号紧张宜早抢，<b>正式递交建议 2027 年 1 月</b>（出行前约 6–8 周），出签一般 <b>15 个日历日</b>、旺季或延长。本人到场<b>录指纹</b>，一般无面试。</li>
+      <li><b>时间线：</b>现在–2026.12 备料、订可退机酒 → 2027.1 抢 BLS 预约并递交 → 2027.2 出签 → 3.6 出行。</li>
+    </ul>
     <h3>必备材料清单</h3>
     <table>
-      <thead><tr><th>类别</th><th>材料</th><th>说明</th></tr></thead>
+      <thead><tr><th style="width:70px">类别</th><th>材料</th><th>说明</th></tr></thead>
       <tbody>
-        <tr><td>身份</td><td>护照</td><td>有效期至回程后≥3 个月、≥2 页空白、含旧护照/旧签证</td></tr>
-        <tr><td>身份</td><td>签证照片</td><td>申根规格近期白底彩照（约 35×45mm）</td></tr>
+        <tr><td>身份</td><td>护照 + 签证照片</td><td>护照有效期至回程后≥3 个月、≥2 页空白、含旧签证；申根规格白底彩照</td></tr>
         <tr><td>表格</td><td>申根签证申请表</td><td>如实填写、本人签名</td></tr>
-        <tr><td>行程</td><td>往返机票预订单</td><td>里斯本进、马德里出，与行程一致（订座证明即可，可用可退预订）</td></tr>
-        <tr><td>行程</td><td>全程酒店预订单</td><td>覆盖每一晚（可用可免费取消的 Booking 预订）</td></tr>
-        <tr><td>行程</td><td>详细行程单 / 日程表</td><td>真实完整，含从里斯本入境、两国安排</td></tr>
-        <tr><td>财力</td><td>银行流水（近 3–6 个月）</td><td>余额充足、交易稳定；建议￥5 万以上余额更稳</td></tr>
-        <tr><td>财力</td><td>资产证明（可选加分）</td><td>房产、车产、存款证明等</td></tr>
-        <tr><td>在职</td><td>在职证明 + 准假信</td><td>公司抬头纸，注明职位、收入、准假日期、承诺回国；附营业执照复印件</td></tr>
-        <tr><td>保险</td><td>申根旅行保险</td><td>保额≥<b>3 万欧元</b>、覆盖全程含医疗遣返</td></tr>
+        <tr><td>行程</td><td>往返机票预订单 + 全程酒店预订单 + 行程单</td><td>里斯本进/马德里出，覆盖每一晚（可用可免费取消的预订），三者与行程一致</td></tr>
+        <tr><td>财力</td><td>银行流水（近 3–6 个月）+ 资产证明</td><td>余额充足（建议￥5 万以上更稳）；房产/存款证明加分</td></tr>
+        <tr><td>在职</td><td>在职证明 + 准假信</td><td>公司抬头纸，注明职位/收入/准假/承诺回国；附营业执照复印件</td></tr>
+        <tr><td>保险</td><td>申根旅行保险</td><td>保额≥<b>3 万欧元</b>、覆盖全程含医疗遣返（递签前买好）</td></tr>
         <tr><td>户籍</td><td>户口本 / 身份证复印件</td><td>异地办理可能需居住/暂住证明</td></tr>
       </tbody>
     </table>
-    <div class="note"><b>时间线小结：</b>现在(2026.9)–2026.12 备齐资料、订可退机酒 → 2027.1 抢 BLS 预约并递交 → 2027.2 出签 → 2027.3.6 出行。买好申根保险再递交。</div>
   </section>
 
-  <section id="itinerary">
-    <h2>逐日行程总表</h2>
+  <section id="prep">
+    <h2>行前须知（一次性）</h2>
+    <ul class="prep">
+      <li><b>住宿：</b>里斯本 Baixa/Chiado 3 晚 · 塞维利亚 Santa Cruz 老城 2 晚 · 马德里 Sol/Gran Vía 2 晚，<b>每地同一处不折腾</b>（参考见页尾）。</li>
+      <li><b>网络：</b><b>欧盟一张卡两国通用</b>，买欧洲 eSIM（Airalo/Nomad）或落地买 Vodafone/Orange。</li>
+      <li><b>支付：</b>都用<b>欧元</b>；Visa/万事达 + Apple Pay 普遍能刷，各备少量现金、用银行 ATM 取现；刷卡选<b>本地货币结算</b>（别选人民币 DCC）。</li>
+      <li><b>时差：</b>葡萄牙 UTC+0（比北京慢 8h）、西班牙 UTC+1（比北京慢 7h）；<b>3.9 进西班牙把表拨快 1h</b>；3 月初在夏令时(3.28)之前。</li>
+      <li><b>其它：</b>插头 230V 欧标<b>双圆头(C/F)</b>带转换头；<b>防扒</b>（马德里/里斯本电车地铁、塞维景点区）；西班牙<b>用餐晚</b>（午 14:00 后/晚 21:00 后）；紧急电话欧盟 <b>112</b>。</li>
+    </ul>
+  </section>
+
+  <section id="plan">
+    <h2>逐日行程</h2>
     <table>
-      <thead>
-        <tr>
-          <th>日期</th><th>交通</th><th>住宿</th><th>游玩内容（具体景点）</th><th>门票/预约</th><th>预约网址</th>
-        </tr>
-      </thead>
+      <thead><tr><th style="width:64px">日期</th><th>行程 / 游玩内容</th><th style="width:150px">需预订</th><th style="width:240px">备注（交通/提示）</th></tr></thead>
       <tbody>
         <tr>
-          <td><b>3.6 周六</b></td><td>北京→里斯本（1 次中转，约 14–17h）</td><td>🏨 里斯本 Baixa/Chiado</td>
-          <td>抵达 · 商业广场 · 特茹河边散步 · 海鲜晚餐</td>
+          <td><b>3.6 六</b></td>
+          <td>北京 → 里斯本，抵达后<ul class="hl"><li>商业广场 · 特茹河边散步 · 海鲜晚餐</li></ul></td>
           <td><span class="pill yes">机票</span></td>
-          <td><a href="https://www.skyscanner.com">skyscanner</a> / <a href="https://www.trip.com">trip.com</a></td>
+          <td class="rn">✈️ 1 次中转约 14–17h（里斯本无直飞）；可 3.5 晚提前飞</td>
         </tr>
         <tr>
-          <td>3.7 周日</td><td>步行 + 28 路电车</td><td>🏨 里斯本</td>
-          <td>阿尔法玛老城 · 圣乔治城堡 · 28 路电车 · 贝伦区（贝伦塔 · 发现者纪念碑 · 热罗尼莫斯修道院 · 贝伦蛋挞）</td>
+          <td><b>3.7 日</b></td>
+          <td>里斯本市区<ul class="hl"><li>阿尔法玛老城 · 圣乔治城堡 · 28 路电车</li><li>贝伦区：贝伦塔 · 发现者纪念碑 · 热罗尼莫斯修道院 · 贝伦蛋挞</li></ul></td>
           <td><span class="pill yes">修道院 · 圣乔治城堡</span></td>
-          <td><a href="https://www.patrimoniocultural.gov.pt">修道院官网</a></td>
+          <td class="rn">🚋 步行 + 28 路电车；电车早去避人、防扒</td>
         </tr>
         <tr>
-          <td>3.8 周一</td><td>Rossio 站 CP 火车 40min</td><td>🏨 里斯本</td>
-          <td><b>辛特拉一日</b>：佩纳宫 · 雷加莱拉庄园 · 摩尔人城堡（+罗卡角/卡斯凯什可选）</td>
-          <td><span class="pill yes">佩纳宫（时段票必订）· 雷加莱拉</span></td>
-          <td><a href="https://www.parquesdesintra.pt">parquesdesintra.pt</a></td>
+          <td><b>3.8 一</b></td>
+          <td><b>辛特拉一日</b><ul class="hl"><li>佩纳宫（彩色童话城堡）· 雷加莱拉庄园（启蒙井）· 摩尔人城堡</li><li>可选：罗卡角（欧陆最西端）/ 卡斯凯什海滨</li></ul></td>
+          <td><span class="pill yes">佩纳宫时段票必订</span></td>
+          <td class="rn">🚆 Rossio 站 CP 火车 40min；山上景点间坐 434 巴士/打车</td>
         </tr>
         <tr>
-          <td>3.9 周二</td><td>里斯本→塞维利亚（飞约 1h / 巴士 6–7h）</td><td>🏨 塞维利亚 Santa Cruz</td>
-          <td>西班牙广场 · 圣十字区 · tapas 晚餐　<b>⚠️ 拨快 1h</b></td>
+          <td><b>3.9 二</b></td>
+          <td>里斯本 → 塞维利亚<ul class="hl"><li>西班牙广场 · 圣十字区 · tapas 晚餐</li></ul></td>
           <td><span class="pill yes">机票</span></td>
-          <td><a href="https://www.vueling.com">vueling</a> / <a href="https://www.skyscanner.com">skyscanner</a></td>
+          <td class="rn">✈️ 飞约 1h（或 ALSA 大巴 6–7h）；⏱ <b>进西班牙拨快 1h</b></td>
         </tr>
         <tr>
-          <td>3.10 周三</td><td>市内步行</td><td>🏨 塞维利亚</td>
-          <td>塞维利亚大教堂 + 吉拉达塔 · 王宫 Real Alcázar ·（晚）弗拉门戈秀</td>
-          <td><span class="pill yes">大教堂 · 王宫 · 弗拉门戈（均提前订）</span></td>
-          <td>王宫 <a href="https://www.alcazarsevilla.org">alcazarsevilla.org</a> · 秀 <a href="https://www.casadelamemoria.es">casadelamemoria.es</a></td>
+          <td><b>3.10 三</b></td>
+          <td>塞维利亚<ul class="hl"><li>大教堂 + 吉拉达塔 · 王宫 Real Alcázar（《权游》取景）</li><li>晚：弗拉门戈秀</li></ul></td>
+          <td><span class="pill yes">大教堂 · 王宫 · 弗拉门戈</span></td>
+          <td class="rn">🚶 步行；三项都提前网上订，避排队/售罄</td>
         </tr>
         <tr>
-          <td>3.11 周四</td><td>塞维利亚→马德里（Renfe AVE 高铁 2.5h）</td><td>🏨 马德里 Sol/Gran Vía</td>
-          <td>太阳门 · 马约尔广场 · 王宫外观 · 圣米格尔市场（tapas）</td>
-          <td><span class="pill yes">高铁票（早订）</span></td>
-          <td><a href="https://www.renfe.com">renfe.com</a></td>
+          <td><b>3.11 四</b></td>
+          <td>塞维利亚 → 马德里<ul class="hl"><li>太阳门 · 马约尔广场 · 王宫外观 · 圣米格尔市场</li></ul></td>
+          <td><span class="pill yes">AVE 高铁票（早订）</span></td>
+          <td class="rn">🚄 Renfe AVE 高铁 2.5h；行李看管好（扒手多）</td>
         </tr>
         <tr>
-          <td>3.12 周五</td><td>市内步行 / 近郊高铁 33min</td><td>🏨 马德里</td>
-          <td>普拉多美术馆 · 王宫内部 · 丽池公园；<b>或托莱多一日</b>（大教堂 · 古城）</td>
-          <td><span class="pill yes">普拉多 · 王宫 ·（托莱多高铁）</span></td>
-          <td><a href="https://www.museodelprado.es">museodelprado.es</a> · <a href="https://www.renfe.com">renfe.com</a></td>
+          <td><b>3.12 五</b></td>
+          <td>马德里<ul class="hl"><li>普拉多美术馆 · 王宫内部 · 丽池公园</li><li>或改<b>托莱多一日</b>（三教古城 · 大教堂，高铁 33min）</li></ul></td>
+          <td><span class="pill yes">普拉多 · 王宫（托莱多高铁）</span></td>
+          <td class="rn">🚶/🚄 步行 / 近郊高铁；普拉多有傍晚免费时段(人多)</td>
         </tr>
         <tr>
-          <td>3.13 周六</td><td>马德里→北京（国航直飞约 11h）</td><td>✈️ 飞机上</td>
-          <td>上午 Gran Vía / 萨拉曼卡区购物、买手信 → 下午/晚返程</td>
+          <td><b>3.13 六</b></td>
+          <td>马德里 → 北京<ul class="hl"><li>上午 Gran Vía / 萨拉曼卡区买手信 → 下午/晚返程</li></ul></td>
           <td><span class="pill yes">机票</span></td>
-          <td><a href="https://www.trip.com">trip.com</a></td>
+          <td class="rn">✈️ 国航直飞约 11h；想缓冲可改早班机 3.14 到京休整</td>
         </tr>
         <tr>
-          <td>3.14 周日</td><td>抵达北京</td><td>🏠 到家</td>
-          <td>到京休整，次日 3.15 正常上班</td>
-          <td><span class="pill no">—</span></td><td>—</td>
+          <td><b>3.14 日</b></td>
+          <td>抵达北京，休整</td>
+          <td><span class="pill no">—</span></td>
+          <td class="rn">次日 3.15 正常上班</td>
         </tr>
       </tbody>
     </table>
-  </section>
-
-  <section id="detail">
-    <h2>每日详解（每天：住宿 · 交通 · 行程 · 必备）</h2>
-    <p style="color:var(--muted);font-size:13px">每天一张卡片，四块信息一眼扫清：🏨 当晚住哪 · 🚆 交通 · 📍 行程 · ⚠️ 必备/预约。里斯本 3 晚、塞维利亚 2 晚、马德里 2 晚，每地同一住处不折腾。</p>
-
-    <div class="day">
-      <div class="dh">📅 3.6 周六 · 北京 → 里斯本</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>里斯本 Baixa/Chiado</span><span>✈️ <b>交通：</b>多为 1 次中转（如多哈/伊斯坦布尔/欧洲枢纽），约 14–17h</span></div>
-      <ol>
-        <li>可 3.5 晚提前飞。抵达后入住、河边商业广场（Praça do Comércio）散步、海鲜/小馆晚餐。</li>
-      </ol>
-      <div class="must">⚠️ 随身带护照、申根签、机酒订单、保险单；里斯本无直飞北京，去程走中转。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.7 周日 · 里斯本市区</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>里斯本</span><span>🚋 <b>交通：</b>步行 + 28 路电车</span></div>
-      <ol>
-        <li><b>阿尔法玛 Alfama</b>——最古老的街区，窄巷、瓷砖墙、法多小馆。</li>
-        <li><b>圣乔治城堡 São Jorge</b>——山顶俯瞰全城与特茹河。</li>
-        <li><b>28 路电车</b>——经典黄色老电车穿越老城（早去避人）。</li>
-        <li><b>贝伦区 Belém</b>——贝伦塔、发现者纪念碑、<b>热罗尼莫斯修道院</b>、正宗贝伦蛋挞（Pastéis de Belém）。</li>
-      </ol>
-      <div class="must">⚠️ 修道院提前订票避排队；防扒（电车/景点人多处）。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.8 周一 · 辛特拉一日</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>里斯本（同一处）</span><span>🚆 <b>交通：</b>Rossio 站 CP 火车约 40min</span></div>
-      <ol>
-        <li><b>佩纳宫 Pena Palace</b>——彩色童话城堡，辛特拉标志。</li>
-        <li><b>雷加莱拉庄园 Quinta da Regaleira</b>——神秘花园与"启蒙井"螺旋地道。</li>
-        <li><b>摩尔人城堡 Castelo dos Mouros</b>——山脊古堡长城，视野极佳。</li>
-        <li>（可选）<b>罗卡角 Cabo da Roca</b>——欧洲大陆最西端；或卡斯凯什海滨小镇。</li>
-      </ol>
-      <div class="must">⚠️ <b>佩纳宫官网提前订时段票</b>（易满）；辛特拉山路景点间坐 434 循环巴士或打车更省力。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.9 周二 · 里斯本 → 塞维利亚</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>塞维利亚 Santa Cruz 老城</span><span>✈️ <b>交通：</b>飞约 1h（或 ALSA 大巴 6–7h）</span></div>
-      <ol>
-        <li>上午飞塞维利亚，下午入住老城。</li>
-        <li><b>西班牙广场 Plaza de España</b>——半圆形瓷砖广场，塞维利亚最上镜地标。</li>
-        <li>圣十字区（Santa Cruz）迷宫小巷、晚餐 tapas + 小酒。</li>
-      </ol>
-      <div class="must">⚠️ <b>进西班牙把表拨快 1 小时</b>（葡 UTC+0 → 西 UTC+1）。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.10 周三 · 塞维利亚</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>塞维利亚（同一处）</span><span>🚶 <b>交通：</b>步行</span></div>
-      <ol>
-        <li><b>塞维利亚大教堂 + 吉拉达塔</b>——世界最大哥特教堂之一，登塔俯瞰全城。</li>
-        <li><b>王宫 Real Alcázar</b>——摩尔式宫殿花园，《权游》取景地。</li>
-        <li><b>弗拉门戈秀（晚）</b>——在 Casa de la Memoria 等小剧场看正宗弗拉门戈。</li>
-      </ol>
-      <div class="must">⚠️ 大教堂、王宫、弗拉门戈<b>都提前网上订票</b>，避免排队/售罄。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.11 周四 · 塞维利亚 → 马德里</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>马德里 Sol/Gran Vía</span><span>🚄 <b>交通：</b>Renfe AVE 高铁 2.5h</span></div>
-      <ol>
-        <li>上午高铁北上马德里，下午入住市中心。</li>
-        <li><b>太阳门 Puerta del Sol</b>、<b>马约尔广场 Plaza Mayor</b>——马德里心脏。</li>
-        <li><b>王宫外观</b> + <b>圣米格尔市场</b>（Mercado de San Miguel）吃 tapas。</li>
-      </ol>
-      <div class="must">⚠️ AVE 高铁官网/APP <b>早订更便宜</b>；行李看管好（马德里/巴塞扒手多）。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.12 周五 · 马德里（或托莱多一日）</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>马德里（同一处）</span><span>🚶/🚄 <b>交通：</b>步行；托莱多高铁 33min</span></div>
-      <ol>
-        <li><b>普拉多美术馆 Prado</b>——委拉斯开兹、戈雅、El Greco，世界顶级。</li>
-        <li><b>王宫内部</b> + <b>丽池公园 Retiro</b>（水晶宫、划船）。</li>
-        <li>或改为<b>托莱多</b>一日：三教文化古城、大教堂、El Greco 之城（高铁 33min）。</li>
-      </ol>
-      <div class="must">⚠️ 普拉多、王宫提前订票；托莱多高铁对号座建议提前订。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.13 周六 · 马德里 → 北京</div>
-      <div class="meta"><span>🏨 <b>住宿：</b>飞机上</span><span>✈️ <b>交通：</b>国航直飞约 11h</span></div>
-      <ol>
-        <li>上午 Gran Vía/萨拉曼卡区自由活动或买手信 → 下午/晚返程。</li>
-      </ol>
-      <div class="must">⚠️ 想给自己缓冲，可改 3.13 早班机、3.14 到京休整、3.15 上班更从容。</div>
-    </div>
-
-    <div class="day">
-      <div class="dh">📅 3.14 周日 · 抵达北京</div>
-      <div class="meta"><span>🏠 <b>住宿：</b>到家</span><span>✈️ <b>交通：</b>抵京</span></div>
-      <ol><li>到京休整、倒时差，次日 3.15 正常上班。</li></ol>
-    </div>
-  </section>
-
-  <section id="transport">
-    <h2>城际交通</h2>
-    <table>
-      <thead><tr><th>区段</th><th>方式</th><th>时长</th><th>订票</th></tr></thead>
-      <tbody>
-        <tr><td>里斯本 → 塞维利亚</td><td><span class="pill train">飞机</span>（TAP/Vueling/Ryanair）或 ALSA 大巴</td><td>飞约 1h / 巴士 6–7h</td><td>skyscanner / vueling.com / alsa.com</td></tr>
-        <tr><td>塞维利亚 → 马德里</td><td><span class="pill train">Renfe AVE 高铁</span></td><td>约 2.5h</td><td>renfe.com（早订便宜）</td></tr>
-        <tr><td>里斯本 ↔ 辛特拉</td><td>CP 近郊火车（Rossio 站）</td><td>约 40min</td><td>当天买即可</td></tr>
-        <tr><td>马德里 ↔ 托莱多</td><td>Renfe Avant 高铁</td><td>约 33min</td><td>对号座建议提前订</td></tr>
-        <tr><td>市内</td><td>地铁/步行；里斯本电车；打车用 Uber/Bolt</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="stay">
-    <h2>住宿推荐（每地同一处，不折腾）</h2>
-    <table>
-      <thead><tr><th>城市</th><th>建议区域</th><th>优势</th></tr></thead>
-      <tbody>
-        <tr><td>里斯本（3.6–3.8，3 晚）</td><td>Baixa / Chiado 或 Alfama</td><td>市中心、好逛、近电车与餐厅</td></tr>
-        <tr><td>塞维利亚（3.9–3.10，2 晚）</td><td>Santa Cruz 老城</td><td>大教堂/王宫步行可达，氛围好</td></tr>
-        <tr><td>马德里（3.11–3.12，2 晚）</td><td>Sol / Gran Vía / 文学区</td><td>交通枢纽、景点集中、餐饮多</td></tr>
-      </tbody>
-    </table>
-    <div class="note">签证阶段先订"可免费取消"的酒店做预订单；出签后再最终确认。</div>
+    <div class="note"><b>城际交通订票：</b>里斯本→塞维利亚 机票 <a href="https://www.vueling.com">vueling</a>/<a href="https://www.skyscanner.com">skyscanner</a>；塞维利亚→马德里 <a href="https://www.renfe.com">renfe.com</a>（早订便宜）；辛特拉/托莱多近郊火车。景点门票走各官网（<a href="https://www.parquesdesintra.pt">佩纳宫</a>、<a href="https://www.alcazarsevilla.org">塞维王宫</a>、<a href="https://www.museodelprado.es">普拉多</a>）。</div>
   </section>
 
   <section id="food">
     <h2>餐厅推荐（Google 高分 / 招牌菜）</h2>
     <h3>🇵🇹 里斯本</h3>
-    <ul>
-      <li><b>Time Out Market</b>——名店集合美食广场，第一顿的稳妥之选。</li>
-      <li><b>Cervejaria Ramiro</b>——超人气海鲜（蒜香大虾、鹅颈藤壶），配猪扒包收尾。</li>
-      <li><b>Pastéis de Belém</b>——贝伦蛋挞鼻祖（贝伦区顺路）。</li>
-      <li><b>阿尔法玛 Fado 餐厅</b>——法多现场 + 葡式晚餐，体验感强（提前订）。</li>
+    <ul class="food">
+      <li><b>Time Out Market</b>——名店集合美食广场，第一顿稳妥之选。</li>
+      <li><b>Cervejaria Ramiro</b>——超人气海鲜（蒜香大虾、鹅颈藤壶），收尾来个猪扒包。</li>
+      <li><b>Pastéis de Belém</b>——贝伦蛋挞鼻祖（贝伦区顺路）；阿尔法玛可订 <b>Fado</b> 现场晚餐。</li>
     </ul>
     <h3>🇵🇹 波尔图（若加程）</h3>
-    <ul>
-      <li><b>Café Santiago</b>——招牌 <b>Francesinha</b>（波尔图"湿三明治"淋酱盖蛋，必吃）。</li>
-      <li><b>Casa Guedes</b>——招牌烤猪腿三明治（Sande de Pernil）。</li>
-      <li><b>Majestic Café</b>——百年华丽咖啡馆，J.K. 罗琳写作地之一。</li>
-      <li><b>加亚新城酒窖（Graham's / Cálem）</b>——波特酒品鉴 + 杜罗河景。</li>
+    <ul class="food">
+      <li><b>Café Santiago</b>——招牌 Francesinha（"湿三明治"淋酱盖蛋）；<b>Casa Guedes</b> 烤猪腿三明治。</li>
+      <li><b>Majestic Café</b> 百年咖啡馆；<b>加亚新城 Graham's / Cálem</b> 波特酒品鉴 + 河景。</li>
     </ul>
     <h3>🇪🇸 塞维利亚</h3>
-    <ul>
-      <li><b>El Rinconcillo</b>——1670 年开业、塞维利亚最古老 tapas 酒馆。</li>
-      <li><b>Bodega Santa Cruz（Las Columnas）</b>——老城人气立食 tapas。</li>
-      <li><b>Eslava</b>——创意 tapas，常年高分。</li>
+    <ul class="food">
+      <li><b>El Rinconcillo</b>（1670 年·最古老 tapas 酒馆）· <b>Bodega Santa Cruz</b>（老城人气立食）· <b>Eslava</b>（创意 tapas 高分）。</li>
     </ul>
     <h3>🇪🇸 马德里</h3>
-    <ul>
-      <li><b>Sobrino de Botín</b>——吉尼斯认证"世界最古老餐厅"，招牌<b>烤乳猪</b>（提前订）。</li>
-      <li><b>Mercado de San Miguel</b>——市中心美食市场，边逛边吃 tapas。</li>
-      <li><b>Casa Lucio</b>——招牌 huevos rotos（碎蛋配薯条火腿）。</li>
-      <li><b>Chocolatería San Ginés</b>——百年油条配热巧克力（churros con chocolate）。</li>
+    <ul class="food">
+      <li><b>Sobrino de Botín</b>（世界最古老餐厅·烤乳猪，提前订）· <b>Mercado de San Miguel</b>（市场 tapas）· <b>Casa Lucio</b>（碎蛋 huevos rotos）· <b>Chocolatería San Ginés</b>（油条配热巧克力）。</li>
     </ul>
-    <div class="note">西班牙用餐晚：午餐 14:00 后、晚餐 21:00 后才热闹，tapas 可随时垫；热门店建议提前订位。</div>
   </section>
 
   <section id="porto">
     <h2>波尔图（可选加程）</h2>
-    <p><b>亮点：</b>杜罗河 Ribeira 河岸老城（世界遗产）· 路易一世大桥 · Livraria Lello 书店（哈利波特灵感）· São Bento 火车站瓷砖 · 加亚新城波特酒庄品酒 · 克莱里戈斯塔。</p>
-    <div class="warn">
-      <b>老实说：波尔图在葡萄牙北部，和去西班牙方向相反，硬塞进当前 9 天四城会太赶（变五城）。</b>想去波尔图，建议改走下面的"深度葡萄牙版"，而不是在原路线上再加。
-    </div>
-    <h3>如何把波尔图放进 9 天（择一）</h3>
+    <p><b>亮点：</b>杜罗河 Ribeira 河岸(世界遗产) · 路易一世大桥 · Livraria Lello 书店 · São Bento 火车站瓷砖 · 加亚新城波特酒庄 · 克莱里戈斯塔。</p>
+    <div class="warn"><b>波尔图在葡北，和去西班牙方向相反，硬塞进当前四城会太赶（变五城）。</b>想去就改走下面的"深度葡萄牙版"。</div>
     <table>
-      <thead><tr><th>方案</th><th>路线</th><th>说明</th></tr></thead>
+      <thead><tr><th style="width:120px">方案</th><th>路线</th><th>说明</th></tr></thead>
       <tbody>
-        <tr><td><b>A · 深度葡萄牙（推荐）</b></td><td>里斯本(2)+辛特拉(1) → <b>波尔图(2)</b> → 西班牙一城（<b>马德里</b> 或 塞维利亚，2 晚）</td><td>里斯本→波尔图高铁约 3h；波尔图有机场可直飞马德里/塞维利亚。少一个西班牙城市换来波尔图深度</td></tr>
-        <tr><td>B · 不加</td><td>维持里斯本+塞维利亚+马德里</td><td>9 天四地已很充实，波尔图留作下次葡萄牙深度游</td></tr>
-        <tr><td>C · 当天往返</td><td>里斯本↔波尔图高铁当天来回</td><td>❌ 单程 3h，太赶不推荐</td></tr>
+        <tr><td><b>A 深度葡萄牙（推荐）</b></td><td>里斯本(2)+辛特拉(1) → <b>波尔图(2)</b> → 西班牙一城（马德里 或 塞维利亚，2 晚）</td><td>里斯本→波尔图高铁约 3h；波尔图有机场可直飞马德里/塞维利亚。少一个西班牙城市换波尔图深度</td></tr>
+        <tr><td>B 不加</td><td>维持 里斯本+塞维利亚+马德里</td><td>四地已充实，波尔图留作下次</td></tr>
+        <tr><td>C 当天往返</td><td>里斯本↔波尔图当天来回</td><td>❌ 单程 3h 太赶，不推荐</td></tr>
       </tbody>
     </table>
-    <div class="note"><b>交通：</b>里斯本→波尔图 Alfa Pendular 高铁约 2h50–3h15（Renfe 葡萄牙段为 CP，官网 cp.pt）；波尔图机场可飞马德里/塞维利亚。若选方案 A，签证仍按"停留最多的国家"判断主要目的地来定申请国。</div>
+    <div class="note">交通：里斯本→波尔图 Alfa Pendular 高铁约 2h50–3h15（葡国铁 <a href="https://www.cp.pt">cp.pt</a>）。选方案 A 时签证仍按"停留最多的国家"定申请国。</div>
   </section>
 
-  <section id="comms">
-    <h2>通讯与支付</h2>
-    <h3>📱 手机卡 / 网络</h3>
-    <ul>
-      <li><b>欧盟一张卡两国通用</b>（申根/欧盟漫游）。最省事买<b>欧洲 eSIM</b>（Airalo/Nomad）或落地买 Vodafone/Orange，西葡都覆盖。</li>
-      <li>城市 4G/5G 良好；国内运营商漫游按天收费偏贵，不如 eSIM 划算。</li>
-    </ul>
-    <h3>💳 现金 vs 刷卡</h3>
-    <ul>
-      <li>都是<b>欧元 €</b>；Visa/Mastercard + Apple Pay 普遍能刷。</li>
-      <li>各备<b>少量现金</b>（€100–200）给小店/小费/市集；用<b>银行 ATM</b>取现（避开 Euronet 高手续费）。</li>
-      <li>刷卡问"本地货币还是人民币结算"时，<b>永远选本地货币（欧元）</b>，选人民币(DCC)更坑。</li>
-      <li>尽量用<b>免外汇手续费</b>的卡；别只带银联（欧洲不如 Visa 普及）。</li>
-    </ul>
-  </section>
-
-  <section id="timezone">
-    <h2>时差（2027 年 3 月初，夏令时前）</h2>
+  <section id="stay">
+    <h2>住宿参考</h2>
     <table>
-      <thead><tr><th>地点</th><th>时区</th><th>与北京时差</th></tr></thead>
+      <thead><tr><th>城市（晚数）</th><th>建议区域</th><th>说明</th><th>参考价/晚</th></tr></thead>
       <tbody>
-        <tr><td>北京</td><td>UTC+8</td><td>基准</td></tr>
-        <tr><td>葡萄牙（里斯本）</td><td>UTC+0（WET）</td><td>慢 8 小时</td></tr>
-        <tr><td>西班牙（塞维利亚/马德里）</td><td>UTC+1（CET）</td><td>慢 7 小时</td></tr>
+        <tr><td>里斯本（3.6–3.8，3 晚）</td><td>Baixa / Chiado 或 Alfama</td><td>市中心好逛，近电车与餐厅</td><td class="price">€90~160</td></tr>
+        <tr><td>塞维利亚（3.9–3.10，2 晚）</td><td>Santa Cruz 老城</td><td>大教堂/王宫步行可达</td><td class="price">€90~150</td></tr>
+        <tr><td>马德里（3.11–3.12，2 晚）</td><td>Sol / Gran Vía / 文学区</td><td>交通枢纽、景点集中</td><td class="price">€100~170</td></tr>
       </tbody>
     </table>
-    <div class="note">
-      <b>葡萄牙比西班牙慢 1 小时。</b> 关键拨表节点：<b>3.9 里斯本 → 塞维利亚，进西班牙把表拨快 1 小时</b>。注意 3.6–3.14 都在欧洲夏令时（3.28 起）之前，用上表标准时差即可。
-    </div>
+    <div class="note">签证阶段先订"可免费取消"的酒店做预订单，出签后再最终确认。</div>
   </section>
 
-  <section id="booking">
-    <h2>预订清单（按优先级）</h2>
-    <table>
-      <thead><tr><th>#</th><th>事项</th><th>时间点</th><th>平台</th><th>可退</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>西班牙申根签证（BLS 预约 + 递交）</td><td>2027.1 递交（提前抢预约）</td><td>BLS 西班牙签证中心</td><td>—</td></tr>
-        <tr><td>2</td><td>国际机票（北京-里斯本进 / 马德里-北京出）</td><td>越早越便宜</td><td>skyscanner / trip.com</td><td>视票价</td></tr>
-        <tr><td>3</td><td>城际：里斯本→塞维利亚机票、塞维利亚→马德里 AVE</td><td>早订便宜</td><td>vueling / renfe.com</td><td>视条款</td></tr>
-        <tr><td>4</td><td>辛特拉佩纳宫时段票</td><td>3.8</td><td>parquesdesintra.pt</td><td>视条款</td></tr>
-        <tr><td>5</td><td>塞维利亚王宫 + 大教堂 + 弗拉门戈</td><td>3.10</td><td>官网 / 各票务</td><td>选可退</td></tr>
-        <tr><td>6</td><td>马德里普拉多 + 王宫</td><td>3.12</td><td>museodelprado.es</td><td>视条款</td></tr>
-        <tr><td>7</td><td>里斯本热罗尼莫斯修道院</td><td>3.7</td><td>官网</td><td>视条款</td></tr>
-        <tr><td>8</td><td>全程酒店（可免费取消，用于签证）</td><td>签证前</td><td>Booking / Agoda</td><td>可免费取消</td></tr>
-        <tr><td>9</td><td>申根旅行保险（≥3 万欧）</td><td>递签前</td><td>安联/安盛等</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="budget">
-    <h2>预算参考（单人，欧元 · 约 1€≈7.8￥）</h2>
-    <table>
-      <thead><tr><th>项目</th><th>估算</th></tr></thead>
-      <tbody>
-        <tr><td>国际往返机票（京-里斯本 / 马德里-京）</td><td>700~900</td></tr>
-        <tr><td>城际交通（飞 + AVE 高铁）</td><td>120~180</td></tr>
-        <tr><td>住宿（7 晚，2 人一间人均分摊）</td><td>400~550</td></tr>
-        <tr><td>餐饮</td><td>300~400</td></tr>
-        <tr><td>门票 + 市内交通 + 杂费</td><td>150~250</td></tr>
-        <tr><td>签证 + 申根保险 + 备用金</td><td>250</td></tr>
-        <tr><th>单人合计</th><th>约 €1,950~2,500（两人约 €3,900~5,000，≈￥30,000~39,000）</th></tr>
-      </tbody>
-    </table>
-    <p style="color:var(--muted);font-size:13px">机票为最大变量；淡季（3 月初、非节庆）+ 早订可压低。</p>
-  </section>
-
-  <section id="tips">
-    <h2>实用提醒</h2>
-    <ul>
-      <li><b>防扒重中之重：</b>马德里、里斯本电车/地铁、塞维利亚景点区扒手多，背包前背、财不外露。</li>
-      <li><b>插头电压：</b>230V，欧标<b>双圆头（C/F 型）</b>，带转换头。</li>
-      <li><b>用餐时间晚：</b>西班牙午餐 14:00 后、晚餐 21:00 后才热闹；tapas 可随时垫。</li>
-      <li><b>周日/周一闭馆：</b>部分景点周一闭馆、周日时间短，订票前看清开放日。</li>
-      <li><b>免费/优惠时段：</b>普拉多等有傍晚免费时段（人多），看官网。</li>
-      <li><b>紫外线 + 天气：</b>南部日照强备防晒墨镜；带轻便雨衣/伞防大西洋阵雨；早晚微凉带薄外套。</li>
-      <li><b>紧急电话：</b>欧盟通用 <b>112</b>。餐厅一般不强制小费，零钱即可。</li>
-      <li><b>返程死线：</b>3.14 到京、3.15 上班；返程航班挑当天到京的，别踩线。</li>
-    </ul>
-  </section>
-
-  <footer>
-    生成于 2026-09-07 · 本计划为草案，具体日期/航班/预订以出票与签证结果为准
-  </footer>
+  <footer>生成于 2026-09-07 · 草案，具体日期/航班/预订以出票与签证结果为准</footer>
 </div>
 </body>
 </html>
