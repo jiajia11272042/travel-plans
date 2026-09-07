@@ -64,11 +64,12 @@
   <section id="plan">
     <h2>逐日行程</h2>
     <div class="tabs">
-      <button id="btn-drive" class="active" onclick="showTab('drive')">🚗 自驾版</button>
-      <button id="btn-nodrive" onclick="showTab('nodrive')">🚌 不自驾版</button>
-      <button id="btn-tekapo" onclick="showTab('tekapo')">🏔 +蒂卡波(自驾环线)</button>
+      <button id="btn-drive" class="active" onclick="showTab('drive')">🚗 自驾 · 不含蒂卡波</button>
+      <button id="btn-nodrive" onclick="showTab('nodrive')">🚌 不自驾 · 不含蒂卡波</button>
+      <button id="btn-tekapo" onclick="showTab('tekapo')">🚗 自驾 · 含蒂卡波</button>
+      <button id="btn-tekapo-nodrive" onclick="showTab('tekapo-nodrive')">🚌 不自驾 · 含蒂卡波</button>
     </div>
-    <p class="rn" style="margin:0 0 12px">🚗/🚌 两版：墨尔本 3 晚 + 皇后镇 5 晚。　🏔 +蒂卡波版：墨尔本减 1 天(2 晚)，皇后镇一带 6 晚(含蒂卡波 2 晚)，<b>先去远处再回皇后镇</b>、少走回头路。</p>
+    <p class="rn" style="margin:0 0 12px">四版（是否自驾 × 是否含蒂卡波）：<b>不含蒂卡波</b>版 墨尔本 3 晚 + 皇后镇 5 晚；<b>含蒂卡波</b>版 墨尔本减 1 天(2 晚)、皇后镇一带 6 晚(含蒂卡波 2 晚)、<b>先远后近</b>走环线。</p>
 
     <div id="tab-drive">
       <table>
@@ -140,6 +141,30 @@
       <div class="note">🏔 <b>蒂卡波版要点：</b>先去远处(蒂卡波/库克山)住 2 晚再回皇后镇，走环线不走回头路；峡湾(西南)与蒂卡波(东北)方向相反已分开。租车 10.5–10.7 三天；此版墨尔本只 1 整天、略过大洋路，换来南岛星空与库克山冰川。</div>
       <div class="note">🚌 <b>不自驾怎么去蒂卡波：</b>① <b>省事不加住宿</b>——皇后镇出发「库克山+蒂卡波」<b>往返一日团</b>（Gray Line/Cheeky Kiwi，约 13–14h，含库克山短徒步+教堂，当天回皇后镇；但看不到星空）。② <b>过夜能观星</b>——坐 <b>InterCity 大巴</b> 或单程观光团到蒂卡波住 1–2 晚，镇上观星团/教堂/湖畔步行可达，去库克山胡克谷搭 Cook Connection 接驳或短团，再大巴返回皇后镇。蒂卡波是全程<b>最依赖自驾</b>的一段，想省心+看星空首选自驾。</div>
     </div>
+
+    <div id="tab-tekapo-nodrive" style="display:none">
+      <table>
+        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
+        <tbody>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra</td></tr>
+          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
+          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
+          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡</td></tr>
+          <tr><td><b>10.2</b></td><td>墨尔本（仅 1 整天，精华）<ul class="hl"><li>涂鸦巷 · 皇后市场 · NGV 美术馆 · Lygon St 咖啡（此版时间紧，略过大洋路）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区</td></tr>
+          <tr><td><b>10.3</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h</td></tr>
+          <tr><td><b>10.4</b></td><td>米尔福德峡湾一日团（西南方向）<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">跟团巴士；峡湾无信号，带驱虫液</td></tr>
+          <tr><td><b>10.5</b></td><td>🚌 <b>皇后镇 → 蒂卡波（不自驾）</b><ul class="hl"><li>InterCity 大巴 或 单程「经 Mt Cook」观光团到蒂卡波</li><li>傍晚 好牧羊人教堂 + <b>暗夜星空观星团</b></li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">大巴/团+观星</span></td><td class="rn">大巴约 4–5h；观星 Dark Sky Project <span class="price">~NZD 100+</span></td></tr>
+          <tr><td><b>10.6</b></td><td>库克山 Aoraki + 蒂卡波<ul class="hl"><li>搭 <b>Cook Connection 接驳</b> 或 Tekapo 出发短团去库克山，走胡克谷步道</li><li>蒂卡波湖畔、教堂、镇上闲逛</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">Mt Cook 接驳/短团</span></td><td class="rn">镇内景点步行可达；Mt Cook 段需接驳</td></tr>
+          <tr><td><b>10.7</b></td><td>🚌 <b>蒂卡波 → 皇后镇（不自驾）</b><ul class="hl"><li>InterCity 大巴 或 观光团返回</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">大巴/团</span></td><td class="rn">大巴约 4–5h</td></tr>
+          <tr><td><b>10.8</b></td><td><b>机动日</b>（皇后镇，含接送项目）：跳伞/快艇/蹦极/温泉/Wanaka 小团/格林诺奇团/看几维鸟，见「机动日活动池」</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">均含接送，不用车</td></tr>
+          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 · 海港大桥；晚 <b>歌剧院看演出</b></li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b></td></tr>
+          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步；新南威尔士美术馆（免费，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
+          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮 / 皇家植物园，或 Taronga 动物园(考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787 <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">晚退房/行李寄存</td></tr>
+          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
+        </tbody>
+      </table>
+      <div class="note">🚌 <b>不自驾 · 含蒂卡波：</b>全程无车。蒂卡波用 InterCity 大巴/观光团往返并住 2 晚（能看星空）；库克山段靠 Cook Connection 接驳或短团。省心但巴士/接驳需分段拼、班次有限，务必提前查时刻与订位。若嫌麻烦，也可改为「皇后镇当天往返 Mt Cook+蒂卡波一日团」（不住蒂卡波、看不到星空）。</div>
+    </div>
   </section>
 
   <section id="pool">
@@ -180,7 +205,7 @@
 
 <script>
   function showTab(t){
-    ['drive','nodrive','tekapo'].forEach(function(x){
+    ['drive','nodrive','tekapo','tekapo-nodrive'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
