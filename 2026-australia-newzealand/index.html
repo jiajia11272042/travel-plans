@@ -17,6 +17,7 @@
   .wrap{max-width:1120px;margin:0 auto;padding:0 14px 60px;}
   section{background:var(--card);border-radius:14px;padding:20px;margin:20px 0;box-shadow:0 2px 10px rgba(15,23,42,.06);}
   h2{font-size:19px;margin:0 0 14px;padding-left:11px;border-left:5px solid var(--brand);color:var(--brand);}
+  h3{font-size:15.5px;margin:16px 0 8px;color:var(--brand2);}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
   th{background:var(--soft);color:var(--brand);font-weight:600;}
@@ -32,11 +33,12 @@
   a{color:var(--brand2);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .note{background:var(--soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
-  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
-  .tabs button{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:8px 16px;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;}
+  .warn{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .tabs button{border:1px solid var(--brand);background:#fff;color:var(--brand);padding:8px 18px;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;}
   .tabs button.active{background:var(--brand);color:#fff;}
-  ul.prep{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
-  ul.prep li{margin:4px 0;}
+  ul.prep,ul.info{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
+  ul.prep li,ul.info li{margin:4px 0;}
   footer{text-align:center;color:var(--muted);font-size:12px;padding:18px;}
   @media(max-width:640px){table{font-size:12px;}th,td{padding:6px 5px;}header h1{font-size:21px;}}
 </style>
@@ -44,8 +46,8 @@
 <body>
 <header>
   <h1>🌏 2026 澳大利亚 + 新西兰 旅行计划</h1>
-  <p>北京 → 墨尔本 → 皇后镇（可含蒂卡波/库克山）→ 悉尼 → 北京</p>
-  <p>9.30 晚出发（转机）/ 10.12 晨到京 · 2 人 · 自然风光为主 + 人文点缀</p>
+  <p>北京 → 墨尔本(2 晚) → 皇后镇(2 晚) → 🚗自驾南岛(瓦纳卡·库克山·蒂卡波) → 基督城(1 晚) → 悉尼(2 晚) → 北京</p>
+  <p>9.30 晚出发（转机）/ 10.12 晨到京 · 2 人 · 自然风光为主 + 人文点缀 · 南岛单程自驾、基督城异地还车</p>
 </header>
 
 <div class="wrap">
@@ -54,158 +56,137 @@
     <h2>行前须知（一次性）</h2>
     <ul class="prep">
       <li><b>签证：</b>新西兰用 <b>NZeTA</b>（持澳签从澳直飞新可用，约 <span class="price">NZD 120</span>）；<b>澳洲签证须 multiple entry</b>（从新西兰再入境悉尼要用到）。</li>
-      <li><b>住宿：</b>墨尔本 CBD 2–3 晚；皇后镇镇中心 5–6 晚（+蒂卡波版含<b>蒂卡波 2 晚</b>）；悉尼 CBD 2 晚(10.9–10.10)。参考酒店见页尾。</li>
+      <li><b>住宿：</b>墨尔本 CBD 2 晚(10.1–10.2)；皇后镇 2 晚(10.3–10.4)；自驾沿途 瓦纳卡 1 晚 + 库克山/蒂卡波 2 晚(10.5–10.7)；基督城 1 晚(10.8)；悉尼 CBD 2 晚(10.9–10.10)。</li>
+      <li><b>自驾：</b>皇后镇取车 → <b>基督城异地还车（单程）</b>；中国驾照 + <b>英文翻译件</b>随身；<b>右舵左行</b>。详见「🚗 自驾须知」Tab。</li>
       <li><b>支付：</b>带 Visa/万事达 + Apple Pay 基本够刷；各备少量现金；刷卡选<b>本地货币结算</b>（别选人民币 DCC）。</li>
-      <li><b>自驾（自驾/蒂卡波版才需）：</b>中国驾照 + <b>英文翻译件</b>随身；<b>右舵左行</b>；租车确认<b>能否开砂石路</b>（合同多禁行）。</li>
       <li><b>其它：</b>入境澳新<b>食品必须申报</b>、勿带果肉种子；南半球春天 UV 强，备防晒；紧急电话 澳 000 / 新 111；不用给小费。</li>
     </ul>
   </section>
 
   <section id="plan">
-    <h2>逐日行程</h2>
+    <h2>行程 / 自驾须知</h2>
     <div class="tabs">
-      <button id="btn-drive" class="active" onclick="showTab('drive')">🚗 自驾 · 不含蒂卡波</button>
-      <button id="btn-nodrive" onclick="showTab('nodrive')">🚌 不自驾 · 不含蒂卡波</button>
-      <button id="btn-tekapo" onclick="showTab('tekapo')">🚗 自驾 · 含蒂卡波</button>
-      <button id="btn-tekapo-nodrive" onclick="showTab('tekapo-nodrive')">🚌 不自驾 · 含蒂卡波</button>
+      <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
+      <button id="btn-driveinfo" onclick="showTab('driveinfo')">🚗 自驾须知</button>
     </div>
-    <p class="rn" style="margin:0 0 12px">四版（是否自驾 × 是否含蒂卡波）：<b>不含蒂卡波</b>版 墨尔本 3 晚 + 皇后镇 5 晚；<b>含蒂卡波</b>版 墨尔本减 1 天(2 晚)、皇后镇一带 6 晚(含蒂卡波 2 晚)、<b>先远后近</b>走环线。</p>
 
-    <div id="tab-drive">
+    <div id="tab-plan">
       <table>
-        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
+        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:80px">住宿</th><th style="width:110px">需预订</th><th style="width:220px">备注</th></tr></thead>
         <tbody>
-          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra；峡湾一带无信号</td></tr>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地机场买；峡湾/山区信号弱</td></tr>
           <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
           <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
-          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St 车站 · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡；CBD 电车免费区</td></tr>
-          <tr><td><b>10.2</b></td><td>墨尔本 day1<ul class="hl"><li>涂鸦巷 Hosier Lane · 皇后市场 · 维州国家美术馆 NGV · Lygon St 咖啡街</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区，步行为主</td></tr>
-          <tr><td><b>10.3</b></td><td>墨尔本 day2<ul class="hl"><li>可选：大洋路一日团（十二门徒/Loch Ard 峡谷）<span class="price">~AUD 150~180</span></li><li>或市区 + St Kilda 海滩（傍晚防波堤看小蓝企鹅）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">大洋路选订</span></td><td class="rn">想看自然海岸线就选大洋路团（全天，推荐）</td></tr>
-          <tr><td><b>10.4</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山，山顶滑板车 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h（皇后镇比北京快 5h）；今日不租车</td></tr>
-          <tr><td><b>10.5</b></td><td>米尔福德峡湾一日团<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">单程 4h 高山路交给巴士；峡湾无信号，带驱虫液防沙蝇</td></tr>
-          <tr><td><b>10.6</b></td><td>🚗 <b>自驾·瓦纳卡 Wanaka</b><ul class="hl"><li>Crown Range 山路 / Roys Peak 观景 / #湖中树 / 瓦纳卡镇</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">租车(10.6–7)</span></td><td class="rn">早上皇后镇取车：apexcarrentals.com / gorentals.co.nz；<b>确认可否开砂石路</b>；带驾照+英文翻译件</td></tr>
-          <tr><td><b>10.7</b></td><td>🚗 <b>自驾·格林诺奇 + 箭镇</b><ul class="hl"><li>格林诺奇/天堂谷(魔戒取景地) · 箭镇淘金古镇+华人矿工村(人文)</li></ul></td><td class="stay">皇后镇</td><td><span class="pill no">—</span></td><td class="rn">傍晚皇后镇还车；之后不再需车</td></tr>
-          <tr><td><b>10.8</b></td><td><b>机动日</b>：从下方「机动日活动池」自选（跳伞/温泉/快艇/蹦极/蒸汽船牧场/徒步/看几维鸟/酒庄）</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
-          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</li><li>晚：<b>歌剧院看演出</b>（歌剧/交响/芭蕾）</li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b>；演出 sydneyoperahouse.com</td></tr>
-          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步（6km，2–3h）</li><li>新南威尔士美术馆（免费；欧洲古典/澳洲/原住民/当代，Naala Badu 现代馆，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
-          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮(海港全景) / 皇家植物园，或 Taronga 动物园(看考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787，~11h45m <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">酒店办晚退房/行李寄存；想看考拉袋鼠今天去 Taronga/WILD LIFE</td></tr>
+          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 Federation Square · 弗林德斯街车站 · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡；CBD 电车免费区</td></tr>
+          <tr><td><b>10.2</b></td><td>墨尔本一整天<ul class="hl"><li>涂鸦巷 Hosier Lane · 皇后市场 · 维州国家美术馆 NGV · Lygon St 咖啡街</li><li>可选：大洋路一日团（十二门徒）<span class="price">~AUD 150~180</span></li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">大洋路选订</span></td><td class="rn">想看海岸线就选大洋路团（全天）</td></tr>
+          <tr><td><b>10.3</b></td><td>退房 → 飞皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山 <span class="price">~NZD 60</span>、湖滨漫步</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h（皇后镇比北京快 5h）；今日不租车</td></tr>
+          <tr><td><b>10.4</b></td><td>皇后镇一日<ul class="hl"><li>推荐 米尔福德峡湾一日团（游船看米特峰·海狗）<span class="price">~NZD 150~230</span></li><li>或 格林诺奇/箭镇/跳伞（见「皇后镇可选活动」）</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">峡湾无信号，带驱虫液防沙蝇</td></tr>
+          <tr><td><b>10.5</b></td><td>🚗 <b>自驾 D1：皇后镇 → 瓦纳卡 Wanaka</b><ul class="hl"><li>途经 卡瓦劳蹦极桥(看蹦极) / 克伦威尔 Cromwell，或走 Crown Range 景观路</li><li>瓦纳卡：#湖中树 · 湖畔 · Roys Peak 观景</li></ul></td><td class="stay">瓦纳卡</td><td><span class="pill yes">皇后镇取车</span></td><td class="rn">车程约 1–1.5h（短，慢玩瓦纳卡）；取还车/交规见「自驾须知」</td></tr>
+          <tr><td><b>10.6</b></td><td>🚗 <b>自驾 D2：瓦纳卡 → 库克山 Aoraki/Mt Cook</b><ul class="hl"><li>途经 Lindis Pass 垭口 · Lake Pukaki 松石色湖(拍库克山倒影)</li><li>胡克谷步道 Hooker Valley Track（看冰川湖，往返 3h 平缓）</li></ul></td><td class="stay">库克山村/蒂卡波</td><td><span class="pill no">—</span></td><td class="rn">车程约 2.5–3h；⚠️ Lindis Pass 早 10 月可能积雪/需防滑链；进山前 Twizel 加满油</td></tr>
+          <tr><td><b>10.7</b></td><td>🚗 <b>自驾 D3：→ 蒂卡波 Lake Tekapo</b><ul class="hl"><li>好牧羊人教堂 · Mt John 观景 · <b>暗夜星空观星</b></li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">观星团建议约</span></td><td class="rn">库克山→蒂卡波仅约 1h，今日轻松；观星 Dark Sky Project <span class="price">~NZD 100+</span></td></tr>
+          <tr><td><b>10.8</b></td><td>🚗 <b>自驾 D4：蒂卡波 → 基督城 Christchurch</b><ul class="hl"><li>途经 Geraldine 小镇</li><li>基督城：雅芳河 Avon River 撑篙 · 植物园 · 大教堂广场 · 复古电车</li></ul></td><td class="stay">基督城</td><td><span class="pill yes">还车</span></td><td class="rn">车程约 3h；基督城市区或机场<b>异地还车</b>（单程）</td></tr>
+          <tr><td><b>10.9</b></td><td>基督城退房 → 飞悉尼（直飞 ~3h20）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 · 海港大桥；晚 <b>歌剧院看演出</b></li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b>；演出 sydneyoperahouse.com</td></tr>
+          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步（6km，2–3h）</li><li>新南威尔士美术馆（免费，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
+          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮 / 皇家植物园，或 Taronga 动物园(看考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787，~11h45m <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">酒店办晚退房/行李寄存</td></tr>
           <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
         </tbody>
       </table>
+      <p class="rn" style="margin-top:8px">路线：皇后镇 → 瓦纳卡 → 库克山 → 蒂卡波 → 基督城，一路东北向单程推进，不走回头路。</p>
     </div>
 
-    <div id="tab-nodrive" style="display:none">
-      <table>
-        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
-        <tbody>
-          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra；峡湾一带无信号</td></tr>
-          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
-          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
-          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St 车站 · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡；CBD 电车免费区</td></tr>
-          <tr><td><b>10.2</b></td><td>墨尔本 day1<ul class="hl"><li>涂鸦巷 Hosier Lane · 皇后市场 · 维州国家美术馆 NGV · Lygon St 咖啡街</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区，步行为主</td></tr>
-          <tr><td><b>10.3</b></td><td>墨尔本 day2<ul class="hl"><li>可选：大洋路一日团（十二门徒/Loch Ard 峡谷）<span class="price">~AUD 150~180</span></li><li>或市区 + St Kilda 海滩（傍晚防波堤看小蓝企鹅）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">大洋路选订</span></td><td class="rn">想看自然海岸线就选大洋路团（全天，推荐）</td></tr>
-          <tr><td><b>10.4</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山，山顶滑板车 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h（皇后镇比北京快 5h）</td></tr>
-          <tr><td><b>10.5</b></td><td>米尔福德峡湾一日团<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">单程 4h 高山路交给巴士；峡湾无信号，带驱虫液防沙蝇</td></tr>
-          <tr><td><b>10.6</b></td><td>🚌 <b>Arrowtown &amp; Wanaka Highlights 小团一日游</b>（~6h，含接送）<ul class="hl"><li>箭镇 + Crown Range + Cardrona 酒馆 + 瓦纳卡(#湖中树/湖畔) <span class="price">~NZD 150~200</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">小团建议订</span></td><td class="rn">GetYourGuide/Klook/Viator；此团<b>打包箭镇+瓦纳卡</b>，故 10.7 可空出</td></tr>
-          <tr><td><b>10.7</b></td><td>🚌 <b>格林诺奇深度</b>（含接送，二选一）或转机动活动<ul class="hl"><li>达特河喷射船 Dart River Wilderness Jet <span class="price">~NZD 250+</span></li><li>「Safari of the Scenes」魔戒取景地 4WD 团</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">建议订</span></td><td class="rn">全程含接送，无需开车</td></tr>
-          <tr><td><b>10.8</b></td><td><b>机动日</b>：从下方「机动日活动池」自选（跳伞/温泉/快艇/蹦极/蒸汽船牧场/徒步/看几维鸟/酒庄）</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
-          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</li><li>晚：<b>歌剧院看演出</b>（歌剧/交响/芭蕾）</li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b>；演出 sydneyoperahouse.com</td></tr>
-          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步（6km，2–3h）</li><li>新南威尔士美术馆（免费；欧洲古典/澳洲/原住民/当代，Naala Badu 现代馆，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
-          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮(海港全景) / 皇家植物园，或 Taronga 动物园(看考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787，~11h45m <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">酒店办晚退房/行李寄存；想看考拉袋鼠今天去 Taronga/WILD LIFE</td></tr>
-          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="tab-driveinfo" style="display:none">
 
-    <div id="tab-tekapo" style="display:none">
-      <table>
-        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
-        <tbody>
-          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra</td></tr>
-          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
-          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
-          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡</td></tr>
-          <tr><td><b>10.2</b></td><td>墨尔本（仅 1 整天，精华）<ul class="hl"><li>涂鸦巷 · 皇后市场 · NGV 美术馆 · Lygon St 咖啡（此版时间紧，略过大洋路）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区</td></tr>
-          <tr><td><b>10.3</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h；今日不租车</td></tr>
-          <tr><td><b>10.4</b></td><td>米尔福德峡湾一日团（西南方向）<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">跟团巴士，不租车；峡湾无信号，带驱虫液</td></tr>
-          <tr><td><b>10.5</b></td><td>🚗 <b>自驾去远处：皇后镇 → 蒂卡波/库克山（东北）</b><ul class="hl"><li>途经 瓦纳卡(#湖中树) → Lindis Pass → 蒂卡波湖</li><li>傍晚 好牧羊人教堂 + <b>暗夜星空观星</b></li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">租车(10.5–7)+观星</span></td><td class="rn">皇后镇取车；单程约 3h；观星 Dark Sky Project <span class="price">~NZD 100+</span></td></tr>
-          <tr><td><b>10.6</b></td><td>库克山 Aoraki + 蒂卡波<ul class="hl"><li><b>胡克谷步道 Hooker Valley Track</b>（看冰川湖，往返 3h，平缓）</li><li>蒂卡波湖畔、鲁冰花（季节）</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill no">—</span></td><td class="rn">库克山村距蒂卡波约 1h；也可住库克山村</td></tr>
-          <tr><td><b>10.7</b></td><td>🚗 <b>自驾返回：蒂卡波 → 皇后镇</b><ul class="hl"><li>途经 克伦威尔水果小镇 / 箭镇淘金古镇(人文)</li></ul></td><td class="stay">皇后镇</td><td><span class="pill no">—</span></td><td class="rn">傍晚皇后镇还车；单程约 3h</td></tr>
-          <tr><td><b>10.8</b></td><td><b>机动日</b>（皇后镇）：格林诺奇/跳伞/温泉/快艇/看几维鸟等，见「机动日活动池」</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">见活动池表</td></tr>
-          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 · 海港大桥；晚 <b>歌剧院看演出</b></li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b></td></tr>
-          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步；新南威尔士美术馆（免费，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
-          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮 / 皇家植物园，或 Taronga 动物园(考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787 <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">晚退房/行李寄存</td></tr>
-          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
-        </tbody>
-      </table>
-      <div class="note">🏔 <b>蒂卡波版要点：</b>先去远处(蒂卡波/库克山)住 2 晚再回皇后镇，走环线不走回头路；峡湾(西南)与蒂卡波(东北)方向相反已分开。租车 10.5–10.7 三天；此版墨尔本只 1 整天、略过大洋路，换来南岛星空与库克山冰川。</div>
-      <div class="note">🚌 <b>不自驾怎么去蒂卡波：</b>① <b>省事不加住宿</b>——皇后镇出发「库克山+蒂卡波」<b>往返一日团</b>（Gray Line/Cheeky Kiwi，约 13–14h，含库克山短徒步+教堂，当天回皇后镇；但看不到星空）。② <b>过夜能观星</b>——坐 <b>InterCity 大巴</b> 或单程观光团到蒂卡波住 1–2 晚，镇上观星团/教堂/湖畔步行可达，去库克山胡克谷搭 Cook Connection 接驳或短团，再大巴返回皇后镇。蒂卡波是全程<b>最依赖自驾</b>的一段，想省心+看星空首选自驾。</div>
-    </div>
+      <h3>🇳🇿 新西兰交规（务必先学）</h3>
+      <ul class="info">
+        <li><b>靠左行驶、右舵车</b>；口诀"司机永远靠路中线"。<b>右转</b>要横穿对向车道，最易出错。</li>
+        <li><b>限速：</b>开放道路/高速 <b>100 km/h</b>；城镇/市区 <b>50 km/h</b>；学校区、施工区按牌降速。超速执法严。</li>
+        <li><b>安全带</b>全车强制；<b>禁手持手机</b>（导航用支架）；<b>酒驾</b>限值低（20 岁以上 血液 0.05%），基本别碰酒。</li>
+        <li><b>环岛 Roundabout：</b>顺时针行驶，<b>让已在环岛内/右侧来车</b>，进出打灯。</li>
+        <li><b>单车道桥 One-lane bridge：</b>新西兰超多。看桥头牌：<b>蓝底大箭头=你方优先</b>；<b>红圈小箭头=你方让行(Give Way)</b>，桥上不得会车。</li>
+        <li><b>Give Way / Stop</b> 必须执行，Stop 要<b>完全停住</b>；斑马线<b>让行人</b>。</li>
+        <li><b>砂石路 gravel：</b>减速慢行，多数租约<b>禁止行驶</b>（出事不赔）。</li>
+        <li><b>疲劳驾驶</b>是新西兰事故大头：长途多停、善用观景带(pull-over bay)、别硬撑。</li>
+        <li><b>冬春高山路</b>（Lindis Pass、Crown Range）可能要求<b>携带/安装防滑链</b>，出发前查路况 journeys.nzta.govt.nz。</li>
+        <li>紧急电话 <b>111</b>。</li>
+      </ul>
 
-    <div id="tab-tekapo-nodrive" style="display:none">
+      <h3>🚙 租车公司 / 取还车</h3>
       <table>
-        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:70px">住宿</th><th style="width:110px">需预订</th><th style="width:210px">备注</th></tr></thead>
+        <thead><tr><th>类型</th><th>公司</th><th>说明</th></tr></thead>
         <tbody>
-          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）<span class="price">视流量</span></td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地墨尔本机场买 Telstra</td></tr>
-          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
-          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
-          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 · Flinders St · 南岸 Southbank 散步（倒时差）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡</td></tr>
-          <tr><td><b>10.2</b></td><td>墨尔本（仅 1 整天，精华）<ul class="hl"><li>涂鸦巷 · 皇后市场 · NGV 美术馆 · Lygon St 咖啡（此版时间紧，略过大洋路）</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">CBD 电车免费区</td></tr>
-          <tr><td><b>10.3</b></td><td>墨尔本 → 皇后镇（Jetstar 直飞 ~3.5h）<ul class="hl"><li>天空缆车 Skyline 俯瞰湖+雪山 <span class="price">~NZD 60</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票+缆车</span></td><td class="rn">⏱ 落地拨快 2h</td></tr>
-          <tr><td><b>10.4</b></td><td>米尔福德峡湾一日团（西南方向）<ul class="hl"><li>镜湖 / Homer 隧道 / 峡湾游船看米特峰·瀑布·<b>海狗</b> <span class="price">~NZD 150~230</span></li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">峡湾团必订</span></td><td class="rn">跟团巴士；峡湾无信号，带驱虫液</td></tr>
-          <tr><td><b>10.5</b></td><td>🚌 <b>皇后镇 → 蒂卡波（不自驾）</b><ul class="hl"><li>InterCity 大巴 或 单程「经 Mt Cook」观光团到蒂卡波</li><li>傍晚 好牧羊人教堂 + <b>暗夜星空观星团</b></li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">大巴/团+观星</span></td><td class="rn">大巴约 4–5h；观星 Dark Sky Project <span class="price">~NZD 100+</span></td></tr>
-          <tr><td><b>10.6</b></td><td>库克山 Aoraki + 蒂卡波<ul class="hl"><li>搭 <b>Cook Connection 接驳</b> 或 Tekapo 出发短团去库克山，走胡克谷步道</li><li>蒂卡波湖畔、教堂、镇上闲逛</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">Mt Cook 接驳/短团</span></td><td class="rn">镇内景点步行可达；Mt Cook 段需接驳</td></tr>
-          <tr><td><b>10.7</b></td><td>🚌 <b>蒂卡波 → 皇后镇（不自驾）</b><ul class="hl"><li>InterCity 大巴 或 观光团返回</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">大巴/团</span></td><td class="rn">大巴约 4–5h</td></tr>
-          <tr><td><b>10.8</b></td><td><b>机动日</b>（皇后镇，含接送项目）：跳伞/快艇/蹦极/温泉/Wanaka 小团/格林诺奇团/看几维鸟，见「机动日活动池」</td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">均含接送，不用车</td></tr>
-          <tr><td><b>10.9</b></td><td>皇后镇 → 悉尼（直飞 ~3h）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 · 海港大桥；晚 <b>歌剧院看演出</b></li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票+歌剧院票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b></td></tr>
-          <tr><td><b>10.10</b></td><td>悉尼<ul class="hl"><li>邦迪海滩 + 邦迪-库吉海岸徒步；新南威尔士美术馆（免费，南半球顶级）</li></ul></td><td class="stay">悉尼</td><td><span class="pill no">—</span></td><td class="rn">CBD 内步行/火车即可</td></tr>
-          <tr><td><b>10.11</b></td><td>悉尼<ul class="hl"><li>Manly 渡轮 / 皇家植物园，或 Taronga 动物园(考拉·袋鼠)</li><li>晚 20:40 悉尼直飞北京（国航 787 <span class="price">¥3817</span>）</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">晚退房/行李寄存</td></tr>
-          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
+          <tr><td>国际大牌</td><td>Hertz · Avis · Budget · Europcar · Thrifty</td><td>网点多、异地还车成熟，价格略高</td></tr>
+          <tr><td>本地高性价比</td><td>Apex · GO Rentals · Ezi · Snap Rentals</td><td>口碑好、含全险选项，皇后镇/基督城都有点</td></tr>
+          <tr><td>比价平台</td><td>rentalcars.com · DiscoverCars</td><td>一次比多家，看清条款</td></tr>
         </tbody>
       </table>
-      <div class="note">🚌 <b>不自驾 · 含蒂卡波：</b>全程无车。蒂卡波用 InterCity 大巴/观光团往返并住 2 晚（能看星空）；库克山段靠 Cook Connection 接驳或短团。省心但巴士/接驳需分段拼、班次有限，务必提前查时刻与订位。若嫌麻烦，也可改为「皇后镇当天往返 Mt Cook+蒂卡波一日团」（不住蒂卡波、看不到星空）。</div>
+      <ul class="info">
+        <li><b>单程异地还车：</b>皇后镇取 → 基督城还，是新西兰<b>最热门自驾线</b>，多数公司<b>免或低单程费(relocation)</b>，订时确认。</li>
+        <li>需 <b>信用卡</b>押金；最低年龄多为 <b>21 岁</b>（25 岁以下常加青年费）。</li>
+        <li>建议买<b>全险/零自付(excess reduction)</b>；确认<b>是否允许砂石路</b>；选<b>自动挡 automatic</b>。</li>
+        <li>带 <b>中国驾照 + NZTA 认可英文翻译件</b>，两者随身。</li>
+      </ul>
+
+      <h3>⛽ 加油信息</h3>
+      <ul class="info">
+        <li><b>油站品牌：</b>BP · Z Energy · Mobil · Caltex · <b>Gull（通常最便宜）</b> · Waitomo。</li>
+        <li>多为<b>自助加油</b>，油枪刷卡或店内付；部分小站需先入店预付。</li>
+        <li><b>油品：</b>91（普通无铅）/ 95 / Diesel 柴油——<b>按车型加，别加错</b>（取车问清）。</li>
+        <li><b>南岛小镇间距远，见站加满。</b>关键补给点：Cromwell、Omarama、<b>Twizel</b>、Tekapo、Geraldine。</li>
+        <li><b>库克山村 Mt Cook Village</b> 加油点少且贵，<b>进山前在 Twizel 加满</b>。</li>
+        <li>若租电动车：ChargeNet 充电网络，提前规划充电点。</li>
+      </ul>
+
+      <h3>🛣 本路线关注路段</h3>
+      <table>
+        <thead><tr><th>路段</th><th>提示</th></tr></thead>
+        <tbody>
+          <tr><td>Crown Range Road（若经 Cardrona 去瓦纳卡）</td><td>全国最高铺装公路，急弯陡坡，冬春结冰/雪；新手可改走 Kawarau Gorge/Cromwell 那条更平缓</td></tr>
+          <tr><td>Kawarau Gorge SH6（经 Cromwell）</td><td>峡谷弯道，风景好，注意会车与限速</td></tr>
+          <tr><td>Lindis Pass SH8（瓦纳卡 → Mackenzie）</td><td>⚠️ 高山垭口，早 10 月可能积雪、需防滑链，出发查路况</td></tr>
+          <tr><td>Lake Pukaki → 库克山 SH80</td><td>尽头路(dead-end)，原路返回；湖光山色但风大</td></tr>
+          <tr><td>蒂卡波 → 基督城 SH8/SH79</td><td>经 Burkes Pass、Geraldine，路况较好，较易开</td></tr>
+          <tr><td>通用</td><td>单车道桥多、砂石岔路禁行、长直路防疲劳、观景务必先停车再看</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <section id="pool">
-    <h2>机动日活动池（10.8 自选）</h2>
-    <p style="color:var(--muted);font-size:13px">皇后镇机动时间按时长自由组合：一般"一个全天 + 一个半天 + 弹性闲逛"。多数含镇上接送。</p>
+    <h2>皇后镇可选活动（10.4 备选）</h2>
     <table>
       <thead><tr><th>活动</th><th>类型</th><th>时长</th><th>价格</th><th>需预约</th><th>网址</th></tr></thead>
       <tbody>
-        <tr><td>NZONE 跳伞（9,000–15,000ft）</td><td>刺激/俯瞰雪山湖泊</td><td>3–4h</td><td class="price">NZD 340~540</td><td><span class="pill yes">必约</span></td><td><a href="https://www.nzoneskydive.co.nz">nzoneskydive.co.nz</a></td></tr>
+        <tr><td>米尔福德峡湾一日团</td><td>自然(峡湾)</td><td>全天 12–13h</td><td class="price">NZD 150~230</td><td><span class="pill yes">必约</span></td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
+        <tr><td>NZONE 跳伞</td><td>刺激/雪山湖泊</td><td>3–4h</td><td class="price">NZD 340~540</td><td><span class="pill yes">必约</span></td><td><a href="https://www.nzoneskydive.co.nz">nzoneskydive.co.nz</a></td></tr>
+        <tr><td>格林诺奇/箭镇（含接送团或自由行）</td><td>自然+人文</td><td>半天–全天</td><td class="price">视方式</td><td><span class="pill no">选订</span></td><td>—</td></tr>
         <tr><td>Shotover 喷射快艇</td><td>峡谷刺激</td><td>2–2.5h</td><td class="price">NZD 169</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.shotoverjet.com">shotoverjet.com</a></td></tr>
         <tr><td>卡瓦劳大桥蹦极（全球首座）</td><td>冒险/人文</td><td>2–3h</td><td class="price">NZD 235</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.bungy.co.nz">bungy.co.nz</a></td></tr>
-        <tr><td>Onsen 温泉泡池</td><td>休闲/观景</td><td>~1h+接送</td><td class="price">NZD 100+</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.onsen.co.nz">onsen.co.nz</a></td></tr>
-        <tr><td>TSS 蒸汽船 + Walter Peak 牧场（<b>高地牛/美利奴羊/红鹿</b>+剪羊毛牧羊犬）</td><td>人文/休闲/动物</td><td>1.5–4h</td><td class="price">NZD 105 起</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
-        <tr><td>Kiwi Birdlife Park（<b>几维鸟 Kiwi、高山鹦鹉 Kea</b>）</td><td>本土野生动物</td><td>1–2h</td><td class="price">NZD 55</td><td><span class="pill no">否</span></td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td></tr>
-        <tr><td>Ben Lomond / Tiki Trail 徒步</td><td>自然</td><td>2h–全天</td><td class="price">免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
-        <tr><td>Gibbston Valley 酒庄品酒团</td><td>美食/人文</td><td>半天 4–5h</td><td class="price">NZD 100~200</td><td><span class="pill yes">建议约</span></td><td><a href="https://www.gibbstonvalley.com">gibbstonvalley.com</a></td></tr>
-        <tr><td>镇上闲逛 / 湖滨</td><td>休闲</td><td>弹性</td><td class="price">免费</td><td><span class="pill no">否</span></td><td>—</td></tr>
+        <tr><td>Kiwi Birdlife Park（几维鸟/kea）</td><td>本土动物</td><td>1–2h</td><td class="price">NZD 55</td><td><span class="pill no">否</span></td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td></tr>
       </tbody>
     </table>
-    <div class="note"><b>酒庄提示：</b>去酒庄别自驾（酒驾严查），用酒庄团接送；Gibbston 就在卡瓦劳蹦极桥路上，可"酒庄+看蹦极"串半天。</div>
   </section>
 
   <section id="stay">
     <h2>住宿参考</h2>
     <table>
-      <thead><tr><th>城市（晚数）</th><th>建议区域</th><th>参考酒店</th><th>参考价/晚</th></tr></thead>
+      <thead><tr><th>城市（晚数）</th><th>建议区域 / 酒店</th><th>参考价/晚</th></tr></thead>
       <tbody>
-        <tr><td>墨尔本（2–3 晚）</td><td>CBD，Flinders St / Collins St 一带</td><td>性价比 Pegasus/Oaks；中端 Novotel on Collins/Vibe；品质 The Westin/Grand Hyatt</td><td class="price">AUD 180~500</td></tr>
-        <tr><td>皇后镇（5–6 晚，同一处）</td><td>镇中心 Town Centre / 湖滨</td><td>就近餐厅、团接送点、租车点；多数含免费停车</td><td class="price">NZD 200~400</td></tr>
-        <tr><td>蒂卡波（+蒂卡波版 2 晚）</td><td>Lake Tekapo 湖畔 / 库克山村 Mt Cook Village</td><td>湖景 Peppers Bluewater、YHA；库克山村 The Hermitage</td><td class="price">NZD 200~450</td></tr>
-        <tr><td>悉尼（2 晚）</td><td>Circular Quay / Town Hall</td><td>近歌剧院与机场火车；性价比 Metro Aspire/Song，海景 Pullman Quay Grand</td><td class="price">AUD 200~750</td></tr>
+        <tr><td>墨尔本（2 晚）</td><td>CBD，Flinders St/Collins St；Pegasus/Novotel/The Westin</td><td class="price">AUD 180~500</td></tr>
+        <tr><td>皇后镇（2 晚）</td><td>镇中心 Town Centre / 湖滨</td><td class="price">NZD 200~400</td></tr>
+        <tr><td>瓦纳卡（1 晚）</td><td>Wanaka 湖畔小镇中心</td><td class="price">NZD 180~350</td></tr>
+        <tr><td>库克山/蒂卡波（2 晚）</td><td>Mt Cook Village（The Hermitage）或 Lake Tekapo 湖畔（Peppers Bluewater）</td><td class="price">NZD 200~450</td></tr>
+        <tr><td>基督城（1 晚）</td><td>市中心 CBD / 大教堂广场附近</td><td class="price">NZD 180~350</td></tr>
+        <tr><td>悉尼（2 晚）</td><td>Circular Quay / Town Hall</td><td class="price">AUD 200~750</td></tr>
       </tbody>
     </table>
   </section>
 
-  <footer>生成于 2026-09-07 · 草案，具体日期/航班/预订以出票与签证结果为准</footer>
+  <footer>生成于 2026-09-08 · 草案，具体日期/航班/预订以出票与签证结果为准</footer>
 </div>
 
 <script>
   function showTab(t){
-    ['drive','nodrive','tekapo','tekapo-nodrive'].forEach(function(x){
+    ['plan','driveinfo'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
