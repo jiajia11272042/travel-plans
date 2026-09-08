@@ -23,7 +23,7 @@ travel-plans/
 
 | 行程 | 时间 | 路线 | 页面 |
 |------|------|------|------|
-| 澳大利亚 + 新西兰 | 2026-10-01 ~ 10-11 | 北京→墨尔本→皇后镇→自驾南岛→基督城→悉尼→北京 | [2026-australia-newzealand](./2026-australia-newzealand/index.html) |
+| 澳大利亚 + 新西兰 | 2026-10-01 ~ 10-11 | 北京→墨尔本→皇后镇→自驾蒂卡波/库克山→回皇后镇→悉尼→北京 | [2026-australia-newzealand](./2026-australia-newzealand/index.html) |
 | 葡萄牙 + 西班牙 | 2027-03-06 ~ 03-14 | 北京→里斯本→塞维利亚→马德里→北京 | [2027-spain-portugal](./2027-spain-portugal/index.html) |
 
 ## 本地预览
