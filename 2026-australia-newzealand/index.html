@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 澳大利亚 + 新西兰 旅行计划</title>
+<title>2026 澳大利亚 + 新西兰 旅行计划（最终版）</title>
 <style>
   :root{
     --card:#fff; --ink:#1f2933; --muted:#6b7280; --brand:#0e7490; --brand2:#0891b2;
@@ -14,7 +14,7 @@
   header{background:linear-gradient(135deg,#0e7490,#0891b2 55%,#22d3ee);color:#fff;padding:42px 20px 34px;text-align:center;}
   header h1{margin:0 0 8px;font-size:26px;}
   header p{margin:3px 0;opacity:.95;font-size:14px;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 14px 60px;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 14px 60px;}
   section{background:var(--card);border-radius:14px;padding:20px;margin:20px 0;box-shadow:0 2px 10px rgba(15,23,42,.06);}
   h2{font-size:19px;margin:0 0 14px;padding-left:11px;border-left:5px solid var(--brand);color:var(--brand);}
   h3{font-size:15.5px;margin:18px 0 8px;color:var(--brand2);}
@@ -30,6 +30,8 @@
   .stay{font-weight:600;color:var(--brand2);white-space:nowrap;}
   .price{color:#b45309;font-weight:600;white-space:nowrap;}
   .rn{font-size:12.5px;color:var(--muted);}
+  .lv{white-space:nowrap;font-size:13px;letter-spacing:1px;}
+  .lv1{color:#059669;} .lv2{color:#65a30d;} .lv3{color:#ca8a04;} .lv4{color:#ea580c;} .lv5{color:#dc2626;}
   a{color:var(--brand2);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .note{background:var(--soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin:12px 0;font-size:13.5px;}
@@ -39,30 +41,48 @@
   .tabs button.active{background:var(--brand);color:#fff;}
   ul.prep,ul.info{margin:6px 0 0;padding-left:20px;font-size:13.5px;}
   ul.prep li,ul.info li{margin:4px 0;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px;}
+  .stat{background:var(--soft);border-radius:10px;padding:12px;text-align:center;}
+  .stat .n{font-size:19px;font-weight:700;color:var(--brand);}
+  .stat .l{font-size:12px;color:var(--muted);}
   footer{text-align:center;color:var(--muted);font-size:12px;padding:18px;}
-  @media(max-width:640px){table{font-size:12px;}th,td{padding:6px 5px;}header h1{font-size:21px;}}
+  @media(max-width:640px){table{font-size:12px;}th,td{padding:6px 5px;}header h1{font-size:20px;}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🌏 2026 澳大利亚 + 新西兰 旅行计划</h1>
-  <p>北京 → 墨尔本(2 晚) → 皇后镇(2 晚) → 🚗蒂卡波(2 晚) → 回皇后镇(2 晚) → 悉尼(2 晚) → 北京</p>
-  <p>9.30 晚出发（转机）/ 10.12 晨到京 · 2 人 · 重点：<b>库克山跳伞 · 蒂卡波观星 · 皇后镇射击</b></p>
+  <h1>🌏 2026 澳大利亚 + 新西兰（最终版 · 方案 B）</h1>
+  <p>北京 → 墨尔本 2 晚 → 皇后镇 2 晚 → 🚗蒂卡波 3 晚 → 皇后镇 1 晚 → 悉尼 2 晚 → 北京</p>
+  <p>重点：<b>库克山跳伞 · 蒂卡波观星 · 皇后镇射击</b>｜换宿仅 3 次｜租车 4 天｜9.30 出发 / 10.12 晨到京</p>
 </header>
 
 <div class="wrap">
 
+  <section id="sum">
+    <h2>一眼总览</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">13 天</div><div class="l">9.30 – 10.12</div></div>
+      <div class="stat"><div class="n">3 次</div><div class="l">换宿（皇后镇两段同一家）</div></div>
+      <div class="stat"><div class="n">4 天</div><div class="l">租车（10.5–10.8）</div></div>
+      <div class="stat"><div class="n">~770 km</div><div class="l">南岛自驾总里程</div></div>
+      <div class="stat"><div class="n">3 晚</div><div class="l">蒂卡波观星机会</div></div>
+      <div class="stat"><div class="n">3 次</div><div class="l">跳伞窗口</div></div>
+    </div>
+    <div class="note">🎯 <b>方案 B 的核心逻辑：</b>10.3 是旅行日（飞行 + 再跨 3h 时差），所以 10.4 留在皇后镇镇上适应，<b>不把"第一次右舵左行"安排成旅行日次日的 3.5 小时山路</b>；自驾放在 10.5–10.8，中间 10.7 完全不开车做休闲兼天气缓冲；10.8 回程先到机场还车再进镇，<b>全程不用在皇后镇停车</b>。</div>
+  </section>
+
   <section id="prep">
     <h2>行前须知（一次性）</h2>
     <ul class="prep">
-      <li><b>✈️ 已选航班：</b>10.3 墨尔本 <b>11:35</b> → 皇后镇 <b>17:45</b>（约 ¥3500）｜10.9 皇后镇 <b>20:50</b> → 悉尼 <b>22:05</b>（约 ¥3500）｜10.11 悉尼 <b>20:40</b> → 北京 <b>10.12 05:25</b>（国航 787，¥3817）。</li>
-      <li><b>签证：</b>新西兰用 <b>NZeTA</b>（持澳签从澳直飞新可用，约 <span class="price">NZD 120</span>）；<b>澳洲签证须 multiple entry</b>（从新西兰再入境悉尼要用到）。</li>
-      <li><b>住宿只换 3 次：</b>墨尔本 2 晚(10.1–10.2)｜皇后镇 2 晚(10.3–10.4)｜蒂卡波 2 晚(10.5–10.6)｜<b>回皇后镇 2 晚(10.7–10.8，可订同一家)</b>｜悉尼 2 晚(10.9–10.10)。去蒂卡波时大箱子寄存皇后镇酒店。</li>
-      <li><b>租车只 3 天：</b>10.5 早皇后镇取车 → 10.7 晚皇后镇还车，<b>原地还车不付单程费</b>。带中国驾照 + <b>英文翻译件</b>；<b>右舵左行</b>。详见「🚗 自驾须知」。</li>
+      <li><b>✈️ 航班：</b>9.30 晚北京出发（转机）→ 10.1 15:45 抵墨尔本｜10.3 墨尔本 <b>11:35</b> → 皇后镇 <b>17:45</b>（约 ¥3500）｜10.9 皇后镇 <b>20:50</b> → 悉尼 <b>22:05</b>（约 ¥3500）｜10.11 悉尼 <b>20:40</b> → 北京 <b>10.12 05:25</b>（国航 787，¥3817）。</li>
+      <li><b>签证：</b>新西兰用 <b>NZeTA</b>（持澳签从澳直飞新可用，约 <span class="price">NZD 120</span>）；<b>澳洲签证须 multiple entry</b>（10.9 从新西兰再入境悉尼要用到）。</li>
+      <li><b>住宿：</b>墨尔本 CBD 2 晚(10.1–10.2)｜皇后镇 2 晚(10.3–10.4) + 1 晚(10.8)，<b>两段订同一家</b>，去蒂卡波时大箱子寄存｜蒂卡波 3 晚(10.5–10.7)｜悉尼 CBD 2 晚(10.9–10.10)。</li>
+      <li><b>租车：</b>10.5 10:00 皇后镇机场取 → 10.8 傍晚同地还 = <b>4 天</b>，无单程费。带中国驾照 + <b>英文翻译件</b>；<b>右舵左行</b>；两驱小型 SUV 足够，<b>不需要四驱</b>。详见「🚗 自驾须知」。</li>
+      <li><b>停车：</b>皇后镇镇中心都是计时收费位——但本方案<b>不需要在皇后镇停车</b>；蒂卡波、瓦纳卡、箭镇的酒店与景点停车<b>基本免费</b>（只有 Mt John 上山公路收约 NZ$5–10 道路费）。</li>
       <li><b>支付：</b>Visa/万事达 + Apple Pay 基本够刷；各备少量现金；刷卡选<b>本地货币结算</b>（别选人民币 DCC）。</li>
       <li><b>其它：</b>入境澳新<b>食品必须申报</b>；南半球春天 UV 强，备防晒；紧急电话 澳 000 / 新 111；不用给小费。</li>
     </ul>
-    <div class="warn">☁️ <b>两个看天气的项目，都留了备用日：</b>跳伞（10.6 主，10.7 上午 / 10.8 / 10.9 上午 备用，共 4 次窗口）、观星（蒂卡波 2 晚各一次机会）。预订时优先选<b>可免费取消</b>和<b>上午场</b>。</div>
+    <div class="warn">☁️ <b>两个看天气的项目都留了备用：</b>跳伞（10.6 主 → 10.7 备，均在库克山；10.9 皇后镇兜底）、观星（蒂卡波 3 晚任选，看预报再定）。预订时优先<b>可免费取消/改期</b>与<b>上午场</b>。</div>
   </section>
 
   <section id="plan">
@@ -73,46 +93,46 @@
     </div>
 
     <div id="tab-plan">
+      <p class="rn">强度说明：<span class="lv lv1">★☆☆☆☆ 全休</span>　<span class="lv lv2">★★☆☆☆ 轻松</span>　<span class="lv lv3">★★★☆☆ 中等</span>　<span class="lv lv4">★★★★☆ 偏累</span>　<span class="lv lv5">★★★★★ 最累</span></p>
       <table>
-        <thead><tr><th style="width:56px">日期</th><th>行程 / 游玩内容</th><th style="width:76px">住宿</th><th style="width:120px">需预订</th><th style="width:210px">备注</th></tr></thead>
+        <thead><tr><th style="width:58px">日期</th><th>行程 / 游玩内容</th><th style="width:74px">里程/车程</th><th style="width:86px">强度</th><th style="width:74px">住宿</th><th style="width:104px">需预订</th><th style="width:190px">备注</th></tr></thead>
         <tbody>
-          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）</td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地机场买；山区/湖区信号弱</td></tr>
-          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
-          <tr><td><b>9.30</b></td><td>北京出发（晚，<b>转机</b>）飞往墨尔本</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
-          <tr><td><b>10.1</b></td><td>约 15–16:00 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 Federation Square · 弗林德斯街车站 · 南岸 Southbank</li><li>🍽 南岸河畔晚餐 / 唐人街</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡；CBD 电车免费区</td></tr>
-          <tr><td><b>10.2</b></td><td>墨尔本一整天<ul class="hl"><li>涂鸦巷 Hosier Lane · 皇后市场 · 维州国家美术馆 NGV · Lygon St 咖啡街</li><li>可选：大洋路一日团（十二门徒）<span class="price">~AUD 150~180</span></li><li>🍽 Degraves St 咖啡巷、Hardware Société 早午餐、Brunetti 甜品</li></ul></td><td class="stay">墨尔本</td><td><span class="pill no">大洋路选订</span></td><td class="rn">想看海岸线就选大洋路团（全天）</td></tr>
-          <tr><td><b>10.3</b></td><td>墨尔本 <b>11:35</b> 起飞 → 皇后镇 <b>17:45</b> 抵达<ul class="hl"><li>入住后：湖滨散步、镇上晚餐（<b>只剩晚上，别安排远的</b>）</li><li>可选：Skyline 缆车上山看<b>夜景/日落</b>（Stratosfare 山顶餐厅晚餐；Luge 天黑关闭，留到 10.4）</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 皇后镇比北京快 5h（比墨尔本快 3h）；机场到镇上约 10–15min；今日不用车</td></tr>
-          <tr><td><b>10.4</b></td><td>皇后镇<ul class="hl"><li><b>飞碟射击 Clay Target Shooting</b>（Break One，距镇 15min、含接送、一对一教学）约 1.5h <span class="price">~NZD 150</span></li><li><b>Skyline 缆车 + Luge 滑板车</b> 俯瞰湖与雪山 <span class="price">~NZD 80~95</span>（若 10.3 晚已上山则只玩 Luge）</li><li>余下：镇上/湖滨闲逛、Kiwi Birdlife Park 看几维鸟(1–2h, <span class="price">NZD 55</span>)</li></ul></td><td class="stay">皇后镇</td><td><span class="pill yes">射击建议约</span></td><td class="rn">breakone.co.nz（另一选择 Oxbow，在 Gibbston 酒庄区）</td></tr>
-          <tr><td><b>10.5</b></td><td>🚗 <b>自驾 D1：皇后镇 → 蒂卡波</b>（直奔，不绕瓦纳卡）<ul class="hl"><li>途经 Cromwell 水果小镇 · <b>Lindis Pass 观景台</b> · Omarama</li><li>傍晚到蒂卡波：好牧羊人教堂、湖畔；<b>观星第 1 晚</b> <span class="price">~NZD 100+</span></li><li>🍽 Cromwell/Omarama 午餐；蒂卡波 Kohan 日料(湖景名店)</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">取车+观星团</span></td><td class="rn">~260km / 3.5h；早出发＝当晚就能观星；加油 Cromwell/Omarama</td></tr>
-          <tr><td><b>10.6</b></td><td>🚗 <b>自驾 D2：库克山跳伞日</b>（当天往返，几乎不用走路）<ul class="hl"><li><b>Skydive Mt Cook 跳伞（主）</b>：10,000/13,000/15,000+ft，空中看<b>库克山主峰 + 塔斯曼冰川 + Pukaki 湖</b>，全程约 3h <span class="price">~NZD 350~600</span></li><li><b>Lake Pukaki 观景台</b>（路边停车即到，拍库克山倒影）</li><li>晚上 <b>观星第 2 晚（备用夜）</b> / Tekapo Springs 温泉泡池</li></ul></td><td class="stay">蒂卡波</td><td><span class="pill yes">跳伞必订</span></td><td class="rn">~210km / 2.5h；skydive.co.nz/mt-cook（集合点 Pukaki/Glentanner 一带，以预订确认为准）；跳伞已看够山与冰川，<b>省去徒步与冰川游船</b></td></tr>
-          <tr><td><b>10.7</b></td><td>🚗 <b>自驾 D3：蒂卡波 → 回皇后镇</b><ul class="hl"><li>上午：若 10.6 跳伞因天气取消 → <b>回 Glentanner 补跳</b>（距蒂卡波约 1h）；否则 Mt John 山顶（可开车上，Astro Café 看全景）</li><li>返程顺路停 <b>瓦纳卡 #湖中树</b> + <b>箭镇 Arrowtown</b> 淘金古镇</li><li>🍽 瓦纳卡 Kika/Federal Diner；箭镇 Provisions 肉桂卷</li></ul></td><td class="stay">皇后镇</td><td><span class="pill no">—</span></td><td class="rn">~300km / 4h含停；傍晚皇后镇还车；⚠️ 经 Crown Range 弯多，怕山路走 Cromwell 那条</td></tr>
-          <tr><td><b>10.8</b></td><td><b>机动日（皇后镇）</b><ul class="hl"><li>跳伞若还没跳成 → 今天在皇后镇补跳（NZONE）</li><li>否则：Shotover 喷射快艇 <span class="price">NZD 169</span> / 卡瓦劳蹦极 <span class="price">NZD 235</span> / Onsen 温泉 <span class="price">NZD 100+</span> / Gibbston 酒庄品酒 / 镇上闲逛</li></ul></td><td class="stay">皇后镇</td><td><span class="pill no">按所选</span></td><td class="rn">已还车，项目多含接送</td></tr>
-          <tr><td><b>10.9</b></td><td><b>皇后镇一整天</b>（20:50 才起飞）<ul class="hl"><li>退房寄存行李；跳伞若还没跳成 → <b>今天上午在皇后镇补跳（最后机会）</b></li><li>否则：Shotover 快艇 / 蹦极 / Onsen 温泉 / Gibbston 酒庄 / 镇上闲逛</li><li>约 18:40 到机场 → <b>20:50 飞悉尼，22:05 抵达</b> → 入住（深夜）</li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b>；<b>提前告知酒店深夜入住</b>；机场火车 Airport Link 约至午夜</td></tr>
-          <tr><td><b>10.10</b></td><td>悉尼 海港核心 + 演出<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</li><li>晚：<b>歌剧院看演出</b>（歌剧/交响/芭蕾）</li><li>🍽 Opera Bar（海港景）、岩石区生蚝</li></ul></td><td class="stay">悉尼</td><td><span class="pill yes">歌剧院票</span></td><td class="rn">演出订 <b>10.10 晚</b>（10.9 深夜才到，赶不上）；sydneyoperahouse.com</td></tr>
-          <tr><td><b>10.11</b></td><td>悉尼（退房寄存行李）<ul class="hl"><li>邦迪海滩 + 海岸徒步（可只走一段）或 Manly 渡轮 / Taronga 动物园(考拉·袋鼠)</li><li>新南威尔士美术馆（免费，南半球顶级）</li><li>晚 <b>20:40</b> 悉尼直飞北京（国航 787，~11h45m <span class="price">¥3817</span>）</li><li>🍽 Bondi Icebergs / 悉尼鱼市海鲜 / 达令港</li></ul></td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">约 17:40 到机场；行李寄存在酒店或中央车站</td></tr>
-          <tr><td><b>10.12</b></td><td>05:25 抵达北京首都 T3</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 当天即上班、落地无缓冲，注意休息</td></tr>
+          <tr><td><b>9.26</b></td><td>购买 <b>eSIM / 电话卡</b>（澳新通用，Airalo/Nomad）</td><td class="rn">—</td><td class="rn">—</td><td class="rn">在家</td><td><span class="pill yes">提前买</span></td><td class="rn">也可落地机场买；山区/湖区信号弱</td></tr>
+          <tr><td><b>9.28</b></td><td>提交 <b>NZeTA</b> <span class="price">NZD 120</span></td><td class="rn">—</td><td class="rn">—</td><td class="rn">在家</td><td><span class="pill yes">必办</span></td><td class="rn">72h 内批，最迟 9.30；确认澳签 multiple entry</td></tr>
+          <tr><td><b>9.30 三</b></td><td>晚间北京出发，<b>转机</b>飞墨尔本（夜航）</td><td class="rn">—</td><td class="lv lv4">★★★★☆</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 墨尔本比北京快 2–3h（10.4 起夏令时 +11）</td></tr>
+          <tr><td><b>10.1 四</b></td><td>15:45 抵墨尔本 → 酒店入住<ul class="hl"><li>傍晚轻松：联邦广场 Federation Square · 弗林德斯街车站 · 南岸 Southbank</li><li>🍽 南岸河畔晚餐 / 唐人街</li></ul></td><td class="rn">—</td><td class="lv lv2">★★☆☆☆</td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">机场 SkyBus 进城；办 Myki 卡；CBD 电车免费区</td></tr>
+          <tr><td><b>10.2 五</b></td><td>墨尔本整天（市区 + 美食）<ul class="hl"><li>涂鸦巷 Hosier Lane · 皇后市场 · 维州国家美术馆 NGV · Lygon St 咖啡街</li><li>🍽 Degraves St 咖啡巷、Hardware Société 早午餐、Brunetti 甜品</li></ul></td><td class="rn">步行</td><td class="lv lv3">★★★☆☆</td><td class="stay">墨尔本</td><td><span class="pill no">—</span></td><td class="rn">已放弃大洋路（12–13h 太耗），自然风光留给新西兰</td></tr>
+          <tr><td><b>10.3 六</b></td><td>退房 → 墨尔本 <b>11:35</b> 飞 → 皇后镇 <b>17:45</b> 抵达<ul class="hl"><li>入住后：湖滨花园、Steamer Wharf 码头、镇上晚餐</li><li>可选：Skyline 缆车看夜景（Luge 天黑关闭，留到 10.4）</li></ul></td><td class="rn">—</td><td class="lv lv4">★★★★☆</td><td class="stay">皇后镇</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 再 +3h（皇后镇比北京快 5h）；机场→镇上 10km，打车/Orbus 1 路；<b>今天不取车</b></td></tr>
+          <tr><td><b>10.4 日</b></td><td><b>皇后镇缓冲日</b>（适应时差与左行交通）<ul class="hl"><li><b>Break One 飞碟射击</b>（距镇 15min、含接送、一对一）约 1.5h <span class="price">~NZD 150</span></li><li><b>Skyline 缆车 + Luge 滑板车</b> <span class="price">~NZD 80~95</span></li><li>余力可加 Kiwi Birdlife Park 看几维鸟 <span class="price">NZD 55</span></li></ul></td><td class="rn">不开车</td><td class="lv lv2">★★☆☆☆</td><td class="stay">皇后镇</td><td><span class="pill yes">射击建议约</span></td><td class="rn">breakone.co.nz；镇上步行可达，项目含接送</td></tr>
+          <tr><td><b>10.5 一</b></td><td>打车/公交到机场取车 → <b>皇后镇 → 蒂卡波</b><ul class="hl"><li>途经 Cromwell 水果小镇 · <b>Lindis Pass 观景台</b> · Omarama</li><li>抵达后：<b>好牧羊人教堂</b>、牧羊犬雕像、湖畔；<b>观星①</b> <span class="price">~NZD 100+</span></li><li>🍽 Cromwell/Omarama 午餐；晚 <b>Kohan 日料</b>（湖景名店）</li></ul></td><td class="rn">260km<br>3.5h</td><td class="lv lv3">★★★☆☆</td><td class="stay">蒂卡波</td><td><span class="pill yes">取车+观星</span></td><td class="rn">早出发＝当晚就能观星；⛽ 皇后镇加满、Cromwell、Omarama</td></tr>
+          <tr><td><b>10.6 二</b></td><td><b>库克山跳伞日</b>（当天往返，几乎不用走路）<ul class="hl"><li><b>Skydive Mt Cook（主，订上午场）</b>：空中看库克山主峰 + 塔斯曼冰川 + Pukaki 湖，全程约 3h <span class="price">~NZD 350~600</span></li><li><b>Lake Pukaki 观景台</b>（路边停车即到）、可到库克山村 Hermitage 坐着看山</li><li>晚上 <b>观星②</b> 或 Tekapo Springs 温泉</li><li>🍽 Twizel 午餐、Pukaki 湖边三文鱼生鱼片</li></ul></td><td class="rn">210km<br>2.5h</td><td class="lv lv4">★★★★☆</td><td class="stay">蒂卡波</td><td><span class="pill yes">跳伞必订</span></td><td class="rn">skydive.co.nz/mt-cook（集合点 Pukaki/Glentanner 一带）；⛽ <b>Twizel 加满</b>；跳伞已看足山与冰川，<b>省去徒步与冰川游船</b></td></tr>
+          <tr><td><b>10.7 三</b></td><td><b>休闲 + 跳伞备用日</b>（全程零体力）<ul class="hl"><li><b>Mt John 山顶</b>：走收费公路开车到顶，Astro Café 360° 全景</li><li><b>Tekapo Springs 温泉池</b>、湖畔散步</li><li>若 10.6 跳伞被天气取消 → <b>今天补跳</b>；晚上 <b>观星③</b></li><li>🍽 Astro Café、Greedy Cow</li></ul></td><td class="rn">~0</td><td class="lv lv1">★☆☆☆☆</td><td class="stay">蒂卡波</td><td><span class="pill no">—</span></td><td class="rn">Mt John 上山公路约 NZ$5–10 道路费；蒂卡波停车基本免费</td></tr>
+          <tr><td><b>10.8 四</b></td><td><b>蒂卡波 → 皇后镇</b>（回程走另一条路，不重复）<ul class="hl"><li>途经 Omarama · Tarras · <b>瓦纳卡 #湖中树</b>、湖畔</li><li><b>箭镇 Arrowtown</b> 淘金古镇 + 华人矿工村，<b>箭镇晚餐</b></li><li>Crown Range 观景台（怕山路可改走 Cromwell，多约 30min）</li><li>🍽 瓦纳卡 Kika/Federal Diner；箭镇 Provisions / Fork & Tap</li></ul></td><td class="rn">300km<br>4h含停</td><td class="lv lv4">★★★★☆</td><td class="stay">皇后镇</td><td><span class="pill no">—</span></td><td class="rn"><b>机场在进镇路上，先还车再进镇</b>（后时段还车免费）；⛽ 蒂卡波加满、瓦纳卡</td></tr>
+          <tr><td><b>10.9 五</b></td><td><b>皇后镇机动日</b>（20:50 才起飞，白天照玩）<ul class="hl"><li>跳伞若还没跳成 → 今天在皇后镇补跳（NZONE，无库克山景）</li><li>否则：Shotover 快艇 <span class="price">NZD 169</span> / 卡瓦劳蹦极 <span class="price">NZD 235</span> / Onsen 温泉 / Gibbston 酒庄 / 镇上闲逛</li><li>18:40 到机场 → <b>20:50 飞悉尼，22:05 抵达</b> → 入住（深夜）</li></ul></td><td class="rn">不开车</td><td class="lv lv3">★★★☆☆</td><td class="stay">悉尼</td><td><span class="pill yes">机票</span></td><td class="rn">⏱ 拨慢 2h；<b>再入境悉尼需澳签 multiple entry</b>；<b>提前告知酒店深夜入住</b>；机场火车约至午夜</td></tr>
+          <tr><td><b>10.10 六</b></td><td>悉尼 海港核心 + 演出（白天别排满）<ul class="hl"><li>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥（步行圈内）</li><li>晚：<b>悉尼交响乐团音乐会</b>（歌剧院）</li><li>🍽 Opera Bar（海港景）、岩石区生蚝</li></ul></td><td class="rn">步行</td><td class="lv lv3">★★★☆☆</td><td class="stay">悉尼</td><td><span class="pill yes">演出票</span></td><td class="rn">订 <b>10.10 晚</b>（10.9 深夜才到）；sydneyoperahouse.com</td></tr>
+          <tr><td><b>10.11 日</b></td><td>悉尼（退房寄存行李）<b>二选一，别都去</b><ul class="hl"><li>A：邦迪海滩 + 海岸徒步（可只走一段）</li><li>B：Manly 渡轮 + <b>Taronga 动物园</b>（看考拉·袋鼠，同一渡轮线可合并）</li><li>+ 新南威尔士美术馆（免费，南半球顶级）；下午回酒店休息</li><li>晚 <b>20:40</b> 飞北京（国航 787 <span class="price">¥3817</span>），17:40 去机场</li></ul></td><td class="rn">—</td><td class="lv lv4">★★★★☆</td><td class="stay">✈️ 机上</td><td><span class="pill yes">机票</span></td><td class="rn">下午留出休息，红眼上才睡得着</td></tr>
+          <tr><td><b>10.12 一</b></td><td>05:25 抵达北京首都 T3 → 当天上班</td><td class="rn">—</td><td class="lv lv5">★★★★★</td><td class="rn">到家</td><td><span class="pill no">—</span></td><td class="rn">⚠️ 落地无缓冲，建议提前跟公司说好上午晚到/轻工作</td></tr>
         </tbody>
       </table>
       <div class="note">🗺 <b>自驾一键导航（含全部停靠点，手机可直接开）：</b><br>
-        D1 <a href="https://www.google.com/maps/dir/Queenstown/Cromwell/Lindis+Pass+Lookout/Omarama/Lake+Tekapo">皇后镇→Cromwell→Lindis Pass→Omarama→蒂卡波</a><br>
-        D2 <a href="https://www.google.com/maps/dir/Lake+Tekapo/Lake+Pukaki+Lookout/Glentanner/Lake+Tekapo">蒂卡波→Pukaki 观景台→Glentanner(跳伞)→蒂卡波</a><br>
-        D3 <a href="https://www.google.com/maps/dir/Lake+Tekapo/Omarama/That+Wanaka+Tree/Arrowtown/Queenstown">蒂卡波→Omarama→瓦纳卡湖中树→箭镇→皇后镇</a>
+        D1 10.5 <a href="https://www.google.com/maps/dir/Queenstown/Cromwell/Lindis+Pass+Lookout/Omarama/Lake+Tekapo">皇后镇→Cromwell→Lindis Pass→Omarama→蒂卡波</a><br>
+        D2 10.6 <a href="https://www.google.com/maps/dir/Lake+Tekapo/Lake+Pukaki+Lookout/Glentanner/Lake+Tekapo">蒂卡波→Pukaki 观景台→Glentanner(跳伞)→蒂卡波</a><br>
+        D3 10.8 <a href="https://www.google.com/maps/dir/Lake+Tekapo/Omarama/That+Wanaka+Tree/Arrowtown/Queenstown+Airport">蒂卡波→Omarama→瓦纳卡湖中树→箭镇→皇后镇机场</a>
       </div>
     </div>
 
     <div id="tab-driveinfo" style="display:none">
-
       <h3>🗺 路线 · 里程 · 停靠 · 加油</h3>
-      <p><b>总里程约 770 km，只租 3 天</b>（10.5 早取车 → 10.7 晚还车，皇后镇取还、无单程费）。</p>
+      <p><b>总里程约 770 km，只租 4 天</b>（10.5 10:00 取 → 10.8 傍晚还，皇后镇机场取还、无单程费）。</p>
       <table>
-        <thead><tr><th style="width:70px">日</th><th>路段</th><th style="width:110px">里程 / 车程</th><th>停靠点（均有停车场）</th><th>加油点</th></tr></thead>
+        <thead><tr><th style="width:70px">日</th><th>路段</th><th style="width:100px">里程/车程</th><th style="width:80px">路况难度</th><th>停靠点（均有停车场）</th><th>加油点</th></tr></thead>
         <tbody>
-          <tr><td>D1 · 10.5</td><td>皇后镇 → 蒂卡波（直奔）</td><td>~260 km / 3.5h</td><td>Cromwell 水果小镇、<b>Lindis Pass 观景台</b>、Omarama</td><td>皇后镇出发加满；Cromwell / Omarama</td></tr>
-          <tr><td>D2 · 10.6</td><td>蒂卡波 ⇄ Pukaki / Glentanner（跳伞）</td><td>~210 km / 2.5h</td><td><b>Lake Pukaki 观景台(有厕所)</b>、Glentanner 跳伞点</td><td><b>Twizel</b>（这一带最大补给点）</td></tr>
-          <tr><td>D3 · 10.7</td><td>蒂卡波 → 瓦纳卡 → 箭镇 → 皇后镇</td><td>~300 km / 4h含停</td><td>Omarama、<b>瓦纳卡 #湖中树</b>、箭镇 Arrowtown</td><td>蒂卡波出发加满；Omarama / 瓦纳卡</td></tr>
+          <tr><td>D1 · 10.5</td><td>皇后镇 → 蒂卡波（SH6 Kawarau 峡谷 → Cromwell → SH8 Lindis Pass → Omarama → Twizel）</td><td>~260km / 3.5h</td><td><span class="lv lv3">★★☆</span> 中等</td><td>Cromwell 大水果雕塑/老镇、<b>Lindis Pass 观景台</b>、Omarama</td><td>皇后镇加满、Cromwell、Omarama</td></tr>
+          <tr><td>D2 · 10.6</td><td>蒂卡波 ⇄ Pukaki / Glentanner（SH8 + SH80，尽头路原路返回）</td><td>~210km / 2.5h</td><td><span class="lv lv1">★☆☆</span> 容易</td><td><b>Lake Pukaki 观景台(有厕所)</b>、Peter's Lookout、Glentanner 跳伞点、库克山村</td><td><b>Twizel（这一带最大补给点，必加满）</b></td></tr>
+          <tr><td>D3 · 10.8</td><td>蒂卡波 → Omarama → Tarras → 瓦纳卡 → Crown Range → 箭镇 → 皇后镇机场</td><td>~300km / 4h含停</td><td><span class="lv lv4">★★★</span> 偏难（Crown Range 弯多陡）</td><td>Omarama、<b>瓦纳卡 #湖中树</b>、Crown Range 观景台、<b>箭镇 Arrowtown</b></td><td>蒂卡波加满、瓦纳卡</td></tr>
         </tbody>
       </table>
-      <p class="rn">⛽ 南岛小镇间距远，<b>见站就补油</b>；关键补给点：Cromwell、Omarama、Twizel、Tekapo、瓦纳卡。里程为约数，以实际导航为准。</p>
+      <p class="rn">⛽ 南岛小镇间距远，<b>见站就补油</b>。⚠️ 怕山路可把 D3 的 Crown Range 换成经 Cromwell 的 SH6（平缓，多约 30 分钟）。</p>
 
       <h3>🇳🇿 新西兰交规（务必先学）</h3>
       <ul class="info">
@@ -122,78 +142,63 @@
         <li><b>环岛：</b>顺时针行驶，<b>让已在环岛内/右侧来车</b>，进出打灯。</li>
         <li><b>单车道桥：</b>看桥头牌，<b>蓝底大箭头＝你方优先</b>，<b>红圈小箭头＝你方让行</b>，桥上不得会车。</li>
         <li><b>Give Way / Stop</b> 必须执行，Stop 要完全停住；斑马线让行人。</li>
-        <li><b>砂石路 gravel：</b>多数租约<b>禁止行驶</b>（出事不赔），取车时确认。</li>
+        <li><b>砂石路 gravel：</b>多数租约<b>禁止行驶</b>（出事不赔），本行程全程铺装主路，不需要走。</li>
         <li><b>疲劳驾驶</b>是当地事故大头：长途多停、善用观景带。</li>
-        <li><b>高山路段</b>（Lindis Pass、Crown Range）早 10 月可能积雪/需防滑链，出发前查 <a href="https://www.journeys.nzta.govt.nz">journeys.nzta.govt.nz</a> 路况。</li>
-        <li>紧急电话 <b>111</b>。</li>
+        <li><b>高山路段</b>（Lindis Pass、Crown Range）早 10 月可能积雪/结冰，出发前查 <a href="https://www.journeys.nzta.govt.nz">journeys.nzta.govt.nz</a>。</li>
+        <li>紧急电话 <b>111</b>；Apex 车辆含 AA 24h 机械故障救援。</li>
       </ul>
 
-      <h3>🚙 租车公司</h3>
+      <h3>🚙 租车（已比价）</h3>
       <table>
-        <thead><tr><th>类型</th><th>公司</th><th>说明</th></tr></thead>
+        <thead><tr><th>公司</th><th>报价（同车同期，$0 自付）</th><th>说明</th></tr></thead>
         <tbody>
-          <tr><td>国际大牌</td><td>Hertz · Avis · Budget · Europcar · Thrifty</td><td>网点多，价格略高</td></tr>
-          <tr><td>本地高性价比</td><td><b><a href="https://www.apexrentals.co.nz">Apex</a> · <a href="https://www.gorentals.co.nz">GO Rentals</a></b> · <a href="https://www.ezicarrental.co.nz">Ezi</a> · <a href="https://www.snaprentals.co.nz">Snap</a> · <a href="https://www.omegarentalcars.com">Omega</a></td><td>口碑好、含全险选项；GO Rentals 基督城/皇后镇机场均有店，另有 <b>One-way 与 Relocation 调车特价</b>页可捡便宜</td></tr>
-          <tr><td>比价平台</td><td><a href="https://www.rentalcars.com">rentalcars.com</a> · <a href="https://www.discovercars.com">DiscoverCars</a> · <a href="https://www.airportrentals.com">AirportRentals.com</a></td><td>一次比多家，看清条款。⚠️ 别点错 airportrentals<b>.co.nz</b>（是另一家公司）</td></tr>
+          <tr><td><b><a href="https://www.apexrentals.co.nz">Apex</a>（推荐）</b></td><td><b>NZ$525.68</b>：车 $390 + $0 免赔额 $135.68，含不限里程、后时段还车 $0</td><td>额外驾驶员<b>免费</b>；防滑链 $65/个（可到店按天气再加）；道路救援 $6/天（覆盖没油/锁车等人为失误，建议加）</td></tr>
+          <tr><td><a href="https://www.gorentals.co.nz">GO Rentals</a></td><td>NZ$588：车 $384 + Peace of mind $172 + 机场费 $20 + Road Care $12</td><td>皇后镇仅机场店；有 One-way / Relocation 特价页</td></tr>
+          <tr><td>其它</td><td><a href="https://www.ezicarrental.co.nz">Ezi</a> · <a href="https://www.snaprentals.co.nz">Snap</a> · <a href="https://www.omegarentalcars.com">Omega</a>；比价 <a href="https://www.rentalcars.com">rentalcars.com</a> · <a href="https://www.discovercars.com">DiscoverCars</a> · <a href="https://www.airportrentals.com">AirportRentals.com</a></td><td>⚠️ 别点错 airportrentals<b>.co.nz</b>（另一家公司）</td></tr>
         </tbody>
       </table>
-      <ul class="info">
-        <li>需<b>信用卡</b>押金；最低年龄多为 21 岁（25 岁以下常加青年费）。</li>
-        <li>建议买<b>全险/零自付</b>；确认<b>是否允许砂石路</b>；选<b>自动挡</b>。</li>
-        <li>本行程皇后镇取还、<b>无异地还车费</b>；只需 3 天。</li>
-      </ul>
+      <div class="note">📧 <b>下单前需向 Apex（reservations@apexrentals.co.nz，北京上午 9–12 点发）确认：</b>① $0 自付仍不赔哪些（砂石路/涉水/加错油/丢钥匙/车顶底盘/雪场路）② 挡风玻璃与轮胎是否含 ③ 油量政策（是否满油取还）④ 信用卡押金多少、何时解冻 ⑤ 防滑链 $65 是"一副"还是"一只"、能否到店再加 ⑥ 17:45 航班落地时机场柜台是否有人（若 10.3 想落地取车）。<br>已从网页确认：<b>额外驾驶员免费、营业时间外还车 $0、不限里程</b>。</div>
 
       <h3>⛽ 加油</h3>
       <ul class="info">
-        <li>品牌：BP · Z Energy · Mobil · Caltex · <b>Gull（通常最便宜）</b> · Waitomo。</li>
-        <li>多为<b>自助加油</b>，油枪刷卡或店内付；部分小站需先入店预付。</li>
+        <li>品牌：BP · Z Energy · Mobil · Caltex · <b>Gull（通常最便宜）</b>。多为<b>自助加油</b>，油枪刷卡或店内付。</li>
         <li>油品：<b>91</b>（普通无铅）/ 95 / <b>Diesel 柴油</b>——按车型加，<b>别加错</b>（取车问清）。</li>
       </ul>
-
-      <h3>🛣 关注路段</h3>
-      <table>
-        <thead><tr><th>路段</th><th>提示</th></tr></thead>
-        <tbody>
-          <tr><td>Kawarau Gorge SH6（经 Cromwell）</td><td>去程主路，峡谷弯道但平缓好开，风景不错</td></tr>
-          <tr><td>Lindis Pass SH8</td><td>⚠️ 高山垭口，大弯道不算险，早 10 月留意积雪/结冰，山顶有观景停车带</td></tr>
-          <tr><td>SH8 Pukaki–Glentanner（跳伞日）</td><td>又直又平，尽头路原路返回；湖边风大</td></tr>
-          <tr><td>Crown Range（回程经 Cardrona）</td><td>⚠️ 全国最高铺装路，弯多陡、可能结冰；<b>怕山路就走 Cromwell 那条</b>（多约 30min）</td></tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
   <section id="book">
-    <h2>关键项目预订方式</h2>
+    <h2>预订清单（按优先级）</h2>
     <table>
-      <thead><tr><th>项目</th><th>时间</th><th>价格</th><th>怎么订</th></tr></thead>
+      <thead><tr><th style="width:34px">#</th><th>项目</th><th style="width:120px">时间</th><th style="width:120px">价格</th><th>怎么订</th></tr></thead>
       <tbody>
-        <tr><td><b>Skydive Mt Cook 跳伞</b>（10,000/13,000/15,000+ft，约 3h）</td><td>10.6 主；10.7 上午 / <b>10.9 上午</b> 备用</td><td class="price">NZD 350~600</td><td><a href="https://www.skydive.co.nz/mt-cook/">skydive.co.nz/mt-cook</a> 官网直订，选<b>上午场</b>+可免费取消；天气取消可改期</td></tr>
-        <tr><td><b>飞碟射击</b>（含接送，一对一教学，约 1.5h）</td><td>10.4</td><td class="price">~NZD 150</td><td><a href="https://breakone.co.nz">breakone.co.nz</a>（Break One，距镇 15min）／Oxbow Adventure Co（Gibbston 酒庄区，可串酒庄）</td></tr>
-        <tr><td><b>蒂卡波观星</b>（Dark Sky Project）</td><td>10.5 / 10.6 任一晚</td><td class="price">NZD 100+</td><td>darkskyproject.co.nz；<b>看天气预报选那晚</b>，两晚都在＝两次机会</td></tr>
-        <tr><td>天空缆车 + Luge</td><td>10.3 晚(夜景) 或 10.4</td><td class="price">NZD 80~95</td><td>skyline.co.nz（也可现场买）</td></tr>
-        <tr><td>悉尼歌剧院演出</td><td><b>10.10 晚</b></td><td class="price">视场次</td><td>sydneyoperahouse.com「What's On」选 <b>10.10</b>（10.9 深夜才到悉尼），热门场次早订</td></tr>
-        <tr><td>租车（3 天）</td><td>10.5 早–10.7 晚</td><td class="price">视车型</td><td>Apex / GO Rentals 官网或 rentalcars.com；皇后镇取还</td></tr>
-        <tr><td>机票 4 段</td><td>京→墨、墨→皇后镇、皇后镇→悉、悉→京</td><td class="price">—</td><td>已定时刻见「行前须知」；悉尼→北京国航 20:40 起飞</td></tr>
+        <tr><td>1</td><td><b>4 段机票</b>（京→墨、墨→皇后镇、皇后镇→悉、悉→京）</td><td>9.30 / 10.3 / 10.9 / 10.11</td><td class="price">见行前须知</td><td>skyscanner / trip.com；黄金周越早越便宜</td></tr>
+        <tr><td>2</td><td><b>NZeTA</b></td><td>9.28 提交（最迟 9.30）</td><td class="price">NZD 120</td><td><a href="https://www.immigration.govt.nz/new-zealand-visas/apply-for-a-visa/about-visa/nzeta">immigration.govt.nz/nzeta</a> 或 NZeTA App</td></tr>
+        <tr><td>3</td><td><b>Skydive Mt Cook 跳伞</b>（13,000ft 性价比最好）</td><td>10.6 上午（10.7 备）</td><td class="price">NZD 350~600</td><td><a href="https://www.skydive.co.nz/mt-cook/">skydive.co.nz/mt-cook</a>，选可免费改期</td></tr>
+        <tr><td>4</td><td><b>悉尼交响乐团音乐会</b></td><td>10.10 晚</td><td class="price">视场次</td><td><a href="https://www.sydneyoperahouse.com">sydneyoperahouse.com</a>「What's On」选 10.10，热门早订</td></tr>
+        <tr><td>5</td><td><b>租车 Apex</b>（小型 SUV 自动挡 + $0 自付）</td><td>10.5 10:00 – 10.8 傍晚</td><td class="price">NZ$525.68</td><td><a href="https://www.apexrentals.co.nz">apexrentals.co.nz</a>，先问清上面 6 条</td></tr>
+        <tr><td>6</td><td><b>住宿 4 段</b>（墨/皇后镇×2段/蒂卡波/悉尼）</td><td>—</td><td class="price">见住宿参考</td><td>皇后镇两段订<b>同一家</b>；蒂卡波选湖景；悉尼备注深夜入住</td></tr>
+        <tr><td>7</td><td><b>飞碟射击 Break One</b></td><td>10.4</td><td class="price">~NZD 150</td><td><a href="https://breakone.co.nz">breakone.co.nz</a>（含接送）</td></tr>
+        <tr><td>8</td><td>蒂卡波观星（Dark Sky Project）</td><td>10.5–10.7 任一晚</td><td class="price">NZD 100+</td><td>darkskyproject.co.nz；<b>看天气预报再定哪晚</b></td></tr>
+        <tr><td>9</td><td>Skyline 缆车 + Luge</td><td>10.4（或 10.3 晚看夜景）</td><td class="price">NZD 80~95</td><td>skyline.co.nz，也可现场买</td></tr>
       </tbody>
     </table>
-    <div class="note">💡 <b>已主动省掉的：</b>米尔福德峡湾（太远、往返 12h+）、库克山徒步与塔斯曼冰川游船（需走 20–30 分钟碎石路）——<b>跳伞已从空中看足库克山与冰川</b>，体力更省。</div>
   </section>
 
   <section id="stay">
     <h2>住宿参考</h2>
     <table>
-      <thead><tr><th>城市（晚数）</th><th>建议区域 / 酒店</th><th>参考价/晚</th></tr></thead>
+      <thead><tr><th>城市（日期/晚数）</th><th>建议区域 / 酒店</th><th>参考价/晚</th></tr></thead>
       <tbody>
-        <tr><td>墨尔本（10.1–10.2，2 晚）</td><td>CBD，Flinders St/Collins St；Pegasus/Novotel/The Westin</td><td class="price">AUD 180~500</td></tr>
-        <tr><td>皇后镇（10.3–10.4 + 10.7–10.8，共 4 晚）</td><td>镇中心 Town Centre / 湖滨；<b>建议两段订同一家</b>，中间寄存行李</td><td class="price">NZD 200~400</td></tr>
-        <tr><td>蒂卡波（10.5–10.6，2 晚）</td><td>Lake Tekapo 湖畔（Peppers Bluewater 等）</td><td class="price">NZD 200~450</td></tr>
-        <tr><td>悉尼（10.9–10.10，2 晚）</td><td>Circular Quay / Town Hall</td><td class="price">AUD 200~750</td></tr>
+        <tr><td>墨尔本（10.1–10.2，2 晚）</td><td>CBD，Flinders St/Collins St；Pegasus/Novotel on Collins/The Westin</td><td class="price">AUD 180~500</td></tr>
+        <tr><td>皇后镇（10.3–10.4 + 10.8，共 3 晚）</td><td>镇中心 Town Centre / 湖滨，<b>两段订同一家</b>、中间寄存行李；不需要车位</td><td class="price">NZD 200~400</td></tr>
+        <tr><td>蒂卡波（10.5–10.7，3 晚）</td><td>Lake Tekapo 湖畔（Peppers Bluewater 等），<b>含免费停车</b></td><td class="price">NZD 200~450</td></tr>
+        <tr><td>悉尼（10.9–10.10，2 晚）</td><td>Circular Quay / Town Hall，近机场火车；<b>备注 22:30 后深夜入住</b></td><td class="price">AUD 200~750</td></tr>
       </tbody>
     </table>
   </section>
 
-  <footer>生成于 2026-09-08 · 草案，具体日期/航班/预订以出票与签证结果为准</footer>
+  <footer>生成于 2026-09-08 · 最终版（方案 B）· 具体预订以出票与商家确认为准</footer>
 </div>
 
 <script>
