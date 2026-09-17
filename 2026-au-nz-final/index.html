@@ -72,30 +72,6 @@
       <div class="stat"><div class="n">2 晚</div><div class="l">蒂卡波观星机会</div></div>
     </div>
 
-    <h3>✈️ 已出票航班</h3>
-    <table>
-      <thead><tr><th style="width:70px">日期</th><th>航班</th><th>起飞</th><th>抵达</th><th>备注</th></tr></thead>
-      <tbody>
-        <tr><td><b>9.30 三</b></td><td>东方航空 <b>MU2021</b></td><td>北京大兴 15:25</td><td>悉尼 T1 <b>10.1 08:00</b></td><td class="rn">夜航约 11.5h；⏱ 悉尼比北京快 2h（10.4 起夏令时 +3h）</td></tr>
-        <tr><td><b>10.3 六</b></td><td>澳洲航空 <b>QF123</b></td><td>悉尼 15:15</td><td>皇后镇 <b>21:15</b></td><td class="rn">⏱ 落地再 +3h（皇后镇比北京快 5h）；<b>深夜到，当天不安排活动</b></td></tr>
-        <tr><td><b>10.9 五</b></td><td>新西兰航空 <b>NZ213</b></td><td>基督城 <b>06:10</b></td><td>墨尔本 08:05</td><td class="rn">⚠️ <b>最早的一班</b>，需 04:00 到机场、03:00 起床</td></tr>
-        <tr><td><b>10.11 日</b></td><td>中国国航 <b>CA166</b></td><td>墨尔本 T2 20:40</td><td>北京首都 T3 <b>10.12 06:00</b></td><td class="rn">红眼；落地当天上班</td></tr>
-      </tbody>
-    </table>
-
-    <h3>🏨 住宿状态</h3>
-    <table>
-      <thead><tr><th style="width:110px">日期</th><th>城市</th><th>酒店</th><th>状态</th></tr></thead>
-      <tbody>
-        <tr><td>10.1–10.3（2 晚）</td><td>悉尼</td><td><b>雅诗阁悉尼中央酒店</b> Ascott Sydney Central<br><span class="rn">169-179 Thomas St, Haymarket｜15:00 入 / 11:00 退｜提供行李寄存</span></td><td><span class="pill yes">已订</span></td></tr>
-        <tr><td>10.3–10.5（2 晚）</td><td>皇后镇</td><td>镇中心/湖滨步行范围，<b>不需车位</b>；⚠️ 备注 <b>21:30 后深夜入住</b></td><td><span class="pill no">待订</span></td></tr>
-        <tr><td>10.5–10.6（1 晚）</td><td>瓦纳卡</td><td>镇中心/湖滨，<b>需免费停车</b>；离 #湖中树 近更好</td><td><span class="pill no">待订</span></td></tr>
-        <tr><td>10.6–10.8（2 晚）</td><td>蒂卡波</td><td>湖畔 + <b>免费停车</b>；靠近好牧羊人教堂与 Mt John 上山路口</td><td><span class="pill no">待订</span></td></tr>
-        <tr><td>10.8–10.9（1 晚）</td><td>基督城</td><td><b>机场旁</b>（Memorial Ave 一带）+ <b>免费停车</b>；车停酒店过夜，凌晨自己开去机场</td><td><span class="pill no">待订</span></td></tr>
-        <tr><td>10.9–10.11（2 晚）</td><td>墨尔本</td><td><b>美居墨尔本 La Trobe 街酒店</b> Mercure Melbourne La Trobe St<br><span class="rn">492 La Trobe Street｜14:00 入 / 10:00 退｜不含早｜CBD 免费电车区内</span></td><td><span class="pill yes">已订</span></td></tr>
-      </tbody>
-    </table>
-
     <div class="danger">🚨 <b>三个高优先级事项</b><br>
       ① <b>澳洲签证已确认为 Multiple entries</b>（Jiatong LIU，600 Tourist，授予号 7579537153754，须 2027-03-17 前入境，每次停留 3 个月，含条件 8503 不得境内换签）——两次入境澳洲没问题，<b>把批准信存手机+打印</b>，10.9 从基督城飞墨尔本时航司会查。<br>
       ② <b>NZeTA 必须提前办</b>（持澳签从澳直飞新可用）：官方 <b>NZeTA App</b> NZD 17（网页 NZD 23）+ <b>IVL 环保税 NZD 100</b>，约 72 小时内批，建议 <b>9.20 前</b>办好。<br>
@@ -109,6 +85,7 @@
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
+      <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
     </div>
 
     <!-- ========== TAB 1 ========== -->
@@ -296,6 +273,133 @@ Could you please confirm the following:
 Thank you very much.
 [Your name / mobile / email]</pre>
     </div>
+
+    <!-- ========== TAB 4: 活动大全 ========== -->
+    <div id="tab-more" style="display:none">
+      <div class="warn">🎯 <b>这一页是"全量参考清单"</b>，包含已排进行程的、被我们 pass 掉的、以及其它可玩项目。用来和伙伴商量替换或加项。<br>
+        <b>体力标注</b>：🟢 零体力（坐着/开车到）｜🟡 轻度（步行 1–3km 或短台阶）｜🔴 高强度（长途徒步/攀爬）</div>
+
+      <h3>🇦🇺 悉尼（10.1–10.3）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>观鲸 Whale Watching</b>（座头鲸南迁季）</td><td>🟢</td><td>2–3h</td><td class="price">AUD 80–120</td><td>环形码头/达令港出发；<b>5–11 月，9–11 月为高峰</b>；外海浪大，<b>晕船备药</b>；多家承诺没看到可免费再来</td><td><a href="https://www.whalewatchingsydney.com.au">whalewatchingsydney</a>｜<a href="https://www.fantasea.com.au">fantasea</a>｜<a href="https://www.ozwhalewatching.com.au">ozwhalewatching</a></td></tr>
+          <tr><td><b>Oz Jet Boating 海港喷射快艇</b>（"鲨鱼艇"，船身鲨鱼涂装）</td><td>🟡</td><td>约 30 分钟</td><td class="price">约 AUD 89</td><td><b>环形码头</b>出发；270° 急转、会<b>全身湿透</b>（提供雨衣）；有<b>身高/年龄下限</b>，孕妇、背颈伤、心脏病<b>不可参加</b>；需预约</td><td><a href="https://www.ozjetboating.com.au">ozjetboating.com.au</a></td></tr>
+          <tr><td><b>海港大桥攀桥 BridgeClimb</b></td><td>🟡</td><td>1.5–3.5h</td><td class="price">AUD 174 起</td><td>桥墩集合；需<b>不恐高</b>、能连续走楼梯；不能带任何私人物品上桥（含手机，需存柜）；<b>必须预约</b></td><td><a href="https://www.bridgeclimb.com">bridgeclimb.com</a></td></tr>
+          <tr><td>歌剧院<b>内部导览</b>（不是看演出）</td><td>🟢</td><td>1h</td><td class="price">AUD 43 起</td><td>歌剧院内；有中文场次；需预约</td><td><a href="https://www.sydneyoperahouse.com">sydneyoperahouse.com</a></td></tr>
+          <tr><td><b>Taronga 动物园</b>（考拉·袋鼠）</td><td>🟡</td><td>半天</td><td class="price">~AUD 51</td><td>渡轮 12 分钟直达；山坡地形，走得较多；官网订票便宜</td><td><a href="https://taronga.org.au">taronga.org.au</a></td></tr>
+          <tr><td>WILD LIFE Sydney（达令港，室内小型）</td><td>🟢</td><td>1h</td><td class="price">~AUD 46</td><td>时间紧时的替代，走路少</td><td><a href="https://www.wildlifesydney.com.au">wildlifesydney.com.au</a></td></tr>
+          <tr><td><b>邦迪-库吉海岸徒步</b></td><td>🟡</td><td>2–3h（6km）</td><td class="price">免费</td><td>海崖步道，有上下台阶；<b>可只走一段</b>（邦迪→Tamarama 约 20 分钟）</td><td>无需预约</td></tr>
+          <tr><td>Manly 渡轮（性价比最高的"海上观光"）</td><td>🟢</td><td>单程 30 分钟</td><td class="price">刷 Opal</td><td>环形码头出发；顺便看歌剧院+大桥全景</td><td>无需预约</td></tr>
+          <tr><td>蓝山一日游（三姐妹峰/Scenic World）</td><td>🟡</td><td>全天 10–12h</td><td class="price">AUD 150–200</td><td>约 7:00 集合；<b>占一整天</b>，本行程时间不够</td><td><a href="https://www.klook.com">Klook</a>／<a href="https://www.getyourguide.com">GetYourGuide</a></td></tr>
+          <tr><td>跳伞 Skydive Sydney（Wollongong 海岸）</td><td>🟡</td><td>半天</td><td class="price">AUD 400+</td><td>需从市区往南 1.5h；本行程已在新西兰跳，重复</td><td><a href="https://www.skydive.com.au">skydive.com.au</a></td></tr>
+          <tr><td>邦迪冲浪课 / 帆船体验</td><td>🔴/🟡</td><td>2h</td><td class="price">AUD 99+</td><td>需会游泳；10 月水温偏凉（需穿潜水衣）</td><td>Klook / GetYourGuide</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇳🇿 皇后镇（10.3–10.5）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>Break One 飞碟射击</b>（已排 10.4）</td><td>🟢</td><td>1–1.5h</td><td class="price">~NZD 150</td><td>Queenstown Hill 牧场靶场，<b>含免费接送</b>；穿运动鞋、身高 120cm+；孕妇/背伤不宜；<b>后坐力可能致肩膀酸</b></td><td><a href="https://breakone.co.nz">breakone.co.nz</a></td></tr>
+          <tr><td><b>Gibbston Valley 酒窖品鉴</b>（已排 10.4）</td><td>🟢</td><td>30–45 分钟</td><td class="price">见官网</td><td>Gibbston（离镇 25min）；官网「运输」页有接送；<b>先射击后品酒</b></td><td><a href="https://www.gibbstonvalley.com">gibbstonvalley.com</a></td></tr>
+          <tr><td><b>Skyline 缆车 + Luge</b>（已排 10.4）</td><td>🟢/🟡</td><td>2h</td><td class="price">NZD 80–95</td><td>镇中心步行可达；Luge <b>天黑关闭</b>；山顶 Stratosfare 餐厅</td><td><a href="https://www.skyline.co.nz/en/queenstown/">skyline.co.nz</a></td></tr>
+          <tr><td>Kiwi Birdlife Park（几维鸟 / kea）</td><td>🟢</td><td>1–2h</td><td class="price">NZD 55</td><td>缆车底站旁；有夜行馆看活的几维鸟；<b>对着喂食时间去</b></td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td></tr>
+          <tr><td><b>卡瓦劳大桥蹦极</b>（全球首座商业蹦极）</td><td>🟡</td><td>2–3h（含往返）</td><td class="price">NZD 235</td><td>离镇 25 分钟，含接送；体重下限 45kg / 上限 127kg；<b>不看也能免费上桥观景</b></td><td><a href="https://www.bungy.co.nz">bungy.co.nz</a></td></tr>
+          <tr><td>Nevis 蹦极（134m，南半球最高）</td><td>🟡</td><td>4h</td><td class="price">NZD 315</td><td>需坐吊车到峡谷中央；心理压力大</td><td>同上</td></tr>
+          <tr><td><b>Shotover Jet 喷射快艇</b></td><td>🟡</td><td>2–2.5h</td><td class="price">NZD 169</td><td>Shotover 峡谷贴壁急转，含接送；会湿；孕妇/背伤不宜</td><td><a href="https://www.shotoverjet.com">shotoverjet.com</a></td></tr>
+          <tr><td>Shotover 峡谷秋千 Canyon Swing</td><td>🟡</td><td>4h</td><td class="price">~NZD 259</td><td>109m 自由摆荡，多种跳法</td><td>官网搜 Shotover Canyon Swing</td></tr>
+          <tr><td>Ziptrek 森林滑索</td><td>🟡</td><td>2–3h</td><td class="price">NZD 129 起</td><td>缆车上站出发，林间滑索看湖景；小朋友也能玩</td><td><a href="https://www.ziptrek.co.nz">ziptrek.co.nz</a></td></tr>
+          <tr><td><b>Onsen 私人露天木桶温泉</b></td><td>🟢</td><td>1h + 接送</td><td class="price">NZD 100+</td><td>Arthurs Point，含接送；独立房间+雪松池，窗顶可开；夜场可看星；<b>必须预约</b></td><td><a href="https://www.onsen.co.nz">onsen.co.nz</a></td></tr>
+          <tr><td><b>TSS Earnslaw 百年蒸汽船 + Walter Peak 牧场</b></td><td>🟢</td><td>1.5h／含牧场 3.5–4h</td><td class="price">NZD 105 起</td><td>镇中心码头出发；牧场有<b>高地牛/美利奴羊/红鹿</b>+剪羊毛与牧羊犬表演</td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
+          <tr><td><b>米尔福德峡湾一日团</b>（含游船）</td><td>🟡</td><td>全天 12–13h</td><td class="price">NZD 150–230</td><td>单程 4h 高山路；<b>本行程已放弃（太耗）</b>；可加钱改"飞去飞回"约 NZD 500+</td><td><a href="https://www.realnz.com">realnz.com</a></td></tr>
+          <tr><td>达特河喷射船 Dart River（格林诺奇）</td><td>🟡</td><td>全天</td><td class="price">NZD 250+</td><td>冰川河谷 + 一段雨林步道，含皇后镇接送</td><td><a href="https://www.dartriver.co.nz">dartriver.co.nz</a></td></tr>
+          <tr><td>魔戒取景地 4WD 团 / Skippers Canyon 越野</td><td>🟢</td><td>半天</td><td class="price">NZD 150–250</td><td>格林诺奇/天堂谷；<b>Skippers 是砂石路，自驾租约禁行</b>，必须跟团</td><td>Nomad Safaris 等</td></tr>
+          <tr><td>Shotover / Kawarau 漂流 Rafting</td><td>🔴</td><td>半天</td><td class="price">NZD 250+</td><td>需会游泳、体力好；10 月水冷</td><td>Klook / 官网</td></tr>
+          <tr><td>滑翔伞 Paragliding（缆车山顶起飞）</td><td>🟢</td><td>1h</td><td class="price">~NZD 249</td><td>教练双人飞，几乎不用体力；比跳伞温和</td><td>GForce / Skytrek</td></tr>
+          <tr><td>格林诺奇骑马 / 箭镇淘金古镇</td><td>🟡/🟢</td><td>半天</td><td class="price">NZD 0–150</td><td>箭镇可坐 <b>Orbus 2 路</b>去，很便宜；本行程 10.5 自驾路过</td><td>—</td></tr>
+          <tr><td>The Winery 镇上品酒室</td><td>🟢</td><td>随意</td><td class="price">按杯计费</td><td>Beach St；自助取酒机几十款名庄酒</td><td><span class="pill no">免预约</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇳🇿 瓦纳卡（10.5–10.6）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>Skydive Wanaka 跳伞</b>（已排 10.6 主）</td><td>🟢</td><td>约 3h</td><td class="price">NZD 309 起</td><td>瓦纳卡机场（出镇 10 分钟，去 Tarras 顺路）；9,000/12,000/15,000ft；看<b>六个湖+南阿尔卑斯+库克山</b>；有体重上限，选<b>可免费改期</b></td><td><a href="https://skydivewanaka.com">skydivewanaka.com</a></td></tr>
+          <tr><td><b>Rippon 酒庄</b>（已排 10.5）</td><td>🟢</td><td>1h</td><td class="price">品鉴 NZD 20–40</td><td>湖畔坡地，全国最上镜；<b>多数 17:00 关门</b>；walk in 可，讲解建议约</td><td><a href="https://rippon.co.nz">rippon.co.nz</a></td></tr>
+          <tr><td><b>Crossfire Wanaka</b>（飞碟+步枪靶场+射箭）</td><td>🟢</td><td>1–2h</td><td class="price">见官网</td><td>Criffel Junction，出镇顺路；<b>7 种组合</b>、有顶棚防风雨；<b>工作日必须预约</b></td><td><a href="https://crossfirewanaka.co.nz">crossfirewanaka.co.nz</a></td></tr>
+          <tr><td>#ThatWanakaTree 湖中树（已排 10.5）</td><td>🟢</td><td>30 分钟</td><td class="price">免费</td><td>湖畔西侧步道，日落约 19:45 最美</td><td>无需预约</td></tr>
+          <tr><td><b>Puzzling World</b> 错觉屋</td><td>🟢</td><td>1–1.5h</td><td class="price">~NZD 26</td><td>室内，斜屋/幻觉厅/立体迷宫（迷宫要走）；雨天首选</td><td><a href="https://www.puzzlingworld.co.nz">puzzlingworld.co.nz</a></td></tr>
+          <tr><td>Cinema Paradiso 特色影院</td><td>🟢</td><td>2h</td><td class="price">~NZD 20</td><td>沙发座 + 自制饼干，中场休息卖热饼干；晚上打发时间</td><td>官网/现场</td></tr>
+          <tr><td>Warbirds &amp; Wheels 老飞机博物馆</td><td>🟢</td><td>1h</td><td class="price">~NZD 25</td><td>瓦纳卡机场旁，跳伞后可顺便逛</td><td><a href="https://warbirdsandwheels.co.nz">warbirdsandwheels.co.nz</a></td></tr>
+          <tr><td>Roys Peak 徒步（网红机位）</td><td>🔴</td><td>5–6h 往返 16km</td><td class="price">免费</td><td><b>陡且长</b>，爬升 1200m；本行程体力不适合，只能到停车场附近看</td><td>无需预约</td></tr>
+          <tr><td>Mt Iron / Diamond Lake 短步道</td><td>🟡</td><td>1–1.5h</td><td class="price">免费</td><td>比 Roys Peak 轻得多，也有俯瞰湖景</td><td>无需预约</td></tr>
+          <tr><td>滑翔机 / 滑翔伞（瓦纳卡是滑翔机胜地）</td><td>🟢</td><td>30–60 分钟</td><td class="price">NZD 250+</td><td>瓦纳卡机场；比跳伞温和，坐着飞</td><td>Glide Omarama / Wanaka</td></tr>
+          <tr><td>湖上皮划艇 / 桨板 / 游船</td><td>🟡</td><td>1–2h</td><td class="price">NZD 50+</td><td>镇中心湖畔租；10 月水凉</td><td>现场</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇳🇿 蒂卡波 + 库克山（10.6–10.8）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>Dark Sky Project 观星</b>（已排）</td><td>🟢</td><td>1.5–2h</td><td class="price">NZD 100+</td><td>蒂卡波镇上集合，团车上 <b>Mt John 山顶</b>（<b>夜间禁止自驾上山</b>）；阴天可改<b>室内 Dark Sky Experience</b></td><td><a href="https://www.darkskyproject.co.nz">darkskyproject.co.nz</a></td></tr>
+          <tr><td><b>Mt John 山顶 + Astro Café</b>（已排 10.7）</td><td>🟢</td><td>1–2h</td><td class="price">车辆道路费 NZ$5–10</td><td>收费公路可<b>开车到顶</b>；360° 全景；被称"世界最美咖啡馆"之一</td><td><span class="pill no">免预约</span></td></tr>
+          <tr><td><b>Lake Pukaki 观景台 / Peter's Lookout</b>（已排 10.7）</td><td>🟢</td><td>各 15–30 分钟</td><td class="price">免费</td><td>SH8/SH80 路边，<b>停车即到</b>；晴天可见库克山主峰；上午光线最好</td><td>无需预约</td></tr>
+          <tr><td><b>希拉里高山中心</b>（库克山村，博物馆+天象厅）</td><td>🟢</td><td>1–2h</td><td class="price">~NZD 30–50</td><td>Hermitage 酒店内，<b>室内零体力</b>；配咖啡厅落地窗看主峰（<b>B+ 备选</b>）</td><td><a href="https://www.hermitage.co.nz">hermitage.co.nz</a></td></tr>
+          <tr><td><b>胡克谷步道 Hooker Valley Track</b></td><td>🟡</td><td>3–4h 往返 10km</td><td class="price">免费</td><td>几乎平坦、过 3 座吊桥，终点冰川湖正对主峰；<b>全新西兰评价最高的短步道之一</b>；<b>本行程已 pass（10km 偏长）</b></td><td>无需预约</td></tr>
+          <tr><td>Kea Point 步道（胡克谷的轻量替代）</td><td>🟡</td><td>1h 往返 2km</td><td class="price">免费</td><td>平缓砾石路，看穆勒冰川湖 + 主峰；<b>体力有限时的最佳选择</b></td><td>无需预约</td></tr>
+          <tr><td>Tasman Glacier View / Blue Lakes</td><td>🟡</td><td>40 分钟</td><td class="price">免费</td><td>有<b>上行台阶</b>，看塔斯曼冰川湖</td><td>无需预约</td></tr>
+          <tr><td>Sealy Tarns「天梯」/ Mueller Hut</td><td>🔴</td><td>3–8h</td><td class="price">免费</td><td>2200 级台阶起步，<b>本行程完全不适合</b></td><td>—</td></tr>
+          <tr><td><b>塔斯曼冰川湖游船 Glacier Explorers</b></td><td>🟡</td><td>2.5–3h</td><td class="price">~NZD 210</td><td>小艇在浮冰间看冰川末端，可摸千年冰；⚠️ <b>需走 20–30 分钟不平碎石冰碛路</b>；季节性（约 9 月–次年 5 月）；<b>本行程已 pass</b></td><td><a href="https://www.hermitage.co.nz">hermitage.co.nz</a></td></tr>
+          <tr><td><b>滑雪飞机 / 直升机 + 冰川雪地降落</b></td><td>🟢</td><td>25–55 分钟</td><td class="price">NZD 450–700</td><td>库克山机场起飞，<b>降落塔斯曼冰川雪面</b>下机踩雪；<b>零体力</b>；已跳伞则视角略重复</td><td><a href="https://www.mtcookskiplanes.com">mtcookskiplanes.com</a></td></tr>
+          <tr><td>Skydive Mt Cook 跳伞（<b>本行程备用</b>）</td><td>🟢</td><td>约 3h</td><td class="price">13,000ft NZD 399/人</td><td>集合点 Pukaki/Glentanner（<b>订票时确认</b>，蒂卡波出发 45min–1h20）；<b>别订 7am 场</b>（要 5:30 起）</td><td><a href="https://www.skydive.co.nz/mt-cook/">skydive.co.nz/mt-cook</a></td></tr>
+          <tr><td>Air Safaris 观景飞行（蒂卡波机场）</td><td>🟢</td><td>50 分钟</td><td class="price">NZD 450+</td><td>飞越塔斯曼冰川、库克山、西海岸冰川；<b>跳伞被取消时的最佳替代</b></td><td><a href="https://www.airsafaris.co.nz">airsafaris.co.nz</a></td></tr>
+          <tr><td>4WD 塔斯曼谷越野观光</td><td>🟢</td><td>1.5h</td><td class="price">~NZD 100+</td><td>坐车开进冰川谷，导游讲解</td><td>Hermitage / Glacier Explorers</td></tr>
+          <tr><td>Tekapo Springs 温泉 + 桑拿（<b>本次已去掉</b>）</td><td>🟢</td><td>1–2h</td><td class="price">~NZD 40</td><td>开车即到，泡池看湖；<b>池子免预约</b>，spa 按摩需约</td><td><a href="https://www.tekaposprings.co.nz">tekaposprings.co.nz</a></td></tr>
+          <tr><td>好牧羊人教堂 / 牧羊犬雕像（已排）</td><td>🟢</td><td>30 分钟</td><td class="price">免费</td><td>湖畔路边，日出人最少</td><td>无需预约</td></tr>
+          <tr><td>湖上皮划艇 / e-bike（Alps 2 Ocean 步道）</td><td>🟡</td><td>1–3h</td><td class="price">NZD 50–100</td><td>e-bike 有电助力，不算累</td><td>镇上租车店</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇳🇿 基督城（10.8–10.9）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>雅芳河撑篙 Punting</b>（已排备选）</td><td>🟢</td><td>30 分钟</td><td class="price">~NZD 40</td><td>植物园旁 Antigua Boat Sheds；船夫撑船，坐着看景</td><td><a href="https://www.christchurchattractions.nz">christchurchattractions.nz</a></td></tr>
+          <tr><td>复古有轨电车 Tram（环线随上随下）</td><td>🟢</td><td>1h</td><td class="price">~NZD 35</td><td>CBD 环线，含讲解；可配撑篙/缆车套票</td><td>同上</td></tr>
+          <tr><td>基督城空中缆车 Gondola</td><td>🟢</td><td>1.5h</td><td class="price">~NZD 40</td><td>离 CBD 约 20 分钟车程，山顶看港湾与南阿尔卑斯</td><td>同上</td></tr>
+          <tr><td><b>国际南极中心</b> International Antarctic Centre</td><td>🟢</td><td>2h</td><td class="price">~NZD 59</td><td><b>就在机场旁</b>！有小蓝企鹅、暴风雪体验室、Hägglund 全地形车；<b>10.8 下午最顺路的选择</b></td><td><a href="https://www.iceberg.co.nz">iceberg.co.nz</a></td></tr>
+          <tr><td>Willowbank 野生动物保护区（看几维鸟）</td><td>🟡</td><td>2h</td><td class="price">~NZD 40</td><td>离机场 10 分钟；有夜行馆</td><td><a href="https://www.willowbank.co.nz">willowbank.co.nz</a></td></tr>
+          <tr><td>植物园 / Hagley Park / 大教堂广场 / 坎特伯雷博物馆</td><td>🟡</td><td>各 1h</td><td class="price">免费</td><td>全在 CBD 步行圈内</td><td>无需预约</td></tr>
+          <tr><td>Riverside Market 市集（已排晚餐）</td><td>🟢</td><td>1h</td><td class="price">餐费</td><td>CBD 内，各国小吃摊；晚上有些摊位早收</td><td>无需预约</td></tr>
+          <tr><td><b>Akaroa 赫氏海豚游船</b></td><td>🟢</td><td>游船 2h + 车程 1.5h×2</td><td class="price">~NZD 95</td><td>Banks 半岛法式小镇；世界最小海豚；<b>一天才够，本行程时间不足</b></td><td><a href="https://www.blackcat.co.nz">blackcat.co.nz</a></td></tr>
+          <tr><td><b>Kaikōura 观鲸</b>（全年抹香鲸）</td><td>🟢</td><td>3h + 车程 2.5h×2</td><td class="price">~NZD 165</td><td>基督城以北 180km；<b>新西兰最好的观鲸地，但完全不顺路</b></td><td><a href="https://www.whalewatch.co.nz">whalewatch.co.nz</a></td></tr>
+          <tr><td>热气球（坎特伯雷平原，日出）</td><td>🟢</td><td>4h（含接送）</td><td class="price">NZD 450+</td><td>需<b>日出前起飞</b>，与 10.9 凌晨航班冲突</td><td>Ballooning Canterbury</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇦🇺 墨尔本（10.9–10.11）</h3>
+      <table>
+        <thead><tr><th>项目</th><th style="width:60px">体力</th><th style="width:110px">时长</th><th style="width:110px">价格</th><th>地点 / 条件</th><th style="width:150px">预订</th></tr></thead>
+        <tbody>
+          <tr><td><b>大洋路一日团</b>（已排备选 10.10）</td><td>🟡</td><td>全天 12–13h</td><td class="price">AUD 150–180</td><td>约 7:00 CBD 集合；十二门徒、Loch Ard 峡谷、Apollo Bay；<b>小团体验更好</b></td><td><a href="https://www.getyourguide.com">GetYourGuide</a>／<a href="https://www.klook.com">Klook</a>／Autopia·Go West</td></tr>
+          <tr><td><b>菲利普岛企鹅归巢 Penguin Parade</b></td><td>🟡</td><td>全天/半天 6–8h</td><td class="price">AUD 30 起（+接送）</td><td>离墨尔本 2h；黄昏小蓝企鹅上岸；<b>必须预约</b>；可配考拉保护区</td><td><a href="https://www.penguins.org.au">penguins.org.au</a></td></tr>
+          <tr><td>St Kilda 防波堤看<b>野生小蓝企鹅</b>（免费替代）</td><td>🟡</td><td>1–2h</td><td class="price">免费</td><td>96 路电车直达；<b>日落后</b>在防波堤石缝里看；不能用闪光灯</td><td>无需预约</td></tr>
+          <tr><td>亚拉河谷酒庄一日游</td><td>🟢</td><td>全天 8h</td><td class="price">AUD 150–200</td><td>含接送、3–4 家酒庄 + 午餐；<b>可以放心喝</b></td><td><a href="https://www.yarravalleywinetours.com.au">yarravalleywinetours.com.au</a></td></tr>
+          <tr><td>Eureka Skydeck 88 层观景台</td><td>🟢</td><td>1h</td><td class="price">~AUD 30</td><td>南岸，室内；有玻璃悬空箱 The Edge</td><td><a href="https://www.eurekaskydeck.com.au">eurekaskydeck.com.au</a></td></tr>
+          <tr><td>维州国家美术馆 NGV / 皇后市场 / 涂鸦巷 / Lygon St 咖啡</td><td>🟡</td><td>各 1–2h</td><td class="price">免费</td><td>全在 CBD 免费电车区内；周一皇后市场部分休息</td><td><span class="pill no">免预约</span></td></tr>
+          <tr><td>疏芬山金矿 Sovereign Hill（Ballarat）</td><td>🟡</td><td>全天</td><td class="price">~AUD 45</td><td>离墨尔本 1.5h；19 世纪淘金小镇实景</td><td><a href="https://sovereignhill.com.au">sovereignhill.com.au</a></td></tr>
+          <tr><td>热气球看日出（墨尔本上空）</td><td>🟢</td><td>4h</td><td class="price">AUD 400+</td><td>需 4:30 集合；10.10 可行、10.11 当天要飞不建议</td><td><a href="https://globalballooning.com.au">globalballooning.com.au</a></td></tr>
+          <tr><td>MCG 板球场导览 / 布莱顿彩色小屋</td><td>🟡</td><td>各 1–2h</td><td class="price">AUD 0–30</td><td>彩色小屋在 Brighton Beach，火车可达</td><td>官网/无需预约</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note">💡 <b>按体力挑选的建议</b>：你们偏好"自然风光 + 低体力"，所以这一页里最匹配的加项是——
+        悉尼 <b>观鲸</b>（坐船）、皇后镇 <b>Onsen 温泉</b> 与 <b>TSS 蒸汽船</b>（都是坐着）、库克山 <b>Kea Point 2km</b>（替代 10km 胡克谷）、基督城 <b>国际南极中心</b>（就在机场旁、10.8 顺路）、墨尔本 <b>St Kilda 免费看小蓝企鹅</b>。
+        高强度的 Roys Peak、Sealy Tarns、漂流、冲浪都建议跳过。</div>
+    </div>
   </section>
 
   <footer>生成于 2026-09-17 · 最终版（机票已出票）· 新西兰 4 段住宿待订，确认后补入</footer>
@@ -303,7 +407,7 @@ Thank you very much.
 
 <script>
   function showTab(t){
-    ['plan','booking','drive'].forEach(function(x){
+    ['plan','booking','drive','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
