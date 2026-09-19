@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+    <!-- ========== TAB 记账 ========== -->
+    <div id="tab-money">
+      <div class="note">💱 <b>汇率 NZD → CNY</b>：<input id="rate" type="number" step="0.01" value="4.25" style="width:80px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
+        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等信用卡账单出来，把实际人民币金额告诉我，我填成确定值，≈ 就会消失。</span></div>
+      <table>
+        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:48px">付款</th><th style="width:92px">纽币 NZD</th><th style="width:104px">人民币 CNY</th><th style="width:130px">备注</th></tr></thead>
+        <tbody id="money-body"></tbody>
+      </table>
+      <div id="money-sum" class="mtot"></div>
+      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：四段机票、NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、皇后镇/瓦纳卡/蒂卡波/基督城住宿、eSIM、保险、餐饮与油费。<b>B 付款的部分发我即可补入。</b></div>
+    </div>
+
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -45,6 +57,10 @@
   ol.info{margin:6px 0 0;padding-left:22px;font-size:13.5px;} ol.info li{margin:5px 0;}
   pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55;white-space:pre-wrap;}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .who{display:inline-block;min-width:20px;text-align:center;border-radius:5px;padding:1px 6px;font-weight:700;font-size:12px;}
+  .who.A{background:#dbeafe;color:#1d4ed8;} .who.B{background:#fce7f3;color:#be185d;}
+  .mtot{background:var(--soft);border-radius:10px;padding:14px;margin-top:14px;font-size:13.5px;line-height:1.9;}
   .stat{background:var(--soft);border-radius:10px;padding:12px;text-align:center;}
   .stat .n{font-size:18px;font-weight:700;color:var(--brand);}
   .stat .l{font-size:12px;color:var(--muted);}
@@ -61,19 +77,7 @@
 
 <div class="wrap">
 
-  <section id="sum">
-    <h2>一眼总览</h2>
-    <div class="grid">
-      <div class="stat"><div class="n">13 天</div><div class="l">9.30 – 10.12</div></div>
-      <div class="stat"><div class="n">4 段</div><div class="l">航班（已出票）</div></div>
-      <div class="stat"><div class="n">6 段</div><div class="l">住宿（2 段已订）</div></div>
-      <div class="stat"><div class="n">4 天</div><div class="l">南岛租车 10.5–10.9</div></div>
-      <div class="stat"><div class="n">~615 km</div><div class="l">自驾里程</div></div>
-      <div class="stat"><div class="n">2 晚</div><div class="l">蒂卡波观星机会</div></div>
-    </div>
-
-    
-  </section>
+  
 
   <section id="plan">
     <h2>行程 · 预订 · 自驾</h2>
@@ -81,6 +85,7 @@
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
+      <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
     </div>
 
@@ -95,8 +100,8 @@
           <tr><td><b>10.1 四</b></td><td>悉尼 <b>08:00</b> 落地<ul class="hl"><li>机场火车 <b>Airport Link</b> 到 Central（13 分钟）→ 步行 5 分钟到酒店 <b>先寄存行李</b>（15:00 才能入住）</li><li>上午轻松：唐人街早茶 / 达令港（步行 10 分钟）</li><li>下午：<b>环形码头 · 歌剧院外景 · 岩石区 The Rocks · 海港大桥</b></li><li><span class="pill alt">备选</span> <b>观鲸</b>（9–11 月座头鲸南迁高峰，2–3h，AUD 80–120）——今天下午或明天上午</li><li>🍽 Opera Bar 海港景 / 岩石区生蚝 / 唐人街</li></ul></td><td class="rn">步行+火车</td><td class="lv lv3">★★★☆☆</td><td class="stay">悉尼</td><td class="rn">办 <b>Opal 卡</b>（手机 Apple Pay 可直接刷）；刚下夜航别排太满</td></tr>
           <tr><td><b>10.2 五</b></td><td>悉尼一整天<ul class="hl"><li>上午：<b>邦迪海滩 + 邦迪-库吉海岸徒步</b>（可只走一段）　或 <span class="pill alt">备选</span> <b>观鲸</b></li><li>下午：<b>新南威尔士美术馆</b>（免费，Naala Badu 现代馆）／Manly 渡轮</li><li>晚：<b>歌剧院看演出</b>（悉尼交响乐团音乐会）</li><li>🍽 Bondi Icebergs / 悉尼鱼市 / 达令港</li></ul></td><td class="rn">步行+火车</td><td class="lv lv3">★★★☆☆</td><td class="stay">悉尼</td><td class="rn">演出订今晚；散场约 22:00</td></tr>
           <tr><td><b>10.3 六</b></td><td>悉尼 → 皇后镇<ul class="hl"><li><b>11:00 前退房</b>，行李寄存酒店，上午轻活动（达令港 / 皇家植物园）</li><li>13:00 出发去机场（Central 坐机场火车 13 分钟）</li><li><b>15:15 起飞 → 21:15 抵皇后镇</b> → 直接入住睡觉</li></ul></td><td class="rn">—</td><td class="lv lv4">★★★★☆</td><td class="stay">皇后镇</td><td class="rn">住 <b>34 Lake Esplanade（Peppers Beacon 203）</b>，湖滨、步行到镇中心 5–10 分钟<br>⚠️ <b>提前找房东 Ray 确认深夜自助入住方式</b>；机场打车约 NZ$35–40（深夜没公交）</td></tr>
-          <tr><td><b>10.4 日</b></td><td>皇后镇：品酒 + 缆车（轻松日）<ul class="hl"><li>上午自由：湖滨花园、Steamer Wharf 散步；<span class="pill alt">备选</span> <b>Kiwi Birdlife Park</b> 看几维鸟（缆车底站旁，1–2h，<span class="price">NZD 55</span>）</li><li>下午 <b>Gibbston Valley「完整的酒庄」</b>：老藤葡萄园 + 酿酒车间 + <b>新西兰最大地下酒窖</b>，45min / 4 款 + 官网接送</li><li>傍晚 <b>Skyline 缆车 + Luge 滑板车</b> <span class="price">~NZD 80~95</span>，山顶餐厅晚餐看夜景</li></ul></td><td class="rn">不开车</td><td class="lv lv2">★★☆☆☆</td><td class="stay">皇后镇</td><td class="rn"><s>射击已取消</s>（改到 10.6 下午瓦纳卡 Crossfire）；酒庄官网地区切 <b>New Zealand</b> 看纽币价，接送见「运输」页<br>🍷 镇上 <b>The Winery</b>（Beach St）walk in 免预约，随时小酌</td></tr>
-          <tr><td><b>10.5 一</b></td><td><b>取车 → 瓦纳卡</b>（一路慢玩）<ul class="hl"><li><b>10:00 退房 → 10:30 皇后镇机场取车</b></li><li>11:00–12:30 <b>箭镇 Arrowtown</b>：淘金古镇 + 华人矿工村，午餐（Provisions 肉桂卷）</li><li>13:00 <b>Cardrona Hotel</b>（1863 年历史酒馆，经典拍照点）→ 13:30 <b>Crown Range 观景台</b></li><li><b>14:30 到瓦纳卡</b> 入住 → 15:00–16:30 <b>Rippon 酒庄</b>（湖景最美，17:00 关门；今天不再开长途<b>可以喝</b>）</li><li>18:30 晚餐 → 19:15 <b>#湖中树</b> 等日落（约 19:45）</li></ul></td><td class="rn">80km<br>1.5h</td><td class="lv lv2">★★☆☆☆</td><td class="stay">瓦纳卡</td><td class="rn">提早取车＝箭镇能好好逛 + 赶上 Rippon；租期仍 4 天同价<br>⚠️ 行李放车上，<b>贵重物品别外露</b></td></tr>
+          <tr><td><b>10.4 日</b></td><td>皇后镇：品酒 + 缆车（轻松日）<ul class="hl"><li>上午自由：湖滨花园、Steamer Wharf 散步；<span class="pill alt">备选</span> <b>Kiwi Birdlife Park</b> 看几维鸟（缆车底站旁，1–2h，<span class="price">NZD 55</span>）</li><li><b>15:00 Gibbston Valley「完整的酒庄」（已订，<span class="price">NZ$174</span>／2 人）</b>：老藤葡萄园 + 酿酒车间 + <b>新西兰最大地下酒窖</b>，约 45 分钟 / 4 款<br><span class="rn">⚠️ <b>今天没车</b> → 用酒庄官网接送（Gibbston 在镇外 SH6 上，车程约 25 分钟）；<b>集合点与接送时间以确认邮件为准</b>，不清楚就打 <b>+64 3 442 6910</b>；14:00 前要到集合点</span></li><li>傍晚 <b>Skyline 缆车 + Luge 滑板车</b> <span class="price">~NZD 80~95</span>，山顶餐厅晚餐看夜景</li></ul></td><td class="rn">不开车</td><td class="lv lv2">★★☆☆☆</td><td class="stay">皇后镇</td><td class="rn">✅ <b>品酒已订 10.4 15:00</b>（NZ$174／2 人）<br><s>射击已取消</s>（改到 10.6 下午瓦纳卡 Crossfire）<br>🍷 镇上 <b>The Winery</b>（Beach St）walk in 免预约，随时小酌</td></tr>
+          <tr><td><b>10.5 一</b></td><td><b>取车 → 瓦纳卡</b>（一路慢玩）<ul class="hl"><li><b>10:00 退房 → 10:30 皇后镇机场取车</b></li><li>11:00–12:30 <b>箭镇 Arrowtown</b>：淘金古镇 + 华人矿工村，午餐（Provisions 肉桂卷）</li><li>13:00 <b>Cardrona Hotel</b>（1863 年历史酒馆，经典拍照点）→ 13:30 <b>Crown Range 观景台</b></li><li><b>14:30 到瓦纳卡</b> 入住 38 Beech St 放行李</li><li>15:00 开到 <b>Rippon 葡萄园路边取景</b>（246 Wanaka Mount Aspiring Rd，约 10 分钟车程）—— <b>品鉴已约不到</b>，但那片湖畔坡地是瓦纳卡最出名的取景点，路边拍照即可</li><li>16:00 <b>Puzzling World</b>（55 Puzzling World Dr，每天 8:30–17:30，免预约）<b>或</b> 湖滨大道漫步</li><li>18:30 晚餐 → 19:15 <b>#湖中树</b> 等日落（约 19:45）</li></ul></td><td class="rn">80km<br>1.5h</td><td class="lv lv2">★★☆☆☆</td><td class="stay">瓦纳卡</td><td class="rn">⚠️ <b>瓦纳卡品酒已排除</b>：Rippon <b>10.1–10.6 全满且必须预约</b>；Maude 品鉴室<b>只开周四–周日</b>，10.5 是周一<br>🍷 想喝就晚餐时点杯本地黑皮诺（镇上买得到 Rippon/Maude 的酒）；<b>10.4 已在 Gibbston 正式品过</b><br>⚠️ 行李放车上，<b>贵重物品别外露</b></td></tr>
           <tr><td><b>10.6 二</b></td><td><b>瓦纳卡跳伞 + 射击 → 蒂卡波</b>（两个场地都在瓦纳卡机场片区，相距几分钟）<ul class="hl"><li>08:30 起床早餐（<b>别吃太饱</b>）</li><li><b>09:30 打电话确认天气</b>：<b>+64 3 443 7207</b>（起跳前 1 小时，必做）</li><li>09:45 退房 → <b>两个箱子寄存在住宿</b>（38 Beech St，提前问房东）→ 只带小包出发（约 10–12 分钟）</li><li><b>10:10 check-in ｜ 10:30 跳伞 15,000ft ×2 人</b> —— <b>Skydive Wanaka Dropzone，14 Mustang Lane, Wanaka 9382</b>（自驾前往）；全程约 2–3h</li><li>12:30–13:00 结束 → 午餐（机场片区/Luggate 或回镇上 10 分钟）</li><li>13:00–14:30 <b>缓冲时间</b>（跳伞常有 weather hold，这段是保险）</li><li><b>14:40–15:20 Crossfire 射击（已订两个套餐：14:40–15:00、15:00–15:20）</b> —— <b>9 Mt Barker Road</b>（SH6 与 Mt Barker Rd 路口，瓦纳卡机场对面），电话 (03) 443 5995</li><li>15:30 <b>回住宿取行李</b>（往返约 20 分钟）→ <b>16:00 出发去蒂卡波</b>：16:45 <b>Lindis Pass 观景台</b> → 17:00 Omarama → 17:40 <b>Twizel 加满油</b>（路过 Pukaki Airport）</li><li><b>约 18:45 抵达蒂卡波</b> 入住 → 19:15 后晚餐（Kohan 需订位）→ 21:00 后湖边自己看星</li></ul></td><td class="rn">190km<br>2.5h</td><td class="lv lv4">★★★★☆</td><td class="stay">蒂卡波</td><td class="rn">穿舒服衣服 + <b>包脚鞋</b>；近视镜/隐形都可戴；连体服·护目镜·头套·手套由对方提供<br>⚠️ <b>若跳伞被 hold 推到下午</b>，先打 Crossfire (03) 443 5995 改时间——<b>优先保跳伞</b><br>🗺 <a href="https://www.google.com/maps/dir/38+Beech+Street,+Wanaka/14+Mustang+Lane,+Wanaka+9382">①酒店→跳伞点</a>｜<a href="https://www.google.com/maps/dir/14+Mustang+Lane,+Wanaka+9382/9+Mt+Barker+Road,+Wanaka">②跳伞→射击</a>｜<a href="https://www.google.com/maps/dir/9+Mt+Barker+Road,+Wanaka/Lindis+Pass+Lookout/Omarama/Twizel/Lake+Tekapo">③射击→蒂卡波</a></td></tr>
           <tr><td><b>10.7 三</b></td><td><b>蒂卡波轻松日</b>（跳伞已在 10.6 完成）<ul class="hl"><li><b>主方案（省力）</b>：上午 <b>Mt John 开车上山</b>（收费公路，山顶 Astro Café 360° 全景）→ 下午 <b>Lake Pukaki 观景台 + Peter's Lookout</b> 拍库克山（路边停车即到）→ 湖畔 / 好牧羊人教堂</li><li><span class="pill alt">备选 B+</span> 一路开到 <b>库克山村</b>：<b>希拉里高山中心</b>（博物馆+天象厅，室内零体力）+ <b>Hermitage 咖啡厅</b>落地窗看主峰</li><li><span class="pill alt">仅当 10.6 跳伞被吹掉</span> 上午去 <b>Pukaki Airport（TWZ）</b> 补跳 Skydive Mt Cook 13,000ft <span class="price">NZD 399/人</span>（蒂卡波出发 <b>40–45 分钟</b>，Tekapo–Twizel Rd 上）</li><li>晚上湖边看星（暗夜保护区，自己看即可）</li></ul></td><td class="rn">主：100km/1.2h<br>B+：210km/2.5h</td><td class="lv lv2">★★☆☆☆</td><td class="stay">蒂卡波</td><td class="rn">Mt John 上山公路约 NZ$5–10/车；⚠️ <b>夜间禁止自驾上 Mt John</b><br>⛽ 往库克山方向请在 <b>Twizel 加满</b><br>🗺 <a href="https://www.google.com/maps/dir/Lake+Tekapo/Mount+John+Observatory/Lake+Pukaki+Lookout/Peters+Lookout/Lake+Tekapo">主方案导航</a></td></tr>
           <tr><td><b>10.8 四</b></td><td><b>蒂卡波 → 基督城</b>（今晚早睡）<ul class="hl"><li>上午出发，途经 <b>Fairlie</b>（Fairlie Bakehouse 名派）· <b>Geraldine</b>（Barker's 果酱 / Talbot Forest 奶酪）</li><li>到基督城后<b>先去 33 Roydvale Ave 入住放行李</b>（离 CBD 约 10 分钟），再进城</li><li>下午基督城：<b>雅芳河撑篙 Punting</b> · 植物园 · 大教堂广场 · 复古电车（都在 CBD 步行圈内）</li><li>🍽 <b>Riverside Market</b> 晚餐（市集美食）</li><li><b>傍晚务必加满油</b> → 入住机场旁酒店，车停酒店 → <b>20:00 前后睡觉</b></li></ul></td><td class="rn">225km<br>3h</td><td class="lv lv3">★★★☆☆</td><td class="stay">基督城<br>（机场旁）</td><td class="rn">机场离 CBD 仅 12km，29 路公交 25–30min / 打车 NZ$35–45<br>⚠️ 行李搬进房间，别留车上</td></tr>
@@ -140,12 +145,9 @@
       <table>
         <thead><tr><th style="width:28px">#</th><th>项目</th><th style="width:110px">时间</th><th style="width:110px">费用</th><th>预订地址</th><th style="width:150px">备注</th></tr></thead>
         <tbody>
-          <tr><td>10</td><td><b>租车 Apex</b>（ASX 2WD 自动挡 + $0 免赔额）</td><td><b>10.5 10:30 取 → 10.9 04:00 还</b></td><td class="price">NZ$606 / 4 天</td><td><a href="https://www.apexrentals.co.nz">apexrentals.co.nz</a></td><td class="rn"><span class="pill yes">必订</span> 皇后镇机场取 → <b>基督城机场还</b>（含单程费 NZ$81）；改时间后请确认总价不变</td></tr>
-          <tr><td>11</td><td><s>Break One 飞碟射击（皇后镇）</s></td><td><s>10.4 上午</s></td><td class="price">—</td><td><a href="https://breakone.co.nz">breakone.co.nz</a></td><td class="rn"><span class="pill no">已取消</span> 仅 Top Gun（NZD 209/人）为 2 人成行且只能电话/邮件订；<b>射击改为 10.6 下午 Crossfire</b></td></tr>
-          <tr><td>12</td><td><b>Gibbston Valley「完整的酒庄」</b>（45min / 4 款）</td><td>10.4 下午</td><td class="price">纽币见官网</td><td><a href="https://www.gibbstonvalley.com">gibbstonvalley.com</a> → 参观和品鉴</td><td class="rn"><span class="pill yes">建议订</span> 地区切 New Zealand；接送见官网「运输」页</td></tr>
-          <tr><td>13</td><td>Skyline 缆车 + Luge</td><td>10.4 傍晚</td><td class="price">NZD 80~95</td><td><a href="https://www.skyline.co.nz/en/queenstown/">skyline.co.nz/queenstown</a></td><td class="rn">也可现场买；Luge 天黑关闭</td></tr>
-          <tr><td>14</td><td>Kiwi Birdlife Park（几维鸟 / kea）</td><td>10.4</td><td class="price">NZD 55</td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td><td class="rn"><span class="pill alt">备选</span> 缆车底站旁，1–2h</td></tr>
-          <tr><td>15</td><td>The Winery（镇上品酒室，按杯计费）</td><td>随时</td><td class="price">按杯</td><td><a href="https://www.thewinery.co.nz">thewinery.co.nz</a>（Beach St）</td><td class="rn"><span class="pill no">免预约</span> 散步顺路进去</td></tr>
+          <tr><td>10</td><td>Skyline 缆车 + Luge</td><td>10.4 傍晚</td><td class="price">NZD 80~95</td><td><a href="https://www.skyline.co.nz/en/queenstown/">skyline.co.nz/queenstown</a></td><td class="rn">也可现场买；Luge 天黑关闭</td></tr>
+          <tr><td>11</td><td>Kiwi Birdlife Park（几维鸟 / kea）</td><td>10.4</td><td class="price">NZD 55</td><td><a href="https://www.kiwibird.co.nz">kiwibird.co.nz</a></td><td class="rn"><span class="pill alt">备选</span> 缆车底站旁，1–2h</td></tr>
+          <tr><td>12</td><td>The Winery（镇上品酒室，按杯计费）</td><td>随时</td><td class="price">按杯</td><td><a href="https://www.thewinery.co.nz">thewinery.co.nz</a>（Beach St）</td><td class="rn"><span class="pill no">免预约</span> 散步顺路进去</td></tr>
         </tbody>
       </table>
 
@@ -153,15 +155,13 @@
       <table>
         <thead><tr><th style="width:28px">#</th><th>项目</th><th style="width:110px">时间</th><th style="width:110px">费用</th><th>预订地址</th><th style="width:150px">备注</th></tr></thead>
         <tbody>
-          <tr><td>16</td><td><b>Skydive Wanaka 跳伞 15,000ft × 2 人</b></td><td><b>10.6 10:30</b>（10:10 check-in）</td><td class="price">已付</td><td><a href="https://skydivewanaka.com">skydivewanaka.com</a></td><td class="rn"><span class="pill yes">已订</span> 集合 <b>14 Mustang Lane, Wanaka 9382</b>（自驾）；<b>09:30 打 +64 3 443 7207 确认天气</b>；穿包脚鞋</td></tr>
-          <tr><td>16b</td><td><b>Crossfire 射击（两个套餐）</b>飞碟/步枪/射箭</td><td><b>10.6 14:40–15:20</b></td><td class="price">已付</td><td><a href="https://crossfirewanaka.co.nz">crossfirewanaka.co.nz</a></td><td class="rn"><span class="pill yes">已订</span> <b>9 Mt Barker Road</b>（机场对面）；电话 <b>(03) 443 5995</b>；每天 10:00–17:00；<b>若跳伞延误打电话改时间</b></td></tr>
-          <tr><td>17</td><td>Skydive Mt Cook 跳伞（<b>仅备用</b>，13,000ft）</td><td>10.7 上午（仅当 10.6 被吹掉）</td><td class="price">NZD 399/人</td><td><a href="https://www.skydive.co.nz/mt-cook/">skydive.co.nz/mt-cook</a></td><td class="rn"><span class="pill alt">备用</span> 集合点已确认为 <b>Pukaki Airport（TWZ）</b>，Tekapo–Twizel Rd 上，蒂卡波出发 <b>40–45 分钟</b></td></tr>
-          <tr><td>18</td><td>Rippon 酒庄（瓦纳卡湖畔，全国最上镜）</td><td>10.5 15:00–16:30</td><td class="price">品鉴约 NZD 20–40</td><td><a href="https://rippon.co.nz">rippon.co.nz</a></td><td class="rn"><span class="pill no">walk in 可</span> ⚠️ 多数 17:00 关门；当天不再开长途可放心喝</td></tr>
-          <tr><td>19</td><td><b>Kohan 日料</b>（蒂卡波湖景 + 本地三文鱼）</td><td><b>10.6 晚 18:30</b></td><td class="price">~NZD 40–60/人</td><td>Google Maps 电话订位</td><td class="rn"><span class="pill yes">必订</span> 旺季常排队；⚠️ 营业时间短、有休息日，订前确认</td></tr>
-          <tr><td>20</td><td><b>蒂卡波观星</b>（Dark Sky Project）</td><td>10.6 或 10.7 晚</td><td class="price">NZD 100+</td><td><a href="https://www.darkskyproject.co.nz">darkskyproject.co.nz</a></td><td class="rn"><span class="pill yes">建议订</span> <b>看天气预报挑那晚</b>；阴天可改室内场；夜间禁自驾上 Mt John</td></tr>
-          <tr><td>21</td><td>Mt John 山顶（收费公路 + Astro Café）</td><td>10.7 上午</td><td class="price">车辆道路费 NZ$5–10</td><td>现场缴费</td><td class="rn"><span class="pill no">免预约</span> 可开车到顶，几乎不走路</td></tr>
-          <tr><td>22</td><td>希拉里高山中心（库克山村，博物馆+天象厅）</td><td>10.7（B+ 方案）</td><td class="price">约 NZD 30–50</td><td><a href="https://www.hermitage.co.nz">hermitage.co.nz</a></td><td class="rn"><span class="pill alt">备选</span> 室内零体力；配 Hermitage 咖啡厅看主峰</td></tr>
-          <tr><td>23</td><td>雅芳河撑篙 Punting（基督城）</td><td>10.8 下午</td><td class="price">约 NZD 40/人</td><td>Google Maps「Punting on the Avon」</td><td class="rn"><span class="pill alt">备选</span> 约 30 分钟，坐着看景</td></tr>
+          <tr><td>13</td><td>Skydive Mt Cook 跳伞（<b>仅备用</b>，13,000ft）</td><td>10.7 上午（仅当 10.6 被吹掉）</td><td class="price">NZD 399/人</td><td><a href="https://www.skydive.co.nz/mt-cook/">skydive.co.nz/mt-cook</a></td><td class="rn"><span class="pill alt">备用</span> 集合点已确认为 <b>Pukaki Airport（TWZ）</b>，Tekapo–Twizel Rd 上，蒂卡波出发 <b>40–45 分钟</b></td></tr>
+          <tr><td>14</td><td>瓦纳卡品酒 酒庄（Rippon / Maude）</td><td><s>10.5 下午</s></td><td class="price">—</td><td><a href="https://rippon.co.nz">rippon.co.nz</a>｜<a href="https://maudewines.com/pages/the-tasting-room">maudewines.com</a></td><td class="rn"><span class="pill no">已排除</span> Rippon <b>必须预约且 10.1–10.6 全满</b>；Maude 品鉴室<b>仅周四–周日 12–17</b>（10.5 是周一）→ 改为 <b>Rippon 路边取景 + Puzzling World</b>，品酒由 10.4 Gibbston 承担</td></tr>
+          <tr><td>15</td><td><b>Kohan 日料</b>（蒂卡波湖景 + 本地三文鱼）</td><td><b>10.6 晚 18:30</b></td><td class="price">~NZD 40–60/人</td><td>Google Maps 电话订位</td><td class="rn"><span class="pill yes">必订</span> 旺季常排队；⚠️ 营业时间短、有休息日，订前确认</td></tr>
+          <tr><td>16</td><td><b>蒂卡波观星</b>（Dark Sky Project）</td><td>10.6 或 10.7 晚</td><td class="price">NZD 100+</td><td><a href="https://www.darkskyproject.co.nz">darkskyproject.co.nz</a></td><td class="rn"><span class="pill yes">建议订</span> <b>看天气预报挑那晚</b>；阴天可改室内场；夜间禁自驾上 Mt John</td></tr>
+          <tr><td>17</td><td>Mt John 山顶（收费公路 + Astro Café）</td><td>10.7 上午</td><td class="price">车辆道路费 NZ$5–10</td><td>现场缴费</td><td class="rn"><span class="pill no">免预约</span> 可开车到顶，几乎不走路</td></tr>
+          <tr><td>18</td><td>希拉里高山中心（库克山村，博物馆+天象厅）</td><td>10.7（B+ 方案）</td><td class="price">约 NZD 30–50</td><td><a href="https://www.hermitage.co.nz">hermitage.co.nz</a></td><td class="rn"><span class="pill alt">备选</span> 室内零体力；配 Hermitage 咖啡厅看主峰</td></tr>
+          <tr><td>19</td><td>雅芳河撑篙 Punting（基督城）</td><td>10.8 下午</td><td class="price">约 NZD 40/人</td><td>Google Maps「Punting on the Avon」</td><td class="rn"><span class="pill alt">备选</span> 约 30 分钟，坐着看景</td></tr>
         </tbody>
       </table>
 
@@ -169,23 +169,23 @@
       <table>
         <thead><tr><th style="width:28px">#</th><th>项目</th><th style="width:110px">时间</th><th style="width:110px">费用</th><th>预订地址</th><th style="width:150px">备注</th></tr></thead>
         <tbody>
-          <tr><td>24</td><td><b>大洋路一日团</b>（十二门徒 / Loch Ard 峡谷）</td><td>10.10 全天</td><td class="price">AUD 150–180</td><td><a href="https://www.gowest.co.nz">Go West</a> / <a href="https://www.autopiatours.com.au">Autopia Tours</a>／<a href="https://www.klook.com">Klook</a>·<a href="https://www.getyourguide.com">GetYourGuide</a></td><td class="rn"><span class="pill alt">备选</span> 12–13h、约 7:00 集合；小团体验更好</td></tr>
-          <tr><td>25</td><td>SkyBus 机场大巴（机场 ↔ Southern Cross）</td><td>10.9 / 10.11</td><td class="price">~AUD 23/人</td><td><a href="https://www.skybus.com.au">skybus.com.au</a></td><td class="rn">可现场买，官网略便宜</td></tr>
-          <tr><td>26</td><td>Myki 交通卡</td><td>10.9</td><td class="price">AUD 6 + 充值</td><td><a href="https://www.ptv.vic.gov.au">ptv.vic.gov.au</a></td><td class="rn">CBD 内电车<b>免费区</b>不用刷卡</td></tr>
-          <tr><td>27</td><td>维州国家美术馆 NGV / 皇后市场 / 涂鸦巷</td><td>10.10 或 10.11</td><td class="price">免费（特展另计）</td><td><a href="https://www.ngv.vic.gov.au">ngv.vic.gov.au</a>｜<a href="https://qvm.com.au">qvm.com.au</a></td><td class="rn"><span class="pill no">免预约</span></td></tr>
+          <tr><td>20</td><td><b>大洋路一日团</b>（十二门徒 / Loch Ard 峡谷）</td><td>10.10 全天</td><td class="price">AUD 150–180</td><td><a href="https://www.gowest.co.nz">Go West</a> / <a href="https://www.autopiatours.com.au">Autopia Tours</a>／<a href="https://www.klook.com">Klook</a>·<a href="https://www.getyourguide.com">GetYourGuide</a></td><td class="rn"><span class="pill alt">备选</span> 12–13h、约 7:00 集合；小团体验更好</td></tr>
+          <tr><td>21</td><td>SkyBus 机场大巴（机场 ↔ Southern Cross）</td><td>10.9 / 10.11</td><td class="price">~AUD 23/人</td><td><a href="https://www.skybus.com.au">skybus.com.au</a></td><td class="rn">可现场买，官网略便宜</td></tr>
+          <tr><td>22</td><td>Myki 交通卡</td><td>10.9</td><td class="price">AUD 6 + 充值</td><td><a href="https://www.ptv.vic.gov.au">ptv.vic.gov.au</a></td><td class="rn">CBD 内电车<b>免费区</b>不用刷卡</td></tr>
+          <tr><td>23</td><td>维州国家美术馆 NGV / 皇后市场 / 涂鸦巷</td><td>10.10 或 10.11</td><td class="price">免费（特展另计）</td><td><a href="https://www.ngv.vic.gov.au">ngv.vic.gov.au</a>｜<a href="https://qvm.com.au">qvm.com.au</a></td><td class="rn"><span class="pill no">免预约</span></td></tr>
         </tbody>
       </table>
 
-      <h3>⑥ 住宿（6 段）</h3>
+      <h3>⑥ 住宿（6 段 · <b>已全部订好</b>，此表仅供查阅）</h3>
       <table>
-        <thead><tr><th style="width:110px">日期</th><th style="width:70px">城市</th><th>酒店 / 地址</th><th style="width:80px">状态</th><th>备注</th></tr></thead>
+        <thead><tr><th style="width:110px">日期</th><th style="width:70px">城市</th><th>酒店 / 地址</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td>10.1–10.3（2 晚）</td><td>悉尼</td><td><b>雅诗阁悉尼中央酒店</b> Ascott Sydney Central<br><span class="rn">169-179 Thomas St, Haymarket</span></td><td><span class="pill yes">已订</span></td><td class="rn">15:00 入 / 11:00 退；<b>提供行李寄存</b>；紧邻中央车站（机场火车 13 分钟）</td></tr>
-          <tr><td>10.3–10.5（2 晚）</td><td>皇后镇</td><td><b>34 Lake Esplanade, Queenstown 9300</b><br><span class="rn">Peppers Beacon Apartments · 单元 <b>203 Beacon</b>（Airbnb，房东 Ray）</span></td><td><span class="pill yes">已订</span></td><td class="rn">湖滨路，步行 5–10 分钟到镇中心/Steamer Wharf；不需车位。⚠️ 10.3 航班 21:15 落地，<b>提前和房东确认深夜自助入住方式</b>（门锁密码/钥匙箱）；机场打车约 NZ$35–40（深夜没公交）。Google Maps 请手动搜 <b>"34 Lake Esplanade Queenstown"</b>，别用 Airbnb 跳转</td></tr>
-          <tr><td>10.5–10.6（1 晚）</td><td>瓦纳卡</td><td><b>38 Beech Street, Wanaka 9305</b><br><span class="rn">镇中心，步行约 10 分钟到湖畔</span></td><td><span class="pill yes">已订</span></td><td class="rn">到跳伞点 14 Mustang Lane 约 10–12 分钟</td></tr>
-          <tr><td>10.6–10.8（2 晚）</td><td>蒂卡波</td><td><b>18 Edwards Lane, Lake Tekapo, Canterbury 7999</b></td><td><span class="pill yes">已订</span></td><td class="rn">镇区内，靠近好牧羊人教堂与 Mt John 上山路口；确认有免费停车</td></tr>
-          <tr><td>10.8–10.9（1 晚）</td><td>基督城</td><td><b>33 Roydvale Avenue, Christchurch 8042</b><br><span class="rn">Burnside 一带</span></td><td><span class="pill yes">已订</span></td><td class="rn"><b>距机场约 4km / 6 分钟</b>；车停酒店过夜，10.9 凌晨 03:45 自己开去机场</td></tr>
-          <tr><td>10.9–10.11（2 晚）</td><td>墨尔本</td><td><b>美居墨尔本 La Trobe 街酒店</b> Mercure Melbourne La Trobe St<br><span class="rn">492 La Trobe Street</span></td><td><span class="pill yes">已订</span></td><td class="rn">14:00 入 / 10:00 退；不含早；CBD <b>免费电车区</b>内</td></tr>
+          <tr><td>10.1–10.3（2 晚）</td><td>悉尼</td><td><b>雅诗阁悉尼中央酒店</b> Ascott Sydney Central<br><span class="rn">169-179 Thomas St, Haymarket</span></td><td class="rn">15:00 入 / 11:00 退；<b>提供行李寄存</b>；紧邻中央车站（机场火车 13 分钟）</td></tr>
+          <tr><td>10.3–10.5（2 晚）</td><td>皇后镇</td><td><b>34 Lake Esplanade, Queenstown 9300</b><br><span class="rn">Peppers Beacon Apartments · 单元 <b>203 Beacon</b>（Airbnb，房东 Ray）</span></td><td class="rn">湖滨路，步行 5–10 分钟到镇中心/Steamer Wharf；不需车位。⚠️ 10.3 航班 21:15 落地，<b>提前和房东确认深夜自助入住方式</b>（门锁密码/钥匙箱）；机场打车约 NZ$35–40（深夜没公交）。Google Maps 请手动搜 <b>"34 Lake Esplanade Queenstown"</b>，别用 Airbnb 跳转</td></tr>
+          <tr><td>10.5–10.6（1 晚）</td><td>瓦纳卡</td><td><b>38 Beech Street, Wanaka 9305</b><br><span class="rn">镇中心，步行约 10 分钟到湖畔</span></td><td class="rn">到跳伞点 14 Mustang Lane 约 10–12 分钟</td></tr>
+          <tr><td>10.6–10.8（2 晚）</td><td>蒂卡波</td><td><b>18 Edwards Lane, Lake Tekapo, Canterbury 7999</b></td><td class="rn">镇区内，靠近好牧羊人教堂与 Mt John 上山路口；确认有免费停车</td></tr>
+          <tr><td>10.8–10.9（1 晚）</td><td>基督城</td><td><b>33 Roydvale Avenue, Christchurch 8042</b><br><span class="rn">Burnside 一带</span></td><td class="rn"><b>距机场约 4km / 6 分钟</b>；车停酒店过夜，10.9 凌晨 03:45 自己开去机场</td></tr>
+          <tr><td>10.9–10.11（2 晚）</td><td>墨尔本</td><td><b>美居墨尔本 La Trobe 街酒店</b> Mercure Melbourne La Trobe St<br><span class="rn">492 La Trobe Street</span></td><td class="rn">14:00 入 / 10:00 退；不含早；CBD <b>免费电车区</b>内</td></tr>
         </tbody>
       </table>
     </div>
@@ -197,6 +197,8 @@
         <thead><tr><th style="width:96px">日期</th><th style="width:88px">用途</th><th>地址（可复制）</th><th style="width:76px">导航</th></tr></thead>
         <tbody>
           <tr><td>10.1–10.3</td><td>悉尼住宿</td><td>169-179 Thomas St, Haymarket, Sydney NSW 2000</td><td><a href="https://www.google.com/maps/search/169-179+Thomas+St,+Haymarket,+Sydney">🗺</a></td></tr>
+          <tr><td><b>10.4 15:00</b></td><td>品酒（已订）</td><td><b>Gibbston Valley Winery, State Highway 6, Gibbston 9371</b><span class="rn">（今天没车，用官网接送；集合点以确认邮件为准，电话 +64 3 442 6910）</span></td><td><a href="https://www.google.com/maps/search/Gibbston+Valley+Winery,+Gibbston">🗺</a></td></tr>
+          <tr><td>10.5 15:00</td><td>取景（不进园）</td><td>246 Wanaka Mount Aspiring Road, Wānaka 9305（Rippon 葡萄园路边）</td><td><a href="https://www.google.com/maps/search/246+Wanaka+Mount+Aspiring+Road">🗺</a></td></tr>
           <tr><td>10.3–10.5</td><td><b>皇后镇住宿</b></td><td><b>34 Lake Esplanade, Queenstown 9300</b>（Peppers Beacon Apartments, 203 Beacon）</td><td><a href="https://www.google.com/maps/search/34+Lake+Esplanade,+Queenstown">🗺</a></td></tr>
           <tr><td><b>10.5 10:30</b></td><td>取车</td><td>Queenstown Airport, Sir Henry Wigley Drive, Frankton, Queenstown 9300</td><td><a href="https://www.google.com/maps/search/Queenstown+Airport">🗺</a></td></tr>
           <tr><td>10.5–10.6</td><td>瓦纳卡住宿</td><td><b>38 Beech Street, Wanaka, Otago 9305</b></td><td><a href="https://www.google.com/maps/search/38+Beech+Street,+Wanaka">🗺</a></td></tr>
@@ -258,6 +260,7 @@
         <thead><tr><th style="width:120px">项目</th><th>内容</th></tr></thead>
         <tbody>
           <tr><td>已选车型</td><td><b>Hyundai i30 / Similar　Mid Size Hatch　AUTO（自动挡）</b>，年份 2021–2023，<span class="price">$113.69/天</span></td></tr>
+          <tr><td>订单</td><td><b>10.5 10:30 皇后镇机场取 → 10.9 03:45 基督城机场还</b>（4 天）　总价 <span class="price">NZ$630.44</span><br><span class="rn">含 $0 免赔额；另含一笔约 <b>$40</b> 的固定费用（很可能是 after-hours 还车费，<b>待向 Apex 确认名目</b>）。单程还车 Apex <b>不另收费</b></span></td></tr>
           <tr><td>为什么够用</td><td>尺寸与国内 2017 福克斯几乎一致（<b>轴距 2,650 vs 2,648 mm</b>），车宽窄 2.8cm、转弯直径小约 0.4m → <b>首次右舵左行最好开</b>；本行程<b>全程铺装公路</b>，无需 SUV / 四驱</td></tr>
           <tr><td>后备箱</td><td>395 L（座椅立起约 宽 100 × 进深 78 × 高 50 cm）；放倒后排可至 ~1,300 L</td></tr>
           <tr><td><b>行李摆放方案</b></td><td>行李：<b>28 寸 81×47.5×29.5cm</b> + <b>26 寸 71×39×36cm</b><br>
@@ -458,16 +461,57 @@ Thank you very much.
     </div>
   </section>
 
-  <footer>生成于 2026-09-17 · 最终版（机票已出票）· 新西兰 4 段住宿待订，确认后补入</footer>
+  <footer>最终版 · 机票已出票 · 6 段住宿全部已订 · 租车/跳伞/射击/品酒已订 · 更新于 2026-09-19</footer>
 </div>
 
 <script>
+  var EXP=[
+    {item:'租车 Apex（i30 自动挡 4 天 + $0 免赔额）', by:'A', ccy:'NZD', amt:630.44, note:'含约 $40 固定费，待确认名目'},
+    {item:'Skydive Wanaka 跳伞 15,000ft × 2 人',      by:'A', ccy:'NZD', amt:1963.28, note:'10.6 10:30'},
+    {item:'Crossfire 射击（两个套餐）',                 by:'A', ccy:'NZD', amt:244.00, note:'10.6 14:40–15:20'},
+    {item:'Gibbston Valley 品酒（2 人）',              by:'A', ccy:'NZD', amt:174.00, note:'10.4 15:00'},
+    {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'A', ccy:'CNY', amt:3381.90, note:'10.1–10.3'},
+    {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'A', ccy:'CNY', amt:2963.11, note:'10.9–10.11'}
+  ];
+  function fm(n){return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function renderMoney(){
+    var r=parseFloat(document.getElementById('rate').value)||0;
+    var h='', nz={A:0,B:0}, cn={A:0,B:0}, tot={A:0,B:0};
+    EXP.forEach(function(e,i){
+      var isNZ = (e.ccy==='NZD');
+      var cny  = (e.cny!=null) ? e.cny : (isNZ ? e.amt*r : e.amt);
+      var est  = (e.cny==null && isNZ);
+      if(isNZ) nz[e.by]+=e.amt; else cn[e.by]+=e.amt;
+      tot[e.by]+=cny;
+      h+='<tr><td>'+(i+1)+'</td><td>'+e.item+'</td>'
+       + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
+       + '<td class="num">'+(isNZ?fm(e.amt):'—')+'</td>'
+       + '<td class="num">'+(est?'≈ ':'')+fm(cny)+'</td>'
+       + '<td class="rn">'+(e.note||'')+'</td></tr>';
+    });
+    document.getElementById('money-body').innerHTML=h;
+    var T=tot.A+tot.B, share=T/2, diff=tot.A-share;
+    var out='<b>分币种小计</b><br>'
+      +'<span class="who A">A</span> 纽币 NZ$'+fm(nz.A)+'　人民币 ¥'+fm(cn.A)+'　→ <b>合计 ≈ ¥'+fm(tot.A)+'</b><br>'
+      +'<span class="who B">B</span> 纽币 NZ$'+fm(nz.B)+'　人民币 ¥'+fm(cn.B)+'　→ <b>合计 ≈ ¥'+fm(tot.B)+'</b><br>'
+      +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
+      +'<b>已记录总支出 ≈ ¥'+fm(T)+'</b>　（人均应担 ≈ ¥'+fm(share)+'）<br>';
+    if(tot.B===0){
+      out+='<span style="color:#b45309">⚠️ B 的账单还没录入，下面的结算只是按目前数据算的，等 B 的明细补齐后才有意义。</span><br>';
+    }
+    out += Math.abs(diff)<0.01 ? '✅ 两人已平' :
+      (diff>0 ? '👉 <b><span class="who B">B</span> 需付给 <span class="who A">A</span> ≈ ¥'+fm(diff)+'</b>'
+              : '👉 <b><span class="who A">A</span> 需付给 <span class="who B">B</span> ≈ ¥'+fm(-diff)+'</b>');
+    document.getElementById('money-sum').innerHTML=out;
+  }
+
   function showTab(t){
-    ['plan','booking','drive','more'].forEach(function(x){
+    ['plan','booking','drive','money','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
   }
+  renderMoney();
   showTab('plan');
 </script>
 </body>
