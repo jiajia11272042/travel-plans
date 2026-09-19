@@ -4,11 +4,11 @@
       <div class="note">💱 <b>汇率 NZD → CNY</b>：<input id="rate" type="number" step="0.01" value="4.25" style="width:80px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
         <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等信用卡账单出来，把实际人民币金额告诉我，我填成确定值，≈ 就会消失。</span></div>
       <table>
-        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:48px">付款</th><th style="width:92px">纽币 NZD</th><th style="width:104px">人民币 CNY</th><th style="width:130px">备注</th></tr></thead>
+        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:92px">纽币 NZD</th><th style="width:104px">人民币 CNY</th><th style="width:130px">备注</th></tr></thead>
         <tbody id="money-body"></tbody>
       </table>
       <div id="money-sum" class="mtot"></div>
-      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：四段机票、NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、皇后镇/瓦纳卡/蒂卡波/基督城住宿、eSIM、保险、餐饮与油费。<b>B 付款的部分发我即可补入。</b></div>
+      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：四段机票、NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票。<br>💵 <b>换汇怎么记</b>：现金换汇本身不是消费，是<b>共同备用金</b>。建议先把 yu 换的人民币全额计入垫付，<b>行程结束后把没花掉的现金按同一汇率折回、从 yu 的垫付里扣掉</b>，这样最准。</div>
     </div>
 
 <html lang="zh-CN">
@@ -59,7 +59,7 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px;}
   .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
   .who{display:inline-block;min-width:20px;text-align:center;border-radius:5px;padding:1px 6px;font-weight:700;font-size:12px;}
-  .who.A{background:#dbeafe;color:#1d4ed8;} .who.B{background:#fce7f3;color:#be185d;}
+  .who.jia{background:#dbeafe;color:#1d4ed8;} .who.yu{background:#fce7f3;color:#be185d;}
   .mtot{background:var(--soft);border-radius:10px;padding:14px;margin-top:14px;font-size:13.5px;line-height:1.9;}
   .stat{background:var(--soft);border-radius:10px;padding:12px;text-align:center;}
   .stat .n{font-size:18px;font-weight:700;color:var(--brand);}
@@ -465,21 +465,38 @@ Thank you very much.
 
 <script>
   var EXP=[
-    {item:'租车 Apex（i30 自动挡 4 天 + $0 免赔额）', by:'A', ccy:'NZD', amt:630.44, note:'含约 $40 固定费，待确认名目'},
-    {item:'Skydive Wanaka 跳伞 15,000ft × 2 人',      by:'A', ccy:'NZD', amt:1963.28, note:'10.6 10:30'},
-    {item:'Crossfire 射击（两个套餐）',                 by:'A', ccy:'NZD', amt:244.00, note:'10.6 14:40–15:20'},
-    {item:'Gibbston Valley 品酒（2 人）',              by:'A', ccy:'NZD', amt:174.00, note:'10.4 15:00'},
-    {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'A', ccy:'CNY', amt:3381.90, note:'10.1–10.3'},
-    {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'A', ccy:'CNY', amt:2963.11, note:'10.9–10.11'}
+    /* ---- jia 付款 ---- */
+    {item:'租车 Apex（i30 自动挡 4 天 + $0 免赔额）', by:'jia', ccy:'NZD', amt:630.44,  note:'含约 $40 固定费，待确认名目'},
+    {item:'Skydive Wanaka 跳伞 15,000ft × 2 人',      by:'jia', ccy:'NZD', amt:1963.28, note:'10.6 10:30'},
+    {item:'Crossfire 射击（两个套餐）',                 by:'jia', ccy:'NZD', amt:244.00,  note:'10.6 14:40–15:20'},
+    {item:'Gibbston Valley 品酒（2 人，含接送）',        by:'jia', ccy:'NZD', amt:174.00,  note:'10.4 15:00'},
+    {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'jia', ccy:'CNY', amt:3381.90, note:'10.1–10.3'},
+    {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'jia', ccy:'CNY', amt:2963.11, note:'10.9–10.11'},
+    /* ---- yu 付款 ---- */
+    {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R'},
+    {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9'},
+    {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  note:'爱彼迎 HMYB2BYBKN'},
+    {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  note:'爱彼迎 HME5WASRCP'},
+    /* ---- 待填 ---- */
+    {item:'换现金 1,000 澳元 AUD',  by:'yu', ccy:'CNY', amt:0, pending:true, note:'换完把实付人民币发我'},
+    {item:'换现金 1,000 纽元 NZD',  by:'yu', ccy:'CNY', amt:0, pending:true, note:'换完把实付人民币发我'}
   ];
   function fm(n){return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function renderMoney(){
     var r=parseFloat(document.getElementById('rate').value)||0;
-    var h='', nz={A:0,B:0}, cn={A:0,B:0}, tot={A:0,B:0};
+    var h='', nz={jia:0,yu:0}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, np=0;
     EXP.forEach(function(e,i){
-      var isNZ = (e.ccy==='NZD');
-      var cny  = (e.cny!=null) ? e.cny : (isNZ ? e.amt*r : e.amt);
-      var est  = (e.cny==null && isNZ);
+      var isNZ=(e.ccy==='NZD');
+      if(e.pending){
+        np++;
+        h+='<tr style="opacity:.62"><td>'+(i+1)+'</td><td>'+e.item+'</td>'
+         + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
+         + '<td class="num">—</td><td class="num"><b>待填</b></td>'
+         + '<td class="rn">'+(e.note||'')+'</td></tr>';
+        return;
+      }
+      var cny=(e.cny!=null)?e.cny:(isNZ?e.amt*r:e.amt);
+      var est=(e.cny==null&&isNZ);
       if(isNZ) nz[e.by]+=e.amt; else cn[e.by]+=e.amt;
       tot[e.by]+=cny;
       h+='<tr><td>'+(i+1)+'</td><td>'+e.item+'</td>'
@@ -489,18 +506,16 @@ Thank you very much.
        + '<td class="rn">'+(e.note||'')+'</td></tr>';
     });
     document.getElementById('money-body').innerHTML=h;
-    var T=tot.A+tot.B, share=T/2, diff=tot.A-share;
+    var T=tot.jia+tot.yu, share=T/2, diff=tot.jia-share;
     var out='<b>分币种小计</b><br>'
-      +'<span class="who A">A</span> 纽币 NZ$'+fm(nz.A)+'　人民币 ¥'+fm(cn.A)+'　→ <b>合计 ≈ ¥'+fm(tot.A)+'</b><br>'
-      +'<span class="who B">B</span> 纽币 NZ$'+fm(nz.B)+'　人民币 ¥'+fm(cn.B)+'　→ <b>合计 ≈ ¥'+fm(tot.B)+'</b><br>'
+      +'<span class="who jia">jia</span> 纽币 NZ$'+fm(nz.jia)+'　人民币 ¥'+fm(cn.jia)+'　→ <b>合计 ≈ ¥'+fm(tot.jia)+'</b><br>'
+      +'<span class="who yu">yu</span> 纽币 NZ$'+fm(nz.yu)+'　人民币 ¥'+fm(cn.yu)+'　→ <b>合计 ≈ ¥'+fm(tot.yu)+'</b><br>'
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<b>已记录总支出 ≈ ¥'+fm(T)+'</b>　（人均应担 ≈ ¥'+fm(share)+'）<br>';
-    if(tot.B===0){
-      out+='<span style="color:#b45309">⚠️ B 的账单还没录入，下面的结算只是按目前数据算的，等 B 的明细补齐后才有意义。</span><br>';
-    }
-    out += Math.abs(diff)<0.01 ? '✅ 两人已平' :
-      (diff>0 ? '👉 <b><span class="who B">B</span> 需付给 <span class="who A">A</span> ≈ ¥'+fm(diff)+'</b>'
-              : '👉 <b><span class="who A">A</span> 需付给 <span class="who B">B</span> ≈ ¥'+fm(-diff)+'</b>');
+      +'<b>已记录总支出 ≈ ¥'+fm(T)+'</b>　（人均应担 ≈ ¥'+fm(share)+'）<br>'
+      + (Math.abs(diff)<0.01 ? '✅ 两人已平'
+        : (diff>0 ? '👉 <b><span class="who yu">yu</span> 需付给 <span class="who jia">jia</span> ≈ ¥'+fm(diff)+'</b>'
+                  : '👉 <b><span class="who jia">jia</span> 需付给 <span class="who yu">yu</span> ≈ ¥'+fm(-diff)+'</b>'));
+    if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入（换汇现金）。</span>';
     document.getElementById('money-sum').innerHTML=out;
   }
 
