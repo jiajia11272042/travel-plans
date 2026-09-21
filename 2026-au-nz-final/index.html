@@ -73,6 +73,7 @@
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
+      <button id="btn-rules" onclick="showTab('rules')" style="border-color:#7c3aed;color:#7c3aed">🛣 新西兰交规</button>
       <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
     </div>
@@ -284,18 +285,7 @@
         </tbody>
       </table>
 
-      <h3>🇳🇿 新西兰交规</h3>
-      <ul class="info">
-        <li><b>靠左行驶、右舵车</b>；口诀"司机永远靠路中线"。<b>右转</b>要横穿对向车道，最易出错。</li>
-        <li><b>限速：</b>开放道路 <b>100 km/h</b>；城镇 <b>50 km/h</b>；学校/施工区按牌降速，超速执法严。</li>
-        <li><b>安全带</b>全车强制；<b>禁手持手机</b>（导航必须用支架）；<b>酒驾</b>限值低，开车日别喝。</li>
-        <li><b>环岛：</b>顺时针，<b>让已在环岛内/右侧来车</b>，进出打灯。</li>
-        <li><b>单车道桥：</b>看桥头牌，<b>蓝底大箭头＝你方优先</b>，<b>红圈小箭头＝你方让行</b>。</li>
-        <li><b>Give Way / Stop</b> 必须执行，Stop 要完全停住；斑马线让行人。</li>
-        <li><b>砂石路 gravel：</b>多数租约<b>禁止行驶</b>（出事不赔）；本行程全程铺装主路，不需要走。</li>
-        <li><b>高山路段</b>（Crown Range、Lindis Pass）早 10 月可能积雪/结冰；<b>降雪时 NZTA 会发布「chains required」管控</b>，出发前查 <a href="https://www.journeys.nzta.govt.nz">journeys.nzta.govt.nz</a>。</li>
-        <li>紧急电话 <b>111</b>；Apex 车辆含 AA 24h 机械故障救援（AA 0800 22 27 39，会员号 728837）。</li>
-      </ul>
+      <div class="note">🛣 <b>新西兰交规、Drive Safe 问卷、官方中文学习资源</b>已独立成 <b>「🛣 新西兰交规」</b> 标签页，取车前请过一遍。</div>
 
       <h3>⛽ 加油</h3>
       <ul class="info">
@@ -367,7 +357,84 @@ ROADS AND ASSISTANCE
 19. This is my first time driving in New Zealand. Is there anything I should be especially careful about?</pre>
     </div>
 
-    <!-- ========== TAB 4: 记账 ========== -->
+    <!-- ========== TAB: 新西兰交规 ========== -->
+    <div id="tab-rules">
+
+      <h3>📋 Apex 的 Drive Safe 问卷是什么</h3>
+      <div class="note">Apex 官网 FAQ 原文确认：Apex 是 <b>新西兰租车协会（RVA）</b>成员、<b>Drive Safe 倡议</b>参与方，<b>有责任评估驾驶员水平</b>。柜台会请你填 <b>Drive Safe 问卷</b>（由 <b>Tourism Industry Aotearoa</b> 与 <b>Safer Journeys NZ</b> 编制），作为基础评估；<b>若问卷暴露出问题，会追加提问，必要时安排实际路试</b>。</div>
+      <div class="warn">⚠️ <b>问卷的逐条题目未公开</b>——它是 RVA / TIA 给租车公司柜台用的内部表格，网上查不到原题。但它的<b>内容来源是公开的</b>：就是下面这份 TIA 官方 Drive Safe 要点。把这 10 条记住，问卷和追问都不会有问题。</div>
+
+      <h3>✅ 问卷考的就是这 10 条（TIA 官方 Drive Safe 要点 · 中英对照）</h3>
+      <table>
+        <thead><tr><th style="width:22px">#</th><th style="width:48%">中文（官方中文版原意）</th><th>English</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>靠左行驶</b>——我们靠道路左边开。</td><td>Keep left — we drive on the left-hand side of the road.</td></tr>
+          <tr><td>2</td><td><b>全程系安全带</b>；车内每个人都必须系，儿童必须使用认可的儿童座椅（没带可向租车公司租）。</td><td>Always wear a seatbelt. Everyone must be belted; children must use an approved child seat.</td></tr>
+          <tr><td>3</td><td><b>遵守限速</b>；看到 <b>STOP</b> 标志必须完全停车。</td><td>Keep within the speed limit, and always stop at a STOP sign.</td></tr>
+          <tr><td>4</td><td>遇<b>弯道减速牌</b>先减速看建议速度；进<b>单行桥</b>前减速并观察对面来车。</td><td>Slow down for curves to read the advisory speed, and slow before one-lane bridges to check for oncoming traffic.</td></tr>
+          <tr><td>5</td><td><b>只在安全时超车</b>，尽量用超车道；<b>绝对不能越过路中黄实线超车</b>。</td><td>Only pass when it is safe, use passing lanes, and never cross a solid yellow centre line.</td></tr>
+          <tr><td>6</td><td><b>每开 1–2 小时就休息</b>，下车活动。</td><td>Take a break every one to two hours and stretch your legs.</td></tr>
+          <tr><td>7</td><td><b>按路况驾驶</b>：雨、冰、雪、强风、施工路段都要减速；不确定就问住宿方。</td><td>Drive to the conditions — slow down in rain, ice, snow, wind or roadworks. If unsure, ask your accommodation.</td></tr>
+          <tr><td>8</td><td><b>新西兰路弯多，车程普遍比预想长</b>；用 AA 时间距离计算器或导航估算，别只看里程。</td><td>Our roads are winding, so journeys take longer than you expect. Use a time and distance calculator.</td></tr>
+          <tr><td>9</td><td><b>喝酒/用药后绝不开车</b>——酒精或药物影响下驾驶违法，查处严厉。</td><td>Never drink and drive. Driving under the influence of alcohol or drugs is illegal and strictly enforced.</td></tr>
+          <tr><td>10</td><td><b>开车用手机违法</b>；要打电话或发消息，先停到休息区或安全处。</td><td>Using a phone while driving is illegal. Pull over somewhere safe first.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">🗣 <b>柜台可能追问的方向</b>（基于上面 10 条）：你以前在靠左行驶的国家开过车吗？／你知道环岛该让谁吗？／看到单行桥怎么做？／今天计划开多远、开几个小时？／遇到砂石路或结冰路面怎么办？<br>
+        <b>回答要点</b>：说出「靠左」「让右侧/已在环岛内的车」「单行桥看箭头牌、红圈让行」「每 1–2 小时休息」「按路况减速」「不走砂石路」，基本就过了。<b>别说"我没开过右舵车、有点紧张"这类话</b>，容易被要求路试。</div>
+
+      <h3>🔗 官方中文资源（建议出发前各看 10 分钟）</h3>
+      <table>
+        <thead><tr><th style="width:150px">资源</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>Drive Safe 中文官网</b></td><td><a href="https://www.drivesafe.org.nz/zh/home-zh-cn">drivesafe.org.nz/zh/home-zh-cn</a>　—— 就是问卷编制方 TIA 自己的站，有完整中文版「计划行程 / 抵达 / 在路上」</td></tr>
+          <tr><td><b>旅客道路规则测验（中文）</b></td><td><a href="https://www.drivingtests.co.nz/roadcode/tourist/?_locale=zh-CN">drivingtests.co.nz/roadcode/tourist（中文版）</a>　—— Drive Safe 官网推荐的<b>简短游客驾驶课程/测验</b>，最接近问卷的练习题，<b>强烈建议做一遍</b></td></tr>
+          <tr><td><b>NZTA 官方道路规则</b></td><td><a href="https://www.nzta.govt.nz/resources/roadcode/road-code-index.html">Road Code 全文</a>（英文，权威）</td></tr>
+          <tr><td><b>AA 车程计算器</b></td><td><a href="https://www.aa.co.nz/travel/time-and-distance-calculator/">aa.co.nz 时间距离计算器</a>　—— 官方推荐用它估车程，比直觉准</td></tr>
+          <tr><td><b>实时路况 / 管控</b></td><td><a href="https://www.journeys.nzta.govt.nz">journeys.nzta.govt.nz</a>　—— 出发前查 Crown Range、Lindis Pass 是否发布 <b>chains required</b></td></tr>
+        </tbody>
+      </table>
+
+      <h3>🇳🇿 新西兰交规要点（本行程实用版）</h3>
+      <ul class="info">
+        <li><b>靠左行驶、右舵车</b>；口诀"司机永远靠路中线"。<b>右转</b>要横穿对向车道，最易出错。</li>
+        <li><b>限速：</b>开放道路 <b>100 km/h</b>；城镇 <b>50 km/h</b>；学校/施工区按牌降速，超速执法严。</li>
+        <li><b>安全带</b>全车强制；<b>禁手持手机</b>（导航必须用支架）；<b>酒驾</b>限值低，开车日别喝。</li>
+        <li><b>环岛：</b>顺时针，<b>让已在环岛内/右侧来车</b>，进出打灯。</li>
+        <li><b>单车道桥：</b>看桥头牌，<b>蓝底大箭头＝你方优先</b>，<b>红圈小箭头＝你方让行</b>。</li>
+        <li><b>Give Way / Stop</b> 必须执行，Stop 要完全停住；斑马线让行人。</li>
+        <li><b>砂石路 gravel：</b>多数租约<b>禁止行驶</b>（出事不赔）；本行程全程铺装主路，不需要走。</li>
+        <li><b>高山路段</b>（Crown Range、Lindis Pass）早 10 月可能积雪/结冰；<b>降雪时 NZTA 会发布「chains required」管控</b>，出发前查 <a href="https://www.journeys.nzta.govt.nz">journeys.nzta.govt.nz</a>。</li>
+        <li>紧急电话 <b>111</b>；Apex 车辆含 AA 24h 机械故障救援（AA 0800 22 27 39，会员号 728837）。</li>
+      </ul>
+
+      <h3>⚖️ 限值与处罚（心里有个数）</h3>
+      <table>
+        <thead><tr><th style="width:130px">项目</th><th>规定</th></tr></thead>
+        <tbody>
+          <tr><td><b>限速</b></td><td>开放道路 <b>100 km/h</b>；城镇 <b>50 km/h</b>；学校区/施工区按临时牌。超速按幅度罚 <b>NZ$30–630</b>，严重者扣分/停驾</td></tr>
+          <tr><td><b>酒驾</b></td><td>20 岁及以上：呼气 <b>250 微克/升</b>、血液 <b>50 mg/100ml</b>；20 岁以下 <b>零容忍</b>。开车日别喝——<b>本行程只有 10.5 晚餐后不开车，可以喝</b></td></tr>
+          <tr><td><b>手持手机</b></td><td>违法，罚款 <b>NZ$150</b> + 记 <b>20 分</b>。导航必须固定在支架上</td></tr>
+          <tr><td><b>安全带</b></td><td>未系罚款 <b>NZ$150</b>（每人）；<b>驾驶员对未成年乘客负责</b></td></tr>
+          <tr><td><b>礼让</b></td><td>环岛让右／让已在环岛内的车；无信号路口右转让对向直行；<b>斑马线必须让行人</b></td></tr>
+          <tr><td><b>紧急</b></td><td>警察/消防/救护 <b>111</b>；Apex 机械故障 <b>AA 0800 22 27 39</b>（会员号 728837）</td></tr>
+        </tbody>
+      </table>
+      <div class="rn">※ 罚则金额为通行标准，以执法时官方公布为准。</div>
+
+      <h3>🚫 租约禁行路段（Apex 明令，本行程均不涉及）</h3>
+      <ul class="info">
+        <li><b>Skippers Canyon Road</b>（皇后镇北）</li>
+        <li><b>Macetown</b> 方向道路（箭镇以北越野路）</li>
+        <li><b>Matukituki Valley Road</b> 超过 Treble Cone 路口之后的路段（瓦纳卡西)</li>
+        <li><b>Glenorchy–Paradise Road</b> 超过 Priory Road 之后的路段</li>
+        <li>以及<b>各类砂石路 / 未铺装路</b>——出事保险不赔</li>
+      </ul>
+      <div class="note">✅ 你的实际路线（皇后镇机场→箭镇→Cardrona→Crown Range→瓦纳卡→Tarras→Lindis Pass→Omarama→Twizel→蒂卡波→Mt John→Pukaki→Fairlie→Geraldine→基督城）<b>全程铺装公路，一条禁行路都不碰</b>。</div>
+
+    </div>
+
+    <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
       <div class="note">💱 <b>汇率 NZD → CNY</b>（按实付卡汇率 3.8474）：<input id="rate" type="number" step="0.01" value="3.85" style="width:80px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
         <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知实付卡汇率：<b>1 NZD = 3.847419 CNY</b>（2026-09-19 中行信用卡，市场价 3.8505，汇率优惠省约 ¥6）。默认值已按此设为 3.85。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
@@ -379,7 +446,7 @@ ROADS AND ASSISTANCE
       <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️ <b>机票各自购买，不入账、不分摊。</b><br>💵 <b>换汇怎么记</b>：现金换汇本身不是消费，是<b>共同备用金</b>。建议先把 yu 换的人民币全额计入垫付，<b>行程结束后把没花掉的现金按同一汇率折回、从 yu 的垫付里扣掉</b>，这样最准。</div>
     </div>
 
-    <!-- ========== TAB 5: 活动大全 ========== -->
+    <!-- ========== TAB 6: 活动大全 ========== -->
     <div id="tab-more" style="display:none">
       <div class="warn">🎯 <b>这一页是"全量参考清单"</b>，包含已排进行程的、被我们 pass 掉的、以及其它可玩项目。用来和伙伴商量替换或加项。<br>
         <b>体力标注</b>：🟢 零体力（坐着/开车到）｜🟡 轻度（步行 1–3km 或短台阶）｜🔴 高强度（长途徒步/攀爬）</div>
@@ -576,7 +643,7 @@ ROADS AND ASSISTANCE
   }
 
   function showTab(t){
-    ['plan','booking','drive','money','more'].forEach(function(x){
+    ['plan','booking','drive','rules','money','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
