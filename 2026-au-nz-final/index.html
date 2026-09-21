@@ -45,6 +45,8 @@
   ol.info{margin:6px 0 0;padding-left:22px;font-size:13.5px;} ol.info li{margin:5px 0;}
   pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55;white-space:pre-wrap;}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px;}
+  .sg{width:58px;height:58px;display:block;margin:0 auto}
+  td.c{text-align:center;vertical-align:middle}
   .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
   .who{display:inline-block;min-width:20px;text-align:center;border-radius:5px;padding:1px 6px;font-weight:700;font-size:12px;}
   .who.jia{background:#dbeafe;color:#1d4ed8;} .who.yu{background:#fce7f3;color:#be185d;}
@@ -432,40 +434,77 @@ ROADS AND ASSISTANCE
         <b>路牌长相</b>：<b>黄色菱形 + 三个弯箭头成圈</b>（很像回收标志）＝前方环岛，见到就减速。<br>
         🗺 <b>你会在哪遇到</b>：10.5 一出皇后镇机场就有环岛，之后箭镇、瓦纳卡镇口、基督城市区都有。<b>第一个环岛最容易错</b>——宁可多等两秒，确认右边真没车再进。</div>
 
-      <h3>🚸 路标速认（按颜色形状先分类，再看内容）</h3>
+      <h3>🖼 图解路牌与标线（中英对照 · 可截图复习）</h3>
+      <div class="note">先按<b>形状 + 颜色</b>分类，再看内容，比死记图案快：<b>红色＝强制</b>（必须遵守）· <b>黄色菱形＝警告</b>（前方有情况）· <b>橙色＝施工</b> · <b>蓝/绿＝信息指引</b>。</div>
+
+      <h4>① 强制类路牌 Regulatory signs（红色 · 必须遵守）</h4>
       <table>
-        <thead><tr><th style="width:150px">形状 / 颜色</th><th style="width:110px">含义</th><th>要点</th></tr></thead>
+        <thead><tr><th style="width:74px">图示</th><th style="width:120px">中文</th><th style="width:130px">English</th><th>要点</th></tr></thead>
         <tbody>
-          <tr><td><b>红色八边形</b></td><td><b>STOP</b></td><td><b>必须完全停住</b>（车轮停止转动），不是减速看一眼。执法很严</td></tr>
-          <tr><td><b>红边白底倒三角</b></td><td><b>GIVE WAY</b> 让行</td><td>不必停死，但必须让对方先走</td></tr>
-          <tr><td><b>红圈 + 黑数字</b></td><td><b>限速</b>（强制）</td><td>开放路 100、城镇 50。<b>这是上限，不是建议</b></td></tr>
-          <tr><td><b>黄色菱形</b></td><td><b>警告</b>（前方有情况）</td><td>所有"前方注意"类都是黄菱形：环岛、单行桥、急弯、湿滑、砂石路</td></tr>
-          <tr><td><b>⚠️ 黄菱形 + 三个弯箭头成圈</b></td><td><b>前方环岛</b></td><td><b>很容易误认成"回收标志"</b>——记住：回收标志不会做成黄色菱形路牌。看到它就减速准备让行</td></tr>
-          <tr><td><b>黄色长方形 + 数字</b>（常在急弯牌下方）</td><td><b>建议速度</b></td><td><b>不是限速</b>，是"这个弯建议多少码过"。山路上照它开最稳（Crown Range 会频繁出现）</td></tr>
-          <tr><td><b>单行桥牌（长方形，两个箭头一大一小）</b></td><td><b>谁先过</b></td><td><b>大箭头指你的方向 = 你优先</b>；牌上出现<b>红圈或 GIVE WAY = 你让行</b>。无论哪种都<b>先减速看清对面有没有车</b></td></tr>
-          <tr><td><b>橙色</b></td><td><b>道路施工</b></td><td>临时限速有法律效力，常降到 30；有引导车就跟着走</td></tr>
-          <tr><td><b>蓝色 / 绿色</b></td><td>服务设施 / 方向指示</td><td>蓝＝加油、厕所、露营；绿＝地名方向</td></tr>
-          <tr><td><b>CHAINS REQUIRED / MUST BE FITTED</b></td><td><b>强制装防滑链</b></td><td>高山路段降雪时出现（Crown Range、Lindis Pass）。<b>见到这个牌不装链继续开＝违法且保险不赔</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="30,2 70,2 98,30 98,70 70,98 30,98 2,70 2,30" fill="#c8102e" stroke="#fff" stroke-width="4"/><text x="50" y="61" font-size="25" font-weight="bold" fill="#fff" text-anchor="middle" font-family="Arial">STOP</text></svg></td>
+            <td><b>停车让行</b></td><td>Stop</td><td><b>必须完全停住</b>（车轮停止转动）再走，不是减速看一眼。执法严格</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="4,12 96,12 50,94" fill="#fff" stroke="#c8102e" stroke-width="9"/><text x="50" y="41" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">GIVE</text><text x="50" y="57" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">WAY</text></svg></td>
+            <td><b>让行</b></td><td>Give Way</td><td>不必停死，但<b>必须让对方先走</b>；没车可直接通过</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#c8102e" stroke-width="11"/><text x="50" y="64" font-size="32" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">100</text></svg></td>
+            <td><b>限速 100</b>（开放道路）</td><td>Speed limit 100 km/h</td><td><b>红圈＝强制上限</b>，不是建议。南岛公路基本都是 100</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#c8102e" stroke-width="11"/><text x="50" y="66" font-size="36" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">50</text></svg></td>
+            <td><b>限速 50</b>（城镇）</td><td>Speed limit 50 km/h</td><td>进镇即降速：皇后镇、箭镇、瓦纳卡、蒂卡波镇内都是 50</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="8" y="22" width="84" height="56" rx="4" fill="#fff" stroke="#111" stroke-width="3"/><text x="50" y="45" font-size="15" font-weight="bold" fill="#c8102e" text-anchor="middle" font-family="Arial">NO</text><text x="50" y="66" font-size="15" font-weight="bold" fill="#c8102e" text-anchor="middle" font-family="Arial">STOPPING</text></svg></td>
+            <td><b>禁止停车</b></td><td>No Stopping</td><td>常配<b>路边黄色虚线</b>。⚠️ 连临时停车下人/拍照都不行</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="18" y="14" width="64" height="72" rx="4" fill="#fff" stroke="#111" stroke-width="3"/><text x="50" y="52" font-size="34" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">P</text><text x="50" y="76" font-size="19" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">60</text></svg></td>
+            <td><b>限时停车 60 分钟</b></td><td>P60 — 60 min parking</td><td>数字＝<b>最长可停分钟数</b>，超时开罚。镇中心常见 P30 / P60 / P120</td></tr>
         </tbody>
       </table>
+
+      <h4>② 警告类路牌 Warning signs（黄色菱形 · 前方有情况）</h4>
+      <table>
+        <thead><tr><th style="width:74px">图示</th><th style="width:120px">中文</th><th style="width:130px">English</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="50,2 98,50 50,98 2,50" fill="#ffd400" stroke="#111" stroke-width="3"/><g stroke="#111" stroke-width="6" fill="#111"><g><path d="M50 28 A22 22 0 0 1 69 39" fill="none"/><polygon points="67,31 80,40 64,46" stroke="none"/></g><g transform="rotate(120 50 50)"><path d="M50 28 A22 22 0 0 1 69 39" fill="none"/><polygon points="67,31 80,40 64,46" stroke="none"/></g><g transform="rotate(240 50 50)"><path d="M50 28 A22 22 0 0 1 69 39" fill="none"/><polygon points="67,31 80,40 64,46" stroke="none"/></g></g></svg></td>
+            <td><b>前方环岛</b></td><td>Roundabout ahead</td><td>⚠️ <b>极易误认成"回收标志"</b>——记住回收标志不会做成黄色菱形路牌。见到就减速，<b>进环岛让右侧来车</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="50,2 98,50 50,98 2,50" fill="#ffd400" stroke="#111" stroke-width="3"/><g stroke="#111" stroke-width="5" stroke-linecap="round" fill="none"><circle cx="50" cy="26" r="6" fill="#111" stroke="none"/><line x1="50" y1="33" x2="50" y2="57"/><line x1="50" y1="39" x2="39" y2="49"/><line x1="50" y1="39" x2="62" y2="47"/><line x1="50" y1="57" x2="40" y2="77"/><line x1="50" y1="57" x2="60" y2="77"/></g></svg></td>
+            <td><b>前方人行横道</b></td><td>Pedestrian crossing ahead</td><td>配合<b>路面白色菱形</b>出现。<b>斑马线必须停让行人</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="50,2 98,50 50,98 2,50" fill="#ffd400" stroke="#111" stroke-width="3"/><path d="M38 80 C38 56 62 54 62 34" fill="none" stroke="#111" stroke-width="7"/><polygon points="53,36 62,20 71,36" fill="#111"/></svg></td>
+            <td><b>前方急弯</b></td><td>Sharp curve ahead</td><td>Crown Range、Lindis Pass 大量出现，<b>常在下方配建议速度牌</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="12" y="26" width="76" height="48" rx="4" fill="#ffd400" stroke="#111" stroke-width="3"/><text x="50" y="61" font-size="29" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">35</text></svg></td>
+            <td><b>建议速度 35</b></td><td>Advisory speed 35 km/h</td><td>⚠️ <b>不是限速，是"这个弯建议多少码过"</b>。山路照它开最稳</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="18" y="8" width="64" height="84" rx="4" fill="#fff" stroke="#111" stroke-width="3"/><polygon points="36,88 36,44 26,44 42,16 58,44 48,44 48,88" fill="#111"/><polygon points="64,22 71,22 71,58 78,58 67,76 57,58 64,58" fill="#c8102e"/></svg></td>
+            <td><b>单行桥 —— 你优先</b></td><td>One-lane bridge — you have priority</td><td><b>大箭头是你的方向＝你先过</b>（小红箭头＝对面让你）。<b>仍要减速看清对面无车</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="18" y="8" width="64" height="84" rx="4" fill="#fff" stroke="#111" stroke-width="3"/><polygon points="34,12 46,12 46,58 56,58 40,88 24,58 34,58" fill="#c8102e"/><polygon points="66,88 66,46 60,46 70,26 80,46 74,46 74,88" fill="#111"/></svg></td>
+            <td><b>单行桥 —— 你让行</b></td><td>One-lane bridge — give way</td><td><b>大红箭头指向你＝你必须让</b>对面先过。桥头停住等，别抢</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="50,2 98,50 50,98 2,50" fill="#ffd400" stroke="#111" stroke-width="3"/><text x="50" y="45" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">LOOSE</text><text x="50" y="64" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">METAL</text></svg></td>
+            <td><b>前方砂石路</b></td><td>Loose metal / Gravel road</td><td>⚠️ <b>Apex 租约禁止行驶砂石路</b>，出事不赔。见到就掉头——<b>你的行程不需要走任何砂石路</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect x="4" y="24" width="92" height="52" rx="4" fill="#ffd400" stroke="#111" stroke-width="3"/><text x="50" y="46" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">CHAINS</text><text x="50" y="66" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" font-family="Arial">REQUIRED</text></svg></td>
+            <td><b>必须装防滑链</b></td><td>Chains required / must be fitted</td><td>高山降雪时出现（Crown Range、Lindis Pass）。<b>不装链继续开＝违法且保险不赔</b>，出发前查 journeys.nzta.govt.nz</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><polygon points="50,2 98,50 50,98 2,50" fill="#ff7f00" stroke="#111" stroke-width="3"/><g fill="#111"><circle cx="44" cy="28" r="6"/><rect x="41" y="35" width="7" height="22" rx="2"/><rect x="30" y="44" width="30" height="6" rx="2" transform="rotate(-25 45 47)"/><rect x="58" y="56" width="10" height="20" rx="2"/><rect x="34" y="70" width="34" height="8" rx="2"/></g></svg></td>
+            <td><b>前方道路施工</b></td><td>Road works ahead</td><td><b>橙色＝施工</b>。临时限速<b>有法律效力</b>（常降到 30）；有引导车就跟着走</td></tr>
+        </tbody>
+      </table>
+
+      <h4>③ 路面标线 Road markings（画在地上的，同样重要）</h4>
+      <table>
+        <thead><tr><th style="width:74px">图示</th><th style="width:120px">中文</th><th style="width:130px">English</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><polygon points="50,22 70,50 50,78 30,50" fill="#fff"/></svg></td>
+            <td><b>白色菱形＝前方斑马线</b></td><td>White diamond — pedestrian crossing ahead</td><td>画在斑马线前 20–50m。⚠️ <b>不是"限速即将改变"</b>（限速变化只立红圈牌，地上不画菱形）</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><rect x="20" y="0" width="60" height="100" fill="#4b5563"/><rect x="43" y="0" width="6" height="100" fill="#ffd400"/><rect x="52" y="0" width="6" height="100" fill="#ffd400"/><rect x="4" y="0" width="4" height="100" fill="#fff"/><rect x="92" y="0" width="4" height="100" fill="#fff"/></svg></td>
+            <td><b>中线黄实线＝禁止超越</b></td><td>Solid yellow centre line — no passing</td><td>山路上大量出现。<b>压过去超车＝违法</b>，事故保险可能不赔</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><g fill="#fff"><rect x="47" y="4" width="6" height="20"/><rect x="47" y="38" width="6" height="20"/><rect x="47" y="72" width="6" height="20"/><rect x="4" y="0" width="4" height="100"/><rect x="92" y="0" width="4" height="100"/></g></svg></td>
+            <td><b>中线白虚线＝安全时可超车</b></td><td>Broken white centre line — passing allowed when safe</td><td>尽量只在标有 <b>Passing Lane</b> 的超车道超车</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><rect x="0" y="0" width="16" height="100" fill="#9ca3af"/><g fill="#ffd400"><rect x="19" y="4" width="7" height="18"/><rect x="19" y="32" width="7" height="18"/><rect x="19" y="60" width="7" height="18"/><rect x="19" y="88" width="7" height="12"/></g></svg></td>
+            <td><b>⚠️ 路边黄虚线＝任何时候禁停</b></td><td>Broken yellow line at kerb — no stopping at any time</td><td><b>最容易吃罚单的一条</b>。皇后镇、瓦纳卡镇中心路边大量黄虚线，看到就别停，<b>哪怕只下车拍张照</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><g fill="#fff"><polygon points="8,68 20,68 14,50"/><polygon points="26,68 38,68 32,50"/><polygon points="44,68 56,68 50,50"/><polygon points="62,68 74,68 68,50"/><polygon points="80,68 92,68 86,50"/></g></svg></td>
+            <td><b>齿状让行线</b></td><td>Give way triangles</td><td>地上的 GIVE WAY，<b>尖角指向你＝你让行</b></td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><g fill="#fff"><rect x="0" y="16" width="100" height="12"/><rect x="0" y="36" width="100" height="12"/><rect x="0" y="56" width="100" height="12"/><rect x="0" y="76" width="100" height="12"/></g></svg></td>
+            <td><b>斑马线</b></td><td>Zebra / pedestrian crossing</td><td><b>绝对让行</b>：行人已踏上或正要踏上，<b>必须停车</b>等其完全通过。两侧常有橙黄圆灯柱</td></tr>
+          <tr><td class="c"><svg viewBox="0 0 100 100" class="sg"><rect width="100" height="100" fill="#4b5563"/><rect x="62" y="0" width="38" height="100" fill="#15803d"/><g stroke="#fff" stroke-width="4" fill="none"><circle cx="74" cy="62" r="9"/><circle cx="90" cy="62" r="9"/><path d="M74 62 L82 44 L90 62"/></g></svg></td>
+            <td><b>绿色铺装带＝自行车道</b></td><td>Green surface — cycle lane</td><td>基督城尤其多。<b>左转前先看左后方</b>有没有自行车</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warn">🅿️ <b>停车实操三查</b>：① <b>路边有没有黄虚线</b>（有＝绝对不能停）② <b>P 牌上的时限</b>（P60＝最多 60 分钟，超时开罚）③ <b>是否要付费</b>（皇后镇 / 瓦纳卡 / 基督城 CBD 多为付费，手机 App 或路边缴费机；蒂卡波、箭镇多免费但有时限）。</div>
       <div class="note">📝 <b>刷题提示</b>：drivingtests.co.nz 的游客题库是从完整版 Road Code 抽的，会混进<b>车辆改装、WoF 年检、注册过户、拖车、摩托车</b>这类你开租来的车永远用不到的题——<b>答错不用管，扫一眼跳过</b>。<br>
         真正要练对的只有六类：<b>路口让行 · 环岛让行 · 单行桥 · 超车与黄实线 · 限速 · 斑马线让行人</b>。其中 <b>"give way" 路口让行建议多刷两遍</b>——右舵左行时最容易本能反应错，尤其<b>无信号路口右转要让对向直行车</b>（和国内左转让行的直觉正好相反）。</div>
-
-      <h3>🛞 路面标线（画在地上的，和路牌一样重要）</h3>
-      <table>
-        <thead><tr><th style="width:170px">路面上看到</th><th style="width:120px">含义</th><th>要点</th></tr></thead>
-        <tbody>
-          <tr><td><b>白色菱形 ◇</b></td><td><b>前方人行横道</b></td><td>画在斑马线前 20–50m。⚠️ <b>不是"限速即将改变"</b>（限速变化只立红圈牌，地上不画菱形）<br><b>斑马线绝对让行</b>：行人已踏上或正要踏上，必须<b>停车</b>等其完全通过</td></tr>
-          <tr><td><b>中线黄实线</b>（单线或双线）</td><td><b>禁止超越</b></td><td>山路上到处都是。<b>压过去超车＝违法，且事故保险可能不赔</b></td></tr>
-          <tr><td><b>中线白虚线</b></td><td>安全时可超车</td><td>配合"超车道 Passing Lane"牌使用，尽量只在超车道超</td></tr>
-          <tr><td><b>⚠️ 路边黄色虚线</b></td><td><b>任何时候禁止停车</b></td><td><b>最容易吃罚单的一条</b>——皇后镇、瓦纳卡镇中心路边大量黄虚线。看到就别停，哪怕只下车拍张照</td></tr>
-          <tr><td><b>路面三角形齿状标线</b></td><td>让行线</td><td>相当于地上的 GIVE WAY，尖角指向你＝你让行</td></tr>
-          <tr><td><b>路面写 SCHOOL</b> / 黄闪灯</td><td>学校区</td><td>上下学时段限速大幅降低，按临时牌走</td></tr>
-          <tr><td><b>路面写 LOOK</b> + 箭头</td><td>提醒行人看车向</td><td>常见于游客区斑马线，说明这里行人多，预期有人突然横穿</td></tr>
-          <tr><td><b>绿色铺装带</b></td><td>自行车道</td><td>基督城尤其多，转弯前先看左后方有没有自行车</td></tr>
-        </tbody>
-      </table>
-      <div class="warn">🅿️ <b>停车实操提醒</b>：镇中心停车看三样——① <b>路边有没有黄虚线</b>（有＝绝对不能停）② <b>P 牌上的时限</b>（P60＝最多 60 分钟，超时开罚）③ <b>是否要付费</b>（皇后镇/瓦纳卡/基督城 CBD 多为付费，手机 App 或路边机器）。蒂卡波、箭镇多为免费但有时限。</div>
 
       <h3>⚖️ 限值与处罚（心里有个数）</h3>
       <table>
