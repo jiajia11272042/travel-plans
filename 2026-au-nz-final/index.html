@@ -73,12 +73,98 @@
   <section id="plan">
     <h2>行程 · 预订 · 自驾</h2>
     <div class="tabs">
+      <button id="btn-pack" onclick="showTab('pack')" style="border-color:#be123c;color:#be123c">🎒 行前打包</button>
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
       <button id="btn-rules" onclick="showTab('rules')" style="border-color:#7c3aed;color:#7c3aed">🛣 新西兰交规</button>
       <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
+    </div>
+
+    <!-- ========== TAB 0: 行前打包 ========== -->
+    <div id="tab-pack">
+
+      <div class="danger"><b>🚨 出发前 24 小时必须确认（比打包重要）</b>
+        <table style="margin-top:8px">
+          <thead><tr><th style="width:26px">#</th><th style="width:150px">事项</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><b>NZeTA 是否已批</b></td><td>新西兰电子旅行授权 + IVL，<b>没有它 10.3 澳航不让你登机</b>。App 申请约 NZD 117，<b>最长需 72 小时审批</b>。<b>现在立刻查状态</b>，没办就马上办（10.3 才飞新西兰，还有时间但不能再拖）</td></tr>
+            <tr><td>2</td><td><b>NZTD 旅客申报</b></td><td>新西兰入境申报，<b>10.3 登机前完成</b>（可提前 24h 填）。<a href="https://www.travellerdeclaration.govt.nz">travellerdeclaration.govt.nz</a> 或 NZTD App，免费约 10 分钟</td></tr>
+            <tr><td>3</td><td><b>Apex 还车时间是否已改</b></td><td>订单还车须为 <b>10.9 03:45</b>，并确认<b>基督城机场接受营业时间外还车</b>、<b>钥匙箱位置</b>、<b>费用</b>。没确认就今天打/发邮件 reservations@apexrentals.co.nz</td></tr>
+            <tr><td>4</td><td>离线地图下载</td><td>Google Maps 离线区域：<b>奥塔哥 + 坎特伯雷 + 悉尼 + 墨尔本</b>（Crown Range、Lindis Pass、Twizel–蒂卡波会断信号）</td></tr>
+            <tr><td>5</td><td>全部凭证截图存手机</td><td>4 段机票 · 6 段住宿 · 租车单 · 跳伞 · Crossfire · Gibbston · 澳签批准信 · NZeTA · 保险单。<b>另存一份到网盘</b>，手机丢了还能取</td></tr>
+            <tr><td>6</td><td>10.12 上班</td><td>06:00 落地首都 T3 直接上班 —— <b>今天就跟公司说好上午晚到</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>🎫 随身背包 / 登机箱（<b>绝不托运</b>）</h3>
+      <table>
+        <thead><tr><th style="width:110px">类别</th><th>物品</th></tr></thead>
+        <tbody>
+          <tr><td><b>证件</b></td><td><b>护照</b> · <b>澳洲签证批准信</b>（打印 + 手机，10.9 飞墨尔本时航司会查）· NZeTA 确认 · 保险单<br>
+            <b>🚗 驾照三件套（缺一不可，必须纸质原件）</b>：① 中国驾照原件 ② NZTA 认可翻译件正文 ③ Translation verification form（译者 Qian Wu / T200121）</td></tr>
+          <tr><td><b>钱</b></td><td><b>主驾本人名下实体信用卡</b>（租车押金预授权 <b>NZ$500</b>，确认额度够）· 备用一张卡 · 少量澳元/纽元现金 · 手机支付（澳新普遍支持刷卡/Apple Pay）</td></tr>
+          <tr><td><b>电子</b></td><td>手机 + 充电器 · <b>充电宝</b>（<b>必须随身，不能托运</b>，&lt;100Wh）· <b>Type I 转换插头</b>（澳新同款，带 1–2 个）· 相机 + 备用电池 + 存储卡</td></tr>
+          <tr><td><b>自驾三件</b></td><td>① <b>USB-A → 手机口的数据线</b>（要支持数据传输才能跑 CarPlay，C-to-C 插不进）② <b>12V 点烟器车充（双口 30W+）</b> ③ <b>手机支架</b>（Apex 不保证提供 GPS）</td></tr>
+          <tr><td><b>药</b></td><td><b>晕车药</b>（Crown Range / Lindis Pass 弯多，跳伞也可能用到）· 常用药：感冒、退烧止痛、肠胃、过敏、创可贴 · <b>处方药请带原包装 + 处方</b></td></tr>
+          <tr><td><b>其他</b></td><td>眼镜/隐形 + 护理液 · 颈枕 + 眼罩 + 耳塞（<b>9.30 夜航、10.9 凌晨航班、10.11 红眼</b>，三段都要睡）· 空水壶（过安检后灌水）· 少量零食（⚠️ <b>入境前吃完或申报</b>）</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🧳 托运（28 寸 81×47.5×29.5 + 26 寸 71×39×36）</h3>
+      <div class="note">🌡 <b>10 月上旬是澳新的春天，温差极大</b>，核心策略是 <b>洋葱式分层</b>：短袖 + 薄长袖 + 抓绒/毛衣 + <b>防风防水外套</b>。<br>
+        参考气温（出发前请再查一次预报）：悉尼 <b>14–23℃</b> · 皇后镇/瓦纳卡 <b>3–17℃</b> · <b>蒂卡波 1–16℃（夜里接近 0℃）</b> · 基督城 6–17℃ · 墨尔本 <b>10–20℃（一天四季）</b></div>
+      <table>
+        <thead><tr><th style="width:110px">类别</th><th>物品</th></tr></thead>
+        <tbody>
+          <tr><td><b>外层</b></td><td><b>防风防水外套</b>（最重要的一件，南岛风大）· 薄羽绒或抓绒（<b>蒂卡波观星必备</b>）</td></tr>
+          <tr><td><b>中/内层</b></td><td>长袖 3–4 件 · 短袖 2–3 件 · 薄毛衣/卫衣 1–2 件 · 保暖内衣 1 套（观星夜穿）</td></tr>
+          <tr><td><b>下装</b></td><td>长裤 2–3 条（<b>至少 1 条防风</b>）· 牛仔/休闲各 1 · 睡衣</td></tr>
+          <tr><td><b>鞋</b></td><td>⚠️ <b>跳伞与射击必须穿包脚鞋（closed-toe）</b>，运动鞋即可 · 舒适步行鞋 1 双 · 拖鞋/洞洞鞋<br>
+            ⚠️ <b>鞋底必须刷干净</b>——新西兰生物安全检查<b>会查鞋底泥土</b></td></tr>
+          <tr><td><b>配件</b></td><td><b>帽子 + 手套 + 围巾/脖套</b>（蒂卡波观星、Mt John 山顶、跳伞都用得上）· <b>太阳镜</b>（春季日头低，下午向西开很晃眼）</td></tr>
+          <tr><td><b>防晒</b></td><td>⚠️ <b>SPF50+ 防晒霜</b>——<b>新西兰紫外线全球最强之一</b>（臭氧层薄），阴天也会晒伤 · 润唇膏（含防晒）· 保湿霜（南岛极干）</td></tr>
+          <tr><td><b>洗漱</b></td><td>常规洗漱 · 墨尔本酒店<b>不含早</b>（自备速食可选）· 洗衣液小包（13 天需洗一次）</td></tr>
+          <tr><td><b>着装场合</b></td><td><b>10.2 晚悉尼歌剧院演出</b>：smart casual（衬衫/连衣裙 + 休闲皮鞋即可，无强制正装）</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📅 分日专项提醒</h3>
+      <table>
+        <thead><tr><th style="width:70px">日期</th><th>要特别准备的</th></tr></thead>
+        <tbody>
+          <tr><td><b>10.2</b></td><td>歌剧院演出票（手机）+ smart casual 一套</td></tr>
+          <tr><td><b>10.3</b></td><td>21:15 落地皇后镇 → <b>提前联系房东 Ray 拿自助入住方式</b>（门锁密码/钥匙箱）；打车约 NZ$35–40</td></tr>
+          <tr><td><b>10.4</b></td><td>Gibbston 15:00 品酒<b>含接送</b>，集合点看确认邮件（疑问打 +64 3 442 6910）· <b>今天全天不开车，可以喝</b></td></tr>
+          <tr><td><b>10.5</b></td><td><b>取车三件套证件</b> + 信用卡 · 留足 30–45 分钟应对 <b>Drive Safe 问卷</b>（必要时路试）· <b>晚餐不能喝酒</b>（18:45 还要开车看日落）</td></tr>
+          <tr><td><b>10.6 跳伞</b></td><td><b>包脚鞋</b> · 舒适衣物、<b>别吃太饱</b> · 近视镜/隐形均可戴 · 连体服/护目镜/头套/手套对方提供<br>
+            <b>09:30 必打 +64 3 443 7207 确认天气</b> · 09:45 退房把<b>两个箱子寄存在 38 Beech St</b>（提前问房东）</td></tr>
+          <tr><td><b>10.6–10.7 观星</b></td><td><b>最厚的一层全穿上</b>（夜里接近 0℃）· 手套帽子 · <b>红光手电或手机开红光模式</b>（护夜视）· 拍星需<b>三脚架</b></td></tr>
+          <tr><td><b>10.8</b></td><td><b>傍晚就把油加满</b>，别留到凌晨 · <b>前一晚买好早餐</b>（10.9 凌晨 3 点没店开）</td></tr>
+          <tr><td><b>10.9</b></td><td>03:00 起床 · <b>03:40 到还车区先拍全车视频</b>（四面+车顶+内饰+油表+里程表）· 03:45 投钥匙 · 04:10 进航站楼（<b>行李托运约 05:10 关闭</b>）</td></tr>
+        </tbody>
+      </table>
+
+      <h3>⚠️ 生物安全：新西兰/澳洲都极严，别侥幸</h3>
+      <div class="warn"><b>新西兰未申报违禁品 = 即罚 NZ$400 起，严重可刑事起诉。</b>入境卡上<b>所有食品、植物、动物制品一律如实申报</b>——申报了大多数只是被没收，<b>不申报才罚钱</b>。
+        <br><b>🚫 不要带</b>：新鲜水果蔬菜 · 蜂蜜及蜂产品 · 肉类与肉制品（<b>含肉松、肉干、含肉调料包的泡面</b>）· 蛋及蛋制品 · 乳制品（部分限制）· 种子、坚果带壳、中药材、植物、木制品 · 羽毛/骨/贝壳等动物制品
+        <br><b>✅ 一定要做</b>：① <b>鞋底、登山杖、三脚架脚垫刷干净</b>（会查泥土）② 密封包装的糖果饼干巧克力一般可以但<b>仍要申报</b> ③ 药品带原包装 + 处方 ④ 不确定的东西<b>一律申报</b>，不确定就扔掉</div>
+
+      <h3>📱 通讯与实用 App</h3>
+      <table>
+        <thead><tr><th style="width:130px">项目</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>eSIM</b></td><td><b>澳新通用套餐</b>（<a href="https://www.airalo.com">Airalo</a> / <a href="https://www.getnomad.app">Nomad</a>）；<b>落地前先装好、别落地才折腾</b>。山区湖区信号弱</td></tr>
+          <tr><td>交通卡</td><td>悉尼 <b>Opal</b>（手机 Apple Pay 直接刷闸机）· 墨尔本 <b>Myki</b>（CBD 电车有免费区）</td></tr>
+          <tr><td>必装 App</td><td>Google Maps（<b>含离线地图</b>）· <b>NZTD</b>（新西兰入境申报）· NZeTA · 航司 App（东航/澳航/新航/国航）· <b>journeys.nzta.govt.nz</b>（查 Crown Range / Lindis Pass 是否需防滑链）· 天气</td></tr>
+          <tr><td>紧急</td><td><b>澳新紧急电话都是 111 / 000</b>：新西兰 <b>111</b>，澳洲 <b>000</b><br>Apex 机械故障 AA <b>0800 22 27 39</b>（会员号 728837）· Skydive Wanaka <b>+64 3 443 7207</b> · Crossfire <b>(03) 443 5995</b></td></tr>
+        </tbody>
+      </table>
+
+      <div class="note">🧠 <b>三件最容易忘、后果最大的</b>：<b>① 驾照三件套纸质原件</b>（缺一样提不到车，整条南岛自驾断掉）<b>② Type I 转换插头</b>（没有它所有设备都充不了电）<b>③ 包脚鞋</b>（10.6 跳伞和射击都强制要求）。</div>
+
     </div>
 
     <!-- ========== TAB 1 ========== -->
@@ -854,7 +940,7 @@ ROADS AND ASSISTANCE
   }
 
   function showTab(t){
-    ['plan','booking','drive','rules','money','more'].forEach(function(x){
+    ['pack','plan','booking','drive','rules','money','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
