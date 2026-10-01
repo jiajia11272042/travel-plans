@@ -784,7 +784,7 @@ Signature: ______________    Date: ______________</pre>
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
       <div class="note">💱 <b>折算汇率</b>　<b>NZD→CNY</b> <input id="rate" type="number" step="0.0001" value="3.85" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>AUD→CNY</b> <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
-        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知真实汇率：<b>信用卡 1 NZD = 3.847419</b>（2026-09-19 中行，默认取 3.85）｜<b>现金换汇 1 NZD = 3.8185</b>、<b>1 AUD = 4.7353</b>（2026-10-01 yu 换汇实付倒推）。澳元默认取 <b>4.7353</b>。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
+        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知真实汇率：<b>信用卡 1 NZD = 3.847419</b>（2026-09-19 中行，默认取 3.85）｜<b>现金换汇 1 NZD = 3.8185</b>、<b>1 AUD = 4.7353</b>（2026-10-01 yu 换汇实付倒推）。澳元默认取 <b>4.7353</b>（现金汇率）。<br>💳 <b>用卡建议</b>：<b>中行 8944</b> 外币<b>直接本币清算</b>（跳伞那笔账单显示 1 NZD = 3.847419，单次转换 + 汇率优惠）；<b>卡 8551 走美元清算</b>（澳元→美元→人民币，<b>双重转换，通常多花 1–2%</b>）→ <b>后续尽量刷 8944</b>。<br>⚠️ 因此走 8551 的交易，页面上的 ≈ 值会<b>偏低</b>（4.7353 是现金汇率），以账单为准。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
       <table>
         <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:96px">原币金额</th><th style="width:104px">人民币 CNY</th><th style="width:140px">备注</th></tr></thead>
         <tbody id="money-body"></tbody>
@@ -937,6 +937,7 @@ Signature: ______________    Date: ______________</pre>
     {item:'Gibbston Valley 品酒（2 人，含接送）',        by:'jia', ccy:'NZD', amt:174.00,  note:'10.4 15:00'},
     {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'jia', ccy:'CNY', amt:3381.90, note:'10.1–10.3'},
     {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'jia', ccy:'CNY', amt:2963.11, note:'10.9–10.11'},
+    {item:'悉尼咖啡 · The Brothers Cafe（Haymarket）', by:'jia', ccy:'AUD', amt:13.80, note:'10.1 08:46 · Apple Pay 卡8551 · 卡组织按美元记账 US$9.66，⚠️ 双重转换，人民币待账单'},
     /* ---- yu 付款 ---- */
     {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R'},
     {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9'},
