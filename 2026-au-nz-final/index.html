@@ -783,14 +783,14 @@ Signature: ______________    Date: ______________</pre>
 
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
-      <div class="note">💱 <b>折算汇率</b>　<b>NZD→CNY</b> <input id="rate" type="number" step="0.0001" value="3.85" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>AUD→CNY</b> <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
-        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知真实汇率：<b>信用卡 1 NZD = 3.847419</b>（2026-09-19 中行，默认取 3.85）｜<b>现金换汇 1 NZD = 3.8185</b>、<b>1 AUD = 4.7353</b>（2026-10-01 yu 换汇实付倒推）。澳元默认取 <b>4.7353</b>（现金汇率）。<br>💳 <b>用卡建议</b>：<b>中行 8944</b> 外币<b>直接本币清算</b>（跳伞那笔账单显示 1 NZD = 3.847419，单次转换 + 汇率优惠）；<b>卡 8551 走美元清算</b>（澳元→美元→人民币，<b>双重转换，通常多花 1–2%</b>）→ <b>后续尽量刷 8944</b>。<br>⚠️ 因此走 8551 的交易，页面上的 ≈ 值会<b>偏低</b>（4.7353 是现金汇率），以账单为准。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
+      <div class="note">💱 <b>折算汇率</b>　<b>USD→CNY</b> <input id="rateUsd" type="number" step="0.0001" value="7.10" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>AUD→CNY</b> <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>NZD→CNY</b> <input id="rate" type="number" step="0.0001" value="3.85" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
+        <br><span class="rn"><b>记账约定</b>：<b>jia</b> 的信用卡走<b>美元结算</b> → 按 <b>USD</b> 记；<b>yu</b> 按<b>当地币种</b>记（<b>AUD / NZD</b>）。<b>最终以账单人民币金额为准</b>，拿到账单发我，我逐笔填成确定值（<b>确定值不受汇率框影响</b>，≈ 会消失）。<br>📌 已知真实汇率：<b>信用卡 1 NZD = 3.847419</b>（2026-09-19 中行 8944，单次转换）｜<b>现金换汇 1 NZD = 3.8185 · 1 AUD = 4.7353</b>（2026-10-01 yu 换汇倒推）｜<b>USD→CNY 默认 7.10 为估算值，待首张美元账单校准</b>。<br>💳 <b>用卡提醒</b>：<b>卡 8551 走美元清算</b>（当地币→美元→人民币，<b>双重转换，通常多 1–2%</b>）；<b>中行 8944 外币直接本币清算</b>（跳伞那笔 1 NZD = 3.847419，单次转换 + 汇率优惠）→ <b>大额尽量刷 8944</b>。<br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
       <table>
         <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:96px">原币金额</th><th style="width:104px">人民币 CNY</th><th style="width:140px">备注</th></tr></thead>
         <tbody id="money-body"></tbody>
       </table>
       <div id="money-sum" class="mtot"></div>
-      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️ <b>机票各自购买，不入账、不分摊。</b><br>💵 <b>现金已入账</b>：yu 换的 <b>A$1,000（¥4,735.30）+ NZ$1,000（¥3,818.50）</b> 按<b>共同备用金</b>全额计入垫付。<b>回国后把剩余现金按同一汇率折回、从 yu 的垫付里扣掉</b>。<br>🧾 <b>路上花钱怎么发我</b>：说清 <b>项目 · 金额 · 币种 · 谁付的</b>（现金还是刷卡也提一下），我随时补进来并重算结算。</div>
+      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️ <b>机票各自购买，不入账、不分摊。</b><br>💵 <b>现金口径</b>：yu 换的 <b>A$1,000 / NZ$1,000</b> 已标为<b>「不分摊·仅记录」</b>（换汇不是消费，只是换了形式）。<b>现金花的每一笔按当地币逐笔记入 yu</b>，剩余现金回国后仍是 yu 的钱，不用期末折算。<br>🧾 <b>路上发我时说清</b>：<b>项目 · 金额 · 币种 · 谁付的</b>。<b>jia 报美元金额</b>（卡按美元结算）、<b>yu 报当地币</b>。拿到账单后把人民币确定值发我，我填进去。</div>
     </div>
 
     <!-- ========== TAB 6: 活动大全 ========== -->
@@ -930,28 +930,30 @@ Signature: ______________    Date: ______________</pre>
 
 <script>
   var EXP=[
-    /* ---- jia 付款 ---- */
-    {item:'租车 Apex（i30 自动挡 4 天 + $0 免赔额）', by:'jia', ccy:'NZD', amt:630.44,  note:'含约 $40 固定费，待确认名目'},
-    {item:'Skydive Wanaka 跳伞 15,000ft × 2 人',      by:'jia', ccy:'NZD', amt:1963.28, cny:7553.45, note:'10.6 10:30｜微信/中行信用卡 8944，实付汇率 3.847419'},
-    {item:'Crossfire 射击（两个套餐）',                 by:'jia', ccy:'NZD', amt:244.00,  note:'10.6 14:40–15:20'},
-    {item:'Gibbston Valley 品酒（2 人，含接送）',        by:'jia', ccy:'NZD', amt:174.00,  note:'10.4 15:00'},
-    {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'jia', ccy:'CNY', amt:3381.90, note:'10.1–10.3'},
-    {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'jia', ccy:'CNY', amt:2963.11, note:'10.9–10.11'},
-    {item:'悉尼咖啡 · The Brothers Cafe（Haymarket）', by:'jia', ccy:'AUD', amt:13.80, note:'10.1 08:46 · Apple Pay 卡8551 · 卡组织按美元记账 US$9.66，⚠️ 双重转换，人民币待账单'},
-    /* ---- yu 付款 ---- */
-    {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R'},
-    {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9'},
-    {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  note:'爱彼迎 HMYB2BYBKN'},
-    {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  note:'爱彼迎 HME5WASRCP'},
-    /* ---- 待填 ---- */
-    {item:'换现金 · 澳元（共同备用金）', by:'yu', ccy:'CNY', amt:4735.30, orig:'A$1,000', note:'2026-10-01 换汇实付，倒推汇率 4.7353'},
-    {item:'换现金 · 纽元（共同备用金）', by:'yu', ccy:'CNY', amt:3818.50, orig:'NZ$1,000', note:'2026-10-01 换汇实付，倒推汇率 3.8185'}
+    /* ---- jia 付款（信用卡走美元结算；已出账单的填确定人民币） ---- */
+    {item:'租车 Apex（i30 自动挡 4 天 + $0 免赔额）', by:'jia', ccy:'NZD', amt:630.44,  note:'10.5 取 / 10.9 还 · 含约 $40 固定费待确认 · 人民币待账单'},
+    {item:'Skydive Wanaka 跳伞 15,000ft × 2 人',      by:'jia', ccy:'NZD', amt:1963.28, cny:7553.45, note:'10.6 10:30 · 中行 8944 实付 ¥7553.45，卡汇率 3.847419'},
+    {item:'Crossfire 射击（两个套餐）',                 by:'jia', ccy:'NZD', amt:244.00,  note:'10.6 14:40–15:20 · 人民币待账单'},
+    {item:'Gibbston Valley 品酒（2 人，含接送）',        by:'jia', ccy:'NZD', amt:174.00,  note:'10.4 15:00 · 人民币待账单'},
+    {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'jia', ccy:'CNY', amt:3381.90, note:'10.1–10.3 · 已出人民币'},
+    {item:'墨尔本住宿 · 美居 La Trobe（2 晚）',          by:'jia', ccy:'CNY', amt:2963.11, note:'10.9–10.11 · 已出人民币'},
+    {item:'悉尼咖啡 · The Brothers Cafe（Haymarket）',  by:'jia', ccy:'USD', amt:9.66,    note:'10.1 08:46 · 当地 A$13.80 · Apple Pay 卡8551 · 人民币待账单'},
+    /* ---- yu 付款（当地币种） ---- */
+    {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R · 已出人民币'},
+    {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9 · 已出人民币'},
+    {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  note:'爱彼迎 HMYB2BYBKN · 已出人民币'},
+    {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  note:'爱彼迎 HME5WASRCP · 已出人民币'},
+    {item:'悉尼晚餐（10.1）',                           by:'yu',  ccy:'AUD', amt:243.10,  note:'10.1'},
+    /* ---- 换汇：仅记录，不计入分摊（避免与逐笔消费重复） ---- */
+    {item:'换现金 · 澳元 A$1,000', by:'yu', ccy:'CNY', amt:4735.30, split:false, note:'2026-10-01 换汇实付，倒推 1 AUD = 4.7353。换汇不是消费，故不计入分摊；现金消费按逐笔记'},
+    {item:'换现金 · 纽元 NZ$1,000', by:'yu', ccy:'CNY', amt:3818.50, split:false, note:'2026-10-01 换汇实付，倒推 1 NZD = 3.8185。同上'}
   ];
   function fm(n){return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function renderMoney(){
     var rN=parseFloat(document.getElementById('rate').value)||0;
     var rA=parseFloat(document.getElementById('rateAud').value)||0;
-    var h='', fx={jia:{NZD:0,AUD:0},yu:{NZD:0,AUD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, np=0;
+    var rU=parseFloat(document.getElementById('rateUsd').value)||0;
+    var h='', fx={jia:{USD:0,AUD:0,NZD:0},yu:{USD:0,AUD:0,NZD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, np=0;
     EXP.forEach(function(e,i){
       var noSplit=(e.split===false);
       if(e.pending){
@@ -962,16 +964,18 @@ Signature: ______________    Date: ______________</pre>
          + '<td class="rn">'+(e.note||'')+'</td></tr>';
         return;
       }
-      var rate = (e.ccy==='NZD') ? rN : (e.ccy==='AUD' ? rA : 1);
+      var rate = (e.ccy==='NZD') ? rN : (e.ccy==='AUD' ? rA : (e.ccy==='USD' ? rU : 1));
       var cny = (e.cny!=null) ? e.cny : e.amt*rate;
       var est = (e.cny==null && e.ccy!=='CNY');
       var disp = e.orig ? e.orig
                : (e.ccy==='NZD' ? 'NZ$'+fm(e.amt)
-               : (e.ccy==='AUD' ? 'A$'+fm(e.amt) : '—'));
+               : (e.ccy==='AUD' ? 'A$'+fm(e.amt)
+               : (e.ccy==='USD' ? 'US$'+fm(e.amt) : '—')));
       if(noSplit){ solo[e.by]+=cny; }
       else {
         if(e.ccy==='NZD') fx[e.by].NZD+=e.amt;
         else if(e.ccy==='AUD') fx[e.by].AUD+=e.amt;
+        else if(e.ccy==='USD') fx[e.by].USD+=e.amt;
         else cn[e.by]+=e.amt;
         tot[e.by]+=cny;
       }
@@ -985,8 +989,9 @@ Signature: ______________    Date: ______________</pre>
     document.getElementById('money-body').innerHTML=h;
     function line(w){
       var p=[];
-      if(fx[w].NZD) p.push('纽币 NZ$'+fm(fx[w].NZD));
+      if(fx[w].USD) p.push('美元 US$'+fm(fx[w].USD));
       if(fx[w].AUD) p.push('澳元 A$'+fm(fx[w].AUD));
+      if(fx[w].NZD) p.push('纽币 NZ$'+fm(fx[w].NZD));
       if(cn[w])     p.push('人民币 ¥'+fm(cn[w]));
       return '<span class="who '+w+'">'+w+'</span> '+(p.join('　')||'—')+'　→ <b>合计 ≈ ¥'+fm(tot[w])+'</b>';
     }
@@ -1003,8 +1008,9 @@ Signature: ______________    Date: ______________</pre>
     }
     if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
     out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<span class="rn">💵 <b>现金口径</b>：yu 换的 A$1,000 + NZ$1,000 已<b>全额计入垫付</b>（共同备用金）。'
-      +'<b>行程结束后把没花完的现金按同一汇率折回人民币，从 yu 的垫付里扣掉</b>，结算才准。</span>';
+      +'<span class="rn">💵 <b>现金口径</b>：换汇<b>本身不是消费</b>，已标为「不分摊·仅记录」。'
+      +'yu 用现金付的每一笔<b>按当地币逐笔计入分摊</b>，剩余现金回国后仍是 yu 自己的钱，<b>无需期末折算</b>。'
+      +'<br>⚠️ 前提是<b>现金消费要记全</b>——漏记会少算 yu 的垫付。小额也发我。</span>';
     document.getElementById('money-sum').innerHTML=out;
   }
 
