@@ -783,14 +783,14 @@ Signature: ______________    Date: ______________</pre>
 
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
-      <div class="note">💱 <b>汇率 NZD → CNY</b>（按实付卡汇率 3.8474）：<input id="rate" type="number" step="0.01" value="3.85" style="width:80px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
-        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知实付卡汇率：<b>1 NZD = 3.847419 CNY</b>（2026-09-19 中行信用卡，市场价 3.8505，汇率优惠省约 ¥6）。默认值已按此设为 3.85。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
+      <div class="note">💱 <b>折算汇率</b>　<b>NZD→CNY</b> <input id="rate" type="number" step="0.0001" value="3.85" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>AUD→CNY</b> <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
+        <br><span class="rn">纽币项按上面汇率<b>折算</b>（显示 ≈）；人民币项为<b>实付值</b>。等账单出来把实际人民币金额发我，我填成确定值，≈ 就消失（已确定的行不受上面汇率影响）。<br><span class="rn">📌 已知真实汇率：<b>信用卡 1 NZD = 3.847419</b>（2026-09-19 中行，默认取 3.85）｜<b>现金换汇 1 NZD = 3.8185</b>、<b>1 AUD = 4.7353</b>（2026-10-01 yu 换汇实付倒推）。澳元默认取 <b>4.7353</b>。</span><br><b>规则</b>：本表只记<b>共同开支</b>并 50/50 分摊；<b>机票各自购买，不入账不分摊</b>。标 <span class="pill no">不分摊</span> 的行只作记录，不进结算。</span></div>
       <table>
-        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:92px">纽币 NZD</th><th style="width:104px">人民币 CNY</th><th style="width:130px">备注</th></tr></thead>
+        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:96px">原币金额</th><th style="width:104px">人民币 CNY</th><th style="width:140px">备注</th></tr></thead>
         <tbody id="money-body"></tbody>
       </table>
       <div id="money-sum" class="mtot"></div>
-      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️ <b>机票各自购买，不入账、不分摊。</b><br>💵 <b>换汇怎么记</b>：现金换汇本身不是消费，是<b>共同备用金</b>。建议先把 yu 换的人民币全额计入垫付，<b>行程结束后把没花掉的现金按同一汇率折回、从 yu 的垫付里扣掉</b>，这样最准。</div>
+      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️ <b>机票各自购买，不入账、不分摊。</b><br>💵 <b>现金已入账</b>：yu 换的 <b>A$1,000（¥4,735.30）+ NZ$1,000（¥3,818.50）</b> 按<b>共同备用金</b>全额计入垫付。<b>回国后把剩余现金按同一汇率折回、从 yu 的垫付里扣掉</b>。<br>🧾 <b>路上花钱怎么发我</b>：说清 <b>项目 · 金额 · 币种 · 谁付的</b>（现金还是刷卡也提一下），我随时补进来并重算结算。</div>
     </div>
 
     <!-- ========== TAB 6: 活动大全 ========== -->
@@ -943,39 +943,54 @@ Signature: ______________    Date: ______________</pre>
     {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  note:'爱彼迎 HMYB2BYBKN'},
     {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  note:'爱彼迎 HME5WASRCP'},
     /* ---- 待填 ---- */
-    {item:'换现金 1,000 澳元 AUD',  by:'yu', ccy:'CNY', amt:0, pending:true, note:'换完把实付人民币发我'},
-    {item:'换现金 1,000 纽元 NZD',  by:'yu', ccy:'CNY', amt:0, pending:true, note:'换完把实付人民币发我'}
+    {item:'换现金 · 澳元（共同备用金）', by:'yu', ccy:'CNY', amt:4735.30, orig:'A$1,000', note:'2026-10-01 换汇实付，倒推汇率 4.7353'},
+    {item:'换现金 · 纽元（共同备用金）', by:'yu', ccy:'CNY', amt:3818.50, orig:'NZ$1,000', note:'2026-10-01 换汇实付，倒推汇率 3.8185'}
   ];
   function fm(n){return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function renderMoney(){
-    var r=parseFloat(document.getElementById('rate').value)||0;
-    var h='', nz={jia:0,yu:0}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, np=0;
+    var rN=parseFloat(document.getElementById('rate').value)||0;
+    var rA=parseFloat(document.getElementById('rateAud').value)||0;
+    var h='', fx={jia:{NZD:0,AUD:0},yu:{NZD:0,AUD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, np=0;
     EXP.forEach(function(e,i){
-      var isNZ=(e.ccy==='NZD'), noSplit=(e.split===false);
+      var noSplit=(e.split===false);
       if(e.pending){
         np++;
         h+='<tr style="opacity:.62"><td>'+(i+1)+'</td><td>'+e.item+'</td>'
          + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
-         + '<td class="num">—</td><td class="num"><b>待填</b></td>'
+         + '<td class="num">'+(e.orig||'—')+'</td><td class="num"><b>待填</b></td>'
          + '<td class="rn">'+(e.note||'')+'</td></tr>';
         return;
       }
-      var cny=(e.cny!=null)?e.cny:(isNZ?e.amt*r:e.amt);
-      var est=(e.cny==null&&isNZ);
+      var rate = (e.ccy==='NZD') ? rN : (e.ccy==='AUD' ? rA : 1);
+      var cny = (e.cny!=null) ? e.cny : e.amt*rate;
+      var est = (e.cny==null && e.ccy!=='CNY');
+      var disp = e.orig ? e.orig
+               : (e.ccy==='NZD' ? 'NZ$'+fm(e.amt)
+               : (e.ccy==='AUD' ? 'A$'+fm(e.amt) : '—'));
       if(noSplit){ solo[e.by]+=cny; }
-      else { if(isNZ) nz[e.by]+=e.amt; else cn[e.by]+=e.amt; tot[e.by]+=cny; }
+      else {
+        if(e.ccy==='NZD') fx[e.by].NZD+=e.amt;
+        else if(e.ccy==='AUD') fx[e.by].AUD+=e.amt;
+        else cn[e.by]+=e.amt;
+        tot[e.by]+=cny;
+      }
       h+='<tr'+(noSplit?' style="background:#fafafa"':'')+'><td>'+(i+1)+'</td>'
        + '<td>'+e.item+(noSplit?' <span class="pill no">不分摊</span>':'')+'</td>'
        + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
-       + '<td class="num">'+(isNZ?fm(e.amt):'—')+'</td>'
+       + '<td class="num">'+disp+'</td>'
        + '<td class="num">'+(est?'≈ ':'')+fm(cny)+'</td>'
        + '<td class="rn">'+(e.note||'')+'</td></tr>';
     });
     document.getElementById('money-body').innerHTML=h;
+    function line(w){
+      var p=[];
+      if(fx[w].NZD) p.push('纽币 NZ$'+fm(fx[w].NZD));
+      if(fx[w].AUD) p.push('澳元 A$'+fm(fx[w].AUD));
+      if(cn[w])     p.push('人民币 ¥'+fm(cn[w]));
+      return '<span class="who '+w+'">'+w+'</span> '+(p.join('　')||'—')+'　→ <b>合计 ≈ ¥'+fm(tot[w])+'</b>';
+    }
     var T=tot.jia+tot.yu, share=T/2, diff=tot.jia-share;
-    var out='<b>共同开支 · 分币种小计</b><br>'
-      +'<span class="who jia">jia</span> 纽币 NZ$'+fm(nz.jia)+'　人民币 ¥'+fm(cn.jia)+'　→ <b>合计 ≈ ¥'+fm(tot.jia)+'</b><br>'
-      +'<span class="who yu">yu</span> 纽币 NZ$'+fm(nz.yu)+'　人民币 ¥'+fm(cn.yu)+'　→ <b>合计 ≈ ¥'+fm(tot.yu)+'</b><br>'
+    var out='<b>共同开支 · 分币种小计</b><br>'+line('jia')+'<br>'+line('yu')+'<br>'
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
       +'<b>共同开支合计 ≈ ¥'+fm(T)+'</b>　（人均应担 ≈ ¥'+fm(share)+'）<br>'
       + (Math.abs(diff)<0.01 ? '✅ 两人已平'
@@ -985,7 +1000,10 @@ Signature: ______________    Date: ______________</pre>
       out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
         +'<span class="rn"><b>不分摊（个人）</b>：jia ≈ ¥'+fm(solo.jia)+'　yu ≈ ¥'+fm(solo.yu)+'　—— 仅记录，不进结算</span>';
     }
-    if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入（换汇现金）。</span>';
+    if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
+    out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
+      +'<span class="rn">💵 <b>现金口径</b>：yu 换的 A$1,000 + NZ$1,000 已<b>全额计入垫付</b>（共同备用金）。'
+      +'<b>行程结束后把没花完的现金按同一汇率折回人民币，从 yu 的垫付里扣掉</b>，结算才准。</span>';
     document.getElementById('money-sum').innerHTML=out;
   }
 
