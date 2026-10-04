@@ -940,6 +940,8 @@ Signature: ______________    Date: ______________</pre>
     {item:'悉尼咖啡 · The Brothers Cafe（Haymarket）',  by:'jia', ccy:'USD', amt:9.66,    note:'10.1 08:46 · 当地 A$13.80 · Apple Pay 卡8551 · 人民币待账单'},
     {item:'悉尼打车 · 去塔龙加动物园（10.2）',           by:'jia', ccy:'CNY', amt:40.00,   note:'10.2 · 刷卡 · 已出人民币'},
     {item:'悉尼 Coles 超市（10.2）',                     by:'jia', ccy:'AUD', amt:14.82,   note:'10.2 · 刷卡 · 当地币 A$14.82，人民币待账单'},
+    {item:'皇后镇 Skyline 缆车（10.4）',                by:'jia', ccy:'NZD', amt:138.00,  note:'10.4 · 信用卡 · 人民币待账单'},
+    {item:'皇后镇纪念品（10.4）',                        by:'jia', ccy:'CNY', amt:777.74, share:1, note:'10.4 · jia 微信实付 ¥777.74 · ⏳ <b>待拆分</b>：非均分，告我各自金额后按实际记入'},
     /* ---- yu 付款（当地币种） ---- */
     {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R · 已出人民币'},
     {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9 · 已出人民币'},
@@ -949,6 +951,7 @@ Signature: ______________    Date: ______________</pre>
     {item:'悉尼 · 水 + 零食（10.1 晚）',                 by:'yu',  ccy:'AUD', amt:8.00,    note:'10.1 晚 · 刷卡 · 人民币待账单'},
     {item:'皇后镇公交卡 Bee Card（10.3）',               by:'yu',  ccy:'NZD', amt:15.00,   note:'10.3 · 💵 现金（从换汇的 NZ$1,000 支出）'},
     {item:'皇后镇 Brunch（10.4）',                       by:'yu',  ccy:'NZD', amt:71.00,   note:'10.4 · 💵 现金'},
+    {item:'皇后镇晚餐（10.4）',                          by:'yu',  ccy:'NZD', amt:0, pending:true, note:'10.4 · 💵 现金 · 金额待告'},
     /* ---- 换汇：仅记录，不计入分摊（避免与逐笔消费重复） ---- */
     {item:'换现金 · 澳元 A$1,000', by:'yu', ccy:'CNY', amt:4735.30, split:false, note:'2026-10-01 换汇实付，倒推 1 AUD = 4.7353。换汇不是消费，故不计入分摊；现金消费按逐笔记'},
     {item:'换现金 · 纽元 NZ$1,000', by:'yu', ccy:'CNY', amt:3818.50, split:false, note:'2026-10-01 换汇实付，倒推 1 NZD = 3.8185。同上'}
@@ -958,7 +961,7 @@ Signature: ______________    Date: ______________</pre>
     var rN=parseFloat(document.getElementById('rate').value)||0;
     var rA=parseFloat(document.getElementById('rateAud').value)||0;
     var rU=parseFloat(document.getElementById('rateUsd').value)||0;
-    var h='', fx={jia:{USD:0,AUD:0,NZD:0},yu:{USD:0,AUD:0,NZD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, np=0;
+    var h='', fx={jia:{USD:0,AUD:0,NZD:0},yu:{USD:0,AUD:0,NZD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, paid={jia:0,yu:0}, bur={jia:0,yu:0}, np=0;
     EXP.forEach(function(e,i){
       var noSplit=(e.split===false);
       if(e.pending){
@@ -976,16 +979,18 @@ Signature: ______________    Date: ______________</pre>
                : (e.ccy==='NZD' ? 'NZ$'+fm(e.amt)
                : (e.ccy==='AUD' ? 'A$'+fm(e.amt)
                : (e.ccy==='USD' ? 'US$'+fm(e.amt) : '—')));
-      if(noSplit){ solo[e.by]+=cny; }
-      else {
-        if(e.ccy==='NZD') fx[e.by].NZD+=e.amt;
-        else if(e.ccy==='AUD') fx[e.by].AUD+=e.amt;
-        else if(e.ccy==='USD') fx[e.by].USD+=e.amt;
-        else cn[e.by]+=e.amt;
-        tot[e.by]+=cny;
-      }
+      // share = jia 承担的比例（默认 0.5 均分）；split:false 等同付款方全额承担
+      var sh = (e.share!=null) ? e.share : (noSplit ? (e.by==='jia'?1:0) : 0.5);
+      paid[e.by]+=cny;
+      bur.jia += cny*sh; bur.yu += cny*(1-sh);
+      if(noSplit||e.share!=null){ solo[e.by]+=cny; }
+      if(e.ccy==='NZD') fx[e.by].NZD+=e.amt;
+      else if(e.ccy==='AUD') fx[e.by].AUD+=e.amt;
+      else if(e.ccy==='USD') fx[e.by].USD+=e.amt;
+      else cn[e.by]+=e.amt;
+      tot[e.by]+=cny;
       h+='<tr'+(noSplit?' style="background:#fafafa"':'')+'><td>'+(i+1)+'</td>'
-       + '<td>'+e.item+(noSplit?' <span class="pill no">不分摊</span>':'')+'</td>'
+       + '<td>'+e.item+(noSplit?' <span class="pill no">不分摊</span>':'')+(e.share!=null?' <span class="pill alt">非均分</span>':'')+'</td>'
        + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
        + '<td class="num">'+disp+'</td>'
        + '<td class="num">'+(est?'≈ ':'')+fm(cny)+'</td>'
@@ -1000,16 +1005,18 @@ Signature: ______________    Date: ______________</pre>
       if(cn[w])     p.push('人民币 ¥'+fm(cn[w]));
       return '<span class="who '+w+'">'+w+'</span> '+(p.join('　')||'—')+'　→ <b>合计 ≈ ¥'+fm(tot[w])+'</b>';
     }
-    var T=tot.jia+tot.yu, share=T/2, diff=tot.jia-share;
-    var out='<b>共同开支 · 分币种小计</b><br>'+line('jia')+'<br>'+line('yu')+'<br>'
+    var T=tot.jia+tot.yu, diff=paid.jia-bur.jia;
+    var out='<b>已付金额 · 分币种小计</b><br>'+line('jia')+'<br>'+line('yu')+'<br>'
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<b>共同开支合计 ≈ ¥'+fm(T)+'</b>　（人均应担 ≈ ¥'+fm(share)+'）<br>'
+      +'<b>总支出 ≈ ¥'+fm(T)+'</b>　｜　已付：jia ≈ ¥'+fm(paid.jia)+'　yu ≈ ¥'+fm(paid.yu)+'<br>'
+      +'<b>应承担：jia ≈ ¥'+fm(bur.jia)+'　yu ≈ ¥'+fm(bur.yu)+'</b>'
+      +'<span class="rn">（共同开支各半；标<b>非均分/不分摊</b>的按实际归属）</span><br>'
       + (Math.abs(diff)<0.01 ? '✅ 两人已平'
         : (diff>0 ? '👉 <b><span class="who yu">yu</span> 需付给 <span class="who jia">jia</span> ≈ ¥'+fm(diff)+'</b>'
                   : '👉 <b><span class="who jia">jia</span> 需付给 <span class="who yu">yu</span> ≈ ¥'+fm(-diff)+'</b>'));
     if(solo.jia>0||solo.yu>0){
       out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-        +'<span class="rn"><b>不分摊（个人）</b>：jia ≈ ¥'+fm(solo.jia)+'　yu ≈ ¥'+fm(solo.yu)+'　—— 仅记录，不进结算</span>';
+        +'<span class="rn"><b>非均分 / 不分摊小计</b>：jia ≈ ¥'+fm(solo.jia)+'　yu ≈ ¥'+fm(solo.yu)+'　—— 已按实际归属计入上面的「应承担」</span>';
     }
     if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
     out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
