@@ -782,14 +782,13 @@ Signature: ______________    Date: ______________</pre>
 
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
-      <div class="note">💱 <b>折算汇率</b>　<b>USD→CNY</b> <input id="rateUsd" type="number" step="0.0001" value="7.10" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>AUD→CNY</b> <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　<b>NZD→CNY</b> <input id="rate" type="number" step="0.0001" value="3.85" style="width:84px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:5px 12px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button>
-        <br><span class="rn"><b>记账约定</b>：<b>jia</b> 的信用卡走<b>美元结算</b> → 按 <b>USD</b> 记；<b>yu</b> 按<b>当地币种</b>记（<b>AUD / NZD</b>）。<b>最终以账单人民币金额为准</b>，拿到账单发我，我逐笔填成确定值（<b>确定值不受汇率框影响</b>，≈ 会消失）。<br>💵 <b>默认刷卡</b>：除特别注明「现金」外，所有消费按<b>刷卡</b>处理。现金消费会单独标注。<br>📌 <b>已出账单的真实汇率（NZD→CNY）</b>：<b>3.70511</b> 纪念品（微信，10.4）· <b>3.7711</b> 租车（10.5）· <b>3.8185</b> 现金换汇（10.1）· <b>3.847419</b> 跳伞（微信+中行 8944，9.19）。<br>⚠️ <b>不要跨日期比较通道优劣</b>——市场汇率本身在波动，上面四个数跨了半个多月。<b>目前没有证据说明某张卡明显更差</b>（此前"卡 8551 贵 1.75%"的结论是漏算了租车的 NZ$24 道路救援导致的，已作废）。<br>AUD 现金换汇 <b>1 AUD = 4.7353</b>；<b>USD→CNY 默认 7.10 仍为估算，待首张美元账单校准</b>。<br>💳 仍然成立的一条：<b>卡 8551 走美元清算</b>（当地币→美元→人民币，多一次转换），<b>中行 8944 与微信为单次转换</b>——结构上更省，但实际差额要等更多账单才看得出来。</span></div>
+      <div class="note">💱 <b>估算汇率</b>　USD <input id="rateUsd" type="number" step="0.0001" value="7.10" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　AUD <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　NZD <input id="rate" type="number" step="0.0001" value="3.85" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:4px 11px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button><br><span class="rn"><b>先按原币记账</b>（jia 记美元 · yu 记当地币），上面汇率只用于<b>估算</b>（显示 ≈）；<b>账单出来后填人民币确定值，最后统一结算</b>。<br><b>参考汇率</b>（已出账单实测）：NZD→CNY <b>3.771</b>（租车）· <b>3.847</b>（跳伞）｜AUD 现金换汇 <b>4.7353</b><br><b>规则</b>：共同开支 50/50；标 <span class="pill alt">非均分</span> / <span class="pill no">不分摊</span> 的按实际归属；<b>默认刷卡</b>，现金会注明。</span></div>
       <table>
         <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:96px">原币金额</th><th style="width:104px">人民币 CNY</th><th style="width:140px">备注</th></tr></thead>
         <tbody id="money-body"></tbody>
       </table>
       <div id="money-sum" class="mtot"></div>
-      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA（NZD 117×2）、悉尼歌剧院演出、Skyline 缆车+Luge、蒂卡波观星、Kohan 晚餐、eSIM、旅行保险、当地餐饮/油费/门票/停车。<br>✈️🎟 <b>各自购买、不入账、不分摊</b>：<b>机票</b>（四段）· <b>悉尼野生动物园门票</b>（10.2，两人各自买票）。<br>💵 <b>现金口径</b>：yu 换的 <b>A$1,000 / NZ$1,000</b> 已标为<b>「不分摊·仅记录」</b>（换汇不是消费，只是换了形式）。<b>现金花的每一笔按当地币逐笔记入 yu</b>，剩余现金回国后仍是 yu 的钱，不用期末折算。<br>🧾 <b>路上发我时说清</b>：<b>项目 · 金额 · 币种 · 谁付的</b>。<b>jia 报美元金额</b>（卡按美元结算）、<b>yu 报当地币</b>。<b>现金消费请注明「现金」，不注明默认刷卡。</b>拿到账单后把人民币确定值发我，我填进去。</div>
+      <div class="note" style="margin-top:12px">📝 <b>还没记进来的</b>：NZeTA · 歌剧院演出 · 蒂卡波观星 · eSIM · 保险 · 后续餐饮油费门票停车。<br>✈️🎟 <b>各自购买、不入账、不分摊</b>：<b>机票</b>（四段）· <b>悉尼野生动物园门票</b>（10.2）。<br>🧾 发我时说清 <b>项目 · 金额 · 币种 · 谁付的</b>（现金请注明）。</div>
     </div>
 
     <!-- ========== TAB 6: 活动大全 ========== -->
@@ -1025,9 +1024,7 @@ Signature: ______________    Date: ______________</pre>
     }
     if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
     out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<span class="rn">💵 <b>现金口径</b>：换汇<b>本身不是消费</b>，已标为「不分摊·仅记录」。'
-      +'yu 用现金付的每一笔<b>按当地币逐笔计入分摊</b>，剩余现金回国后仍是 yu 自己的钱，<b>无需期末折算</b>。'
-      +'<br><b>默认刷卡</b>：未注明「现金」的都按刷卡记。⚠️ 现金消费要记全，漏记会少算 yu 的垫付。'+'<br>💳 <b>单次转换的卡更划算</b>：<b>yu 的卡按当地币结算</b> · <b>jia 中行 8944 直接本币结算</b>；<b>jia 卡 8551 走美元清算＝双重转换，多 1–2%</b> → 大额优先用前两张。</span>';
+      +'<span class="rn">💵 换汇不算消费（已标不分摊）；现金消费逐笔计入，剩余现金仍是 yu 的钱。⚠️ 小额现金也要记全。</span>';
     document.getElementById('money-sum').innerHTML=out;
   }
 
