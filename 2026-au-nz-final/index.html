@@ -77,6 +77,7 @@
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
+      <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
       <button id="btn-rules" onclick="showTab('rules')" style="border-color:#7c3aed;color:#7c3aed">🛣 新西兰交规</button>
       <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
@@ -537,6 +538,17 @@ Signature: ______________    Date: ______________</pre>
 19. This is my first time driving in New Zealand. Is there anything I should be especially careful about?</pre>
       <div class="note">📝 <b>答案一定要记下这 5 项</b>：① <b>钥匙箱位置</b>（拍张照最稳）② <b>after-hours 费用金额</b> ③ <b>零免赔额的排除项</b> ④ <b>抛锚电话</b> ⑤ <b>24h 加油站名字</b>。<br>
         ⚠️ <b>离开柜台前先拍全车视频</b>：四面 + 车顶 + 内饰 + <b>油表</b> + <b>里程表</b> + 所有已有划痕 —— 10.9 凌晨无人还车时靠它自证。</div>
+    </div>
+
+    <!-- ========== TAB: 现金对账 ========== -->
+    <div id="tab-cash">
+      <div class="note">💵 本页<b>自动从「记账」里筛出所有现金支出</b>（备注含 💵 的条目），不会和总账脱节。
+        <br><b>换汇基数</b>：yu 于 2026-10-01 换 <b>NZ$1,000</b>（¥3,818.50）+ <b>A$1,000</b>（¥4,735.30）。
+        <br>换汇本身<b>不计入分摊</b>；每笔现金消费按当地币<b>逐笔计入分摊</b>，<b>剩余现金仍是 yu 自己的钱</b>。</div>
+      <div id="cash-body"></div>
+      <div class="warn" style="margin-top:12px">🔍 <b>对不上怎么查</b>：先看<b>有没有漏报的小额</b>——最可能的缺口在 <b>10.7（蒂卡波那天白天）</b>，
+        目前只记了晚饭超市（jia 人民币），而 <b>Mt John 上山路费（NZ$5–10）· Astro Café · Lake Pukaki 三文鱼/午餐 · 停车费</b> 都没有记录。
+        想起来发我，我补进去，这一页会自动更新。</div>
     </div>
 
     <!-- ========== TAB: 新西兰交规 ========== -->
@@ -1040,16 +1052,55 @@ Signature: ______________    Date: ______________</pre>
     out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
       +'<span class="rn">💵 换汇不算消费（已标不分摊）；现金消费逐笔计入，剩余现金仍是 yu 的钱。⚠️ 小额现金也要记全。</span>';
     document.getElementById('money-sum').innerHTML=out;
+    renderCash();
+  }
+
+  var CASH_IN={NZD:1000,AUD:1000};
+  function renderCash(){
+    var box=document.getElementById('cash-body'); if(!box) return;
+    var cur={NZD:[],AUD:[]};
+    EXP.forEach(function(e){
+      if(!e.note || e.note.indexOf('\u{1F4B5}')<0) return;
+      var m=/^(\d{1,2}\.\d{1,2})/.exec(e.note);
+      cur[e.ccy] && cur[e.ccy].push({d:m?m[1]:'—', item:e.item, amt:e.amt, by:e.by, note:e.note});
+    });
+    var html='';
+    [['NZD','纽元 NZ$','NZ$'],['AUD','澳元 A$','A$']].forEach(function(c){
+      var k=c[0], list=cur[k]||[], sum=0;
+      html+='<h3>'+c[1]+' 现金支出（'+list.length+' 笔）</h3>';
+      if(!list.length){
+        html+='<div class="note">暂无现金支出 —— <b>'+c[2]+fm(CASH_IN[k])+' 一分未动</b>，全程刷卡。</div>';
+        return;
+      }
+      html+='<table><thead><tr><th style="width:52px">日期</th><th>项目</th><th style="width:52px">付款</th>'
+         +'<th style="width:56px">方式</th><th style="width:90px">金额</th><th style="width:96px">累计已花</th><th style="width:96px">剩余</th></tr></thead><tbody>';
+      list.forEach(function(x){
+        sum+=x.amt;
+        html+='<tr><td><b>'+x.d+'</b></td><td>'+x.item+'</td>'
+           +'<td><span class="who '+x.by+'">'+x.by+'</span></td>'
+           +'<td class="rn">现金</td>'
+           +'<td class="num">'+c[2]+fm(x.amt)+'</td>'
+           +'<td class="num rn">'+c[2]+fm(sum)+'</td>'
+           +'<td class="num rn">'+c[2]+fm(CASH_IN[k]-sum)+'</td></tr>';
+      });
+      html+='</tbody></table>';
+      html+='<div class="mtot">'
+         +'换汇 <b>'+c[2]+fm(CASH_IN[k])+'</b>　−　已记现金支出 <b>'+c[2]+fm(sum)+'</b>'
+         +'　=　<b>账面剩余 '+c[2]+fm(CASH_IN[k]-sum)+'</b>'
+         +'<br><span class="rn">把钱包里实际剩的数和这个「账面剩余」对一下，差多少就是漏报的金额。</span></div>';
+    });
+    box.innerHTML=html;
   }
 
   function showTab(t){
-    ['pack','plan','booking','drive','rules','money','more'].forEach(function(x){
+    ['pack','plan','booking','drive','money','cash','rules','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
   }
   renderMoney();
-  showTab('plan');
+  renderCash();
+  showTab('pack');
 </script>
 </body>
 </html>
