@@ -1002,9 +1002,9 @@ Signature: ______________    Date: ______________</pre>
     {item:'机场晚餐（10.11）',                            by:'yu',  ccy:'AUD', amt:54.16, cny:256.46,   note:'10.11 墨尔本机场 · 💵 现金 · 金额由现金余额倒推（账面 A$662.71 − 实际 A$608.55）'},
     {item:'机场购物 · 零钞花完（10.11）',                 by:'yu',  ccy:'AUD', amt:8.55, cny:40.49,    note:'10.11 墨尔本机场 · 💵 现金 · 把零钞用掉，澳元现金整好花到 A$400'},
     /* ---- 换汇：仅记录，不计入分摊（避免与逐笔消费重复） ---- */
-    {item:'换现金 · 澳元 A$1,000', by:'yu', ccy:'CNY', amt:4735.30, split:false, note:'2026-10-01 换汇实付，倒推 1 AUD = 4.7353。换汇不是消费，故不计入分摊；现金消费按逐笔记'},
-    {item:'↳ 剩余现金 A$600 由 yu 收回',               by:'yu',  ccy:'CNY', amt:-2841.18, split:false, note:'行程结束 · A$1,000 中<b>仅花掉 A$400</b>，剩余 <b>A$600 由 yu 带回</b>（按 4.7353 折 ¥2,841.18）→ 换汇净消耗 ¥1,894.12，<b>与澳元现金支出合计一致</b>'},
-    {item:'换现金 · 纽元 NZ$1,000', by:'yu', ccy:'CNY', amt:3818.50, split:false, note:'2026-10-01 换汇实付，倒推 1 NZD = 3.8185。同上'}
+    {item:'换现金 · 澳元 A$1,000', by:'yu', ccy:'CNY', amt:4735.30, split:false, memo:true, note:'2026-10-01 换汇实付，倒推 1 AUD = 4.7353。换汇不是消费，故不计入分摊；现金消费按逐笔记'},
+    {item:'↳ 剩余现金 A$600 由 yu 收回',               by:'yu',  ccy:'CNY', amt:-2841.18, split:false, memo:true, note:'行程结束 · A$1,000 中<b>仅花掉 A$400</b>，剩余 <b>A$600 由 yu 带回</b>（按 4.7353 折 ¥2,841.18）→ 换汇净消耗 ¥1,894.12，<b>与澳元现金支出合计一致</b>'},
+    {item:'换现金 · 纽元 NZ$1,000', by:'yu', ccy:'CNY', amt:3818.50, split:false, memo:true, note:'2026-10-01 换汇实付，倒推 1 NZD = 3.8185。同上'}
   ];
   function fm(n){return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});}
   function renderMoney(){
@@ -1031,6 +1031,14 @@ Signature: ______________    Date: ______________</pre>
                : (e.ccy==='USD' ? 'US$'+fm(e.amt) : '—')));
       // share = jia 承担的比例（默认 0.5 均分）；split:false 等同付款方全额承担
       var sh = (e.share!=null) ? e.share : (noSplit ? (e.by==='jia'?1:0) : 0.5);
+      if(e.memo){
+        h+='<tr style="background:#fafafa;opacity:.75"><td>'+(i+1)+'</td>'
+         + '<td>'+e.item+' <span class="pill no">仅记录</span></td>'
+         + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
+         + '<td class="num">'+disp+'</td><td class="num">'+fm(cny)+'</td>'
+         + '<td class="rn">'+(e.note||'')+'</td></tr>';
+        return;
+      }
       paid[e.by]+=cny;
       bur.jia += cny*sh; bur.yu += cny*(1-sh);
       if(noSplit||e.share!=null){ solo[e.by]+=cny; }
@@ -1069,6 +1077,10 @@ Signature: ______________    Date: ______________</pre>
         +'<span class="rn"><b>非均分 / 不分摊小计</b>：jia ≈ ¥'+fm(solo.jia)+'　yu ≈ ¥'+fm(solo.yu)+'　—— 已按实际归属计入上面的「应承担」</span>';
     }
     if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
+    out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
+      +'<span class="rn">💱 <b>换汇流水（标「仅记录」，不计入上面的总额与结算）</b>：'
+      +'换出 ¥8,553.80（A$1,000 + NZ$1,000）− 剩余 A$600 收回 ¥2,841.18 = <b>净 ¥5,712.62</b>，'
+      +'正好等于<b>纽元现金 ¥3,818.50 + 澳元现金 ¥1,894.12</b> —— 两边对平，现金没有被重复计算。</span>';
     out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
       +'<span class="rn">💵 换汇不算消费（已标不分摊）；现金消费逐笔计入，剩余现金仍是 yu 的钱。⚠️ 小额现金也要记全。</span>';
     document.getElementById('money-sum').innerHTML=out;
