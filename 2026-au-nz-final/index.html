@@ -855,6 +855,50 @@ Signature: ______________    Date: ______________</pre>
           </tbody>
         </table></div>
 
+      <h4>📋 七种情形的实际记录示例（均取自本次真实账目）</h4>
+      <table>
+        <thead><tr><th style="width:150px">情形</th><th>条目</th><th style="width:44px">付款</th><th style="width:92px">人民币</th><th style="width:52px">share</th><th style="width:88px">jia 担</th><th style="width:88px">yu 担</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2"><b>① 普通共同开支</b><br><span class="rn">谁付都一样，对半分</span></td>
+            <td>悉尼晚餐（10.1）<span class="rn">　A$243.10</span></td><td><span class="who yu">yu</span></td>
+            <td class="num">1,151.15</td><td class="num">0.5</td><td class="num">575.58</td><td class="num">575.58</td></tr>
+          <tr><td>悉尼住宿 · 雅诗阁（2 晚）</td><td><span class="who jia">jia</span></td>
+            <td class="num">3,381.90</td><td class="num">0.5</td><td class="num">1,690.95</td><td class="num">1,690.95</td></tr>
+
+          <tr><td rowspan="2"><b>② 一人代付 + 按件归属</b><br><span class="rn">拆两行，<b>付款人都是 jia</b>；<br>yu 那份<b>全额欠付不减半</b></span></td>
+            <td>Aotea 羊毛 · <b>jia 的部分</b> <span class="pill alt">非均分</span></td><td><span class="who jia">jia</span></td>
+            <td class="num">2,021.10</td><td class="num"><b>1</b></td><td class="num"><b>2,021.10</b></td><td class="num">0</td></tr>
+          <tr><td>Aotea 羊毛 · <b>yu 的部分</b> <span class="pill alt">非均分</span></td><td><span class="who jia">jia</span></td>
+            <td class="num">1,638.90</td><td class="num"><b>0</b></td><td class="num">0</td><td class="num"><b>1,638.90</b></td></tr>
+
+          <tr><td><b>③ 个人消费</b><br><span class="rn">谁买谁担</span></td>
+            <td>yu 个人用品 · 卫生巾 + 纸 <span class="pill no">不分摊</span></td><td><span class="who yu">yu</span></td>
+            <td class="num">35.28</td><td class="num"><b>0</b></td><td class="num">0</td><td class="num"><b>35.28</b></td></tr>
+
+          <tr><td><b>④ 退款</b><br><span class="rn">记负数，同公式</span></td>
+            <td>↳ 跳伞退款</td><td><span class="who jia">jia</span></td>
+            <td class="num" style="color:#15803d"><b>−7,463.88</b></td><td class="num">0.5</td>
+            <td class="num" style="color:#15803d">−3,731.94</td><td class="num" style="color:#15803d">−3,731.94</td></tr>
+
+          <tr><td><b>⑤ 第三人返还</b><br><span class="rn">记负数，两人共享减免</span></td>
+            <td>↳ 第三人分摊子弹 · 返还 yu</td><td><span class="who yu">yu</span></td>
+            <td class="num" style="color:#15803d"><b>−200.00</b></td><td class="num">0.5</td>
+            <td class="num" style="color:#15803d">−100.00</td><td class="num" style="color:#15803d">−100.00</td></tr>
+
+          <tr><td><b>⑥ 换汇</b><br><span class="rn">不是消费</span></td>
+            <td>换现金 · 澳元 A$1,000 <span class="pill no">仅记录</span></td><td><span class="who yu">yu</span></td>
+            <td class="num rn">4,735.30</td><td class="num rn">—</td><td class="num rn">不计</td><td class="num rn">不计</td></tr>
+
+          <tr><td><b>⑦ 各自购买</b><br><span class="rn">根本不入账</span></td>
+            <td class="rn">机票 · 野生动物园门票 · 10.2 早饭 · 10.3 午餐 · NZeTA / eSIM / 保险</td>
+            <td class="rn">各自</td><td class="num rn">—</td><td class="num rn">—</td><td class="num rn">—</td><td class="num rn">—</td></tr>
+        </tbody>
+      </table>
+      <div class="note">🔑 <b>一眼区分 ② 和 ③</b>：两者 share 都是极值（0 或 1），区别在<b>谁付的钱</b>。
+        <br>· ②「<b>jia 付钱、yu 承担</b>」→ 产生<b>欠款</b>（yu 欠 jia ¥1,638.90）
+        <br>· ③「<b>yu 付钱、yu 承担</b>」→ <b>自付自担，不产生任何欠款</b>，只是留个流水记录
+        <br>🔑 <b>④⑤ 为什么不用手工调整</b>：负数让「已付」和「应承担」<b>同时等比减少</b>，所以结果天然等于「只分摊净额」。</div>
+
       <div class="note"><b>第 4 步 · 结算 = 已付 − 应承担</b>
         <table style="margin-top:8px">
           <thead><tr><th style="width:70px"></th><th class="num">已付</th><th class="num">应承担</th><th class="num">差额</th></tr></thead>
