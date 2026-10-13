@@ -73,14 +73,14 @@
   <section id="plan">
     <h2>行程 · 预订 · 自驾</h2>
     <div class="tabs">
-      <button id="btn-pack" onclick="showTab('pack')" style="border-color:#be123c;color:#be123c">🎒 行前打包</button>
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
-      <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
-      <button id="btn-bill" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
       <button id="btn-rules" onclick="showTab('rules')" style="border-color:#7c3aed;color:#7c3aed">🛣 新西兰交规</button>
       <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
+      <button id="btn-bill" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
+      <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
+      <button id="btn-pack" onclick="showTab('pack')" style="border-color:#be123c;color:#be123c">🎒 行前打包</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
     </div>
 
@@ -1188,7 +1188,7 @@ Signature: ______________    Date: ______________</pre>
   renderMoney();
   renderCash();
   renderBill();
-  showTab('pack');
+  showTab('plan');
 </script>
 </body>
 </html>
