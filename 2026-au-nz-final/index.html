@@ -81,9 +81,10 @@
     </div>
 
     <div class="tabs" id="bar-acct">
-      <button id="btn-money" class="active" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
-      <button id="btn-bill" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
+      <button id="btn-bill" class="active" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
+      <button id="btn-daily" onclick="showTab('daily')" style="border-color:#c2410c;color:#c2410c">📅 日程记账</button>
       <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
+      <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
     </div>
     <div class="tabs" id="bar-trip">
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
@@ -560,6 +561,13 @@ Signature: ______________    Date: ______________</pre>
       <div class="warn" style="margin-top:12px">✅ <b>纽元现金已轧平</b>：实际已全部花完，账面差额 <b>NZ$60.30</b> 已作为「<b>现金差额 · 未记明细</b>」一笔入账（按均分计）。<br>这笔对应 6 天里未逐笔记录的零散现金支出（<b>Mt John 上山路费、咖啡、停车、小费</b>等）。<b>以后想起具体明细，告我就拆开替换</b>，这页会自动更新。<br><span class="rn">⚠️ 另一个可能：换汇当天实际到手是否正好 NZ$1,000（若有手续费会少拿一点）。差额不大的话不必深究。</span></div>
     </div>
 
+    <!-- ========== TAB: 日程记账 ========== -->
+    <div id="tab-daily">
+      <div class="note">📅 按<b>日期 + 地点</b>把所有花销重排，方便顺着行程回忆对账。数据与「💰 记账」同源，<b>改一处两边同步</b>。
+        <br><span class="rn">显示 <b>≈</b> 的是还按估算汇率折算的（见「🧾 待对账单」）；标 <span class="pill alt">非均分</span> / <span class="pill no">不分摊</span> 的按实际归属计。</span></div>
+      <div id="daily-body"></div>
+    </div>
+
     <!-- ========== TAB: 待对账单 ========== -->
     <div id="tab-bill">
       <div class="note">🧾 本页<b>自动列出所有还按估算汇率折算的外币条目</b>（即记账表里显示 <b>≈</b> 的行），按付款人分开，方便账单到了逐笔核对。
@@ -960,7 +968,7 @@ Signature: ______________    Date: ______________</pre>
     /* ---- jia 付款（信用卡走美元结算；已出账单的填确定人民币） ---- */
     {item:'租车 Apex（i30 4天 + $0免赔额 + 道路救援）', by:'jia', ccy:'NZD', amt:654.44, cny:2467.93, note:'10.5 取 / 10.9 还 · 车辆 NZ$630.44 + <b>现场加购道路救援 NZ$24</b>（$6/天×4天）= NZ$654.44 · <b>账单 ¥2467.93</b>，倒推 1 NZD ≈ 3.7711 · 救援覆盖电瓶没电/没油/钥匙锁车内/换胎'},
     {item:'<s>Skydive Wanaka 跳伞 15,000ft × 2 人</s>',  by:'jia', ccy:'NZD', amt:1963.28, cny:7553.45, note:'10.6 原订 10:30 · 中行 8944 实付 ¥7553.45（卡汇率 3.847419）· <b>⚠️ 因天气取消</b>'},
-    {item:'↳ 跳伞退款',                                 by:'jia', ccy:'CNY', amt:-7463.88, note:'天气取消全额退款 ¥7,463.88 · <b>净损失 ¥89.57 仅为汇率折损</b>（退款按退款日汇率折回，与付款日有差）'},
+    {item:'↳ 跳伞退款',                                 by:'jia', ccy:'CNY', amt:-7463.88, d:'10.6', note:'天气取消全额退款 ¥7,463.88 · <b>净损失 ¥89.57 仅为汇率折损</b>（退款按退款日汇率折回，与付款日有差）'},
     {item:'Crossfire 射击（两个套餐）',                 by:'jia', ccy:'NZD', amt:244.00,  note:'10.6 14:40–15:20 · 人民币待账单'},
     {item:'Gibbston Valley 品酒（2 人，含接送）',        by:'jia', ccy:'NZD', amt:174.00,  note:'10.4 15:00 · 人民币待账单'},
     {item:'悉尼住宿 · 雅诗阁悉尼中央（2 晚）',           by:'jia', ccy:'CNY', amt:3381.90, note:'10.1–10.3 · 已出人民币'},
@@ -975,10 +983,10 @@ Signature: ______________    Date: ______________</pre>
     {item:'皇后镇纪念品 · jia 的部分',                  by:'jia', ccy:'CNY', amt:448.10, share:1, note:'10.4 Pure NZ Gifts #98720 · 小票标 J 的 6 件 NZ$93.94 + 对半件 NZ$27 = NZ$120.94 · 汇率 3.70503'},
     {item:'皇后镇纪念品 · yu 的部分（jia 代付）',      by:'jia', ccy:'CNY', amt:329.64, share:0, note:'10.4 同一小票 · 标 Y 的 3 件 NZ$61.97 + 对半件 NZ$27 = NZ$88.97 · <b>yu 全额欠 jia</b>'},
     /* ---- yu 付款（当地币种） ---- */
-    {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, note:'爱彼迎 HME4WWSY3R · 已出人民币'},
-    {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, note:'爱彼迎 HMHZB4BXC9 · 已出人民币'},
-    {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  note:'爱彼迎 HMYB2BYBKN · 已出人民币'},
-    {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  note:'爱彼迎 HME5WASRCP · 已出人民币'},
+    {item:'皇后镇住宿 · Peppers Beacon 203（2 晚）',    by:'yu',  ccy:'CNY', amt:3048.88, d:'10.3', note:'爱彼迎 HME4WWSY3R · 已出人民币'},
+    {item:'蒂卡波住宿 · 18 Edwards Lane（2 晚）',        by:'yu',  ccy:'CNY', amt:2479.87, d:'10.6', note:'爱彼迎 HMHZB4BXC9 · 已出人民币'},
+    {item:'基督城住宿 · 33 Roydvale Ave（1 晚）',        by:'yu',  ccy:'CNY', amt:932.05,  d:'10.8', note:'爱彼迎 HMYB2BYBKN · 已出人民币'},
+    {item:'瓦纳卡住宿 · 38 Beech St（1 晚）',            by:'yu',  ccy:'CNY', amt:874.62,  d:'10.5', note:'爱彼迎 HME5WASRCP · 已出人民币'},
     {item:'悉尼晚餐（10.1）',                           by:'yu',  ccy:'AUD', amt:243.10,  note:'10.1 · 刷卡（当地币结算）· 人民币待账单'},
     {item:'悉尼 · 水 + 零食（10.1 晚）',                 by:'yu',  ccy:'AUD', amt:8.00,    note:'10.1 晚 · 刷卡 · 人民币待账单'},
     {item:'皇后镇公交卡 Bee Card（10.3）',               by:'yu',  ccy:'NZD', amt:15.00, cny:57.28,   note:'10.3 · 💵 现金（从换汇的 NZ$1,000 支出）'},
@@ -1106,6 +1114,7 @@ Signature: ______________    Date: ______________</pre>
     document.getElementById('money-sum').innerHTML=out;
     renderCash();
     renderBill();
+    renderDaily();
   }
 
   var CASH_IN={NZD:1000,AUD:1000};
@@ -1142,6 +1151,62 @@ Signature: ______________    Date: ______________</pre>
          +'　=　<b>账面剩余 '+c[2]+fm(CASH_IN[k]-sum)+'</b>'
          +'<br><span class="rn">把钱包里实际剩的数和这个「账面剩余」对一下，差多少就是漏报的金额。</span></div>';
     });
+    box.innerHTML=html;
+  }
+
+  var LOC={'9.30':'北京 → 悉尼（机上）','10.1':'悉尼','10.2':'悉尼','10.3':'悉尼 → 皇后镇',
+           '10.4':'皇后镇','10.5':'皇后镇 → 瓦纳卡','10.6':'瓦纳卡 → 蒂卡波','10.7':'蒂卡波',
+           '10.8':'蒂卡波 → 基督城','10.9':'基督城 → 墨尔本','10.10':'墨尔本','10.11':'墨尔本 → 离境'};
+
+  function renderDaily(){
+    var box=document.getElementById('daily-body'); if(!box) return;
+    var rU=parseFloat(document.getElementById('rateUsd').value)||0;
+    var rA=parseFloat(document.getElementById('rateAud').value)||0;
+    var rN=parseFloat(document.getElementById('rate').value)||0;
+    var SYM={USD:'US$',AUD:'A$',NZD:'NZ$',CNY:''};
+    var days={}, undated=[];
+    EXP.forEach(function(e){
+      if(e.memo) return;
+      var d=e.d || (function(){var m=/^(\d{1,2}\.\d{1,2})/.exec(e.note||''); return m?m[1]:null;})();
+      var rate=(e.ccy==='NZD')?rN:(e.ccy==='AUD')?rA:(e.ccy==='USD')?rU:1;
+      var cny=(e.cny!=null)?e.cny:e.amt*rate;
+      var row={item:e.item, by:e.by, ccy:e.ccy, amt:e.amt, cny:cny,
+               est:(e.cny==null&&e.ccy!=='CNY'),
+               cash:(e.note||'').indexOf('\u{1F4B5}')>=0,
+               tag:(e.split===false?'\u4e0d\u5206\u644a':(e.share!=null?'\u975e\u5747\u5206':'')),
+               pend:!!e.pending};
+      if(d){ (days[d]=days[d]||[]).push(row); } else { undated.push(row); }
+    });
+    function key(d){var a=d.split('.');return parseInt(a[0])*100+parseInt(a[1]);}
+    var ds=Object.keys(days).sort(function(x,y){return key(x)-key(y);});
+    var html='', grand=0;
+    function table(list){
+      var t='<table><thead><tr><th>项目</th><th style="width:52px">付款</th><th style="width:50px">方式</th>'
+          +'<th style="width:98px">原币</th><th style="width:104px">人民币</th></tr></thead><tbody>';
+      var sub=0;
+      list.forEach(function(x){
+        sub+=x.pend?0:x.cny;
+        t+='<tr'+(x.tag?' style="background:#fafafa"':'')+'><td>'+x.item
+          +(x.tag?' <span class="pill '+(x.tag==='\u4e0d\u5206\u644a'?'no':'alt')+'">'+x.tag+'</span>':'')+'</td>'
+          +'<td><span class="who '+x.by+'">'+x.by+'</span></td>'
+          +'<td class="rn">'+(x.cash?'现金':'刷卡')+'</td>'
+          +'<td class="num">'+(x.ccy==='CNY'?'\u2014':SYM[x.ccy]+fm(x.amt))+'</td>'
+          +'<td class="num">'+(x.pend?'<b>待填</b>':(x.est?'\u2248 ':'')+fm(x.cny))+'</td></tr>';
+      });
+      t+='</tbody></table>';
+      return [t,sub];
+    }
+    ds.forEach(function(d){
+      var r=table(days[d]); grand+=r[1];
+      html+='<h3>'+d+'\u3000<span class="rn" style="font-weight:400">'+(LOC[d]||'')+'</span>\u3000'
+          +'<span class="rn">当日 \u00a5'+fm(r[1])+'</span></h3>'+r[0];
+    });
+    if(undated.length){
+      var r2=table(undated); grand+=r2[1];
+      html+='<h3>未标日期\u3000<span class="rn">\u00a5'+fm(r2[1])+'</span></h3>'+r2[0];
+    }
+    html+='<div class="mtot">\u{1F4CA} <b>全程合计 \u2248 \u00a5'+fm(grand)+'</b>'
+       +'<br><span class="rn">与「💰 记账」的总支出一致（换汇流水已排除）。按天小计可用来核对信用卡账单的扣款日期。</span></div>';
     box.innerHTML=html;
   }
 
@@ -1189,10 +1254,10 @@ Signature: ______________    Date: ______________</pre>
     box.innerHTML=html;
   }
 
-  var GRP={money:'acct',bill:'acct',cash:'acct',
+  var GRP={bill:'acct',daily:'acct',cash:'acct',money:'acct',
             plan:'trip',booking:'trip',drive:'trip',rules:'trip',pack:'trip',more:'trip'};
-  var LAST={acct:'money',trip:'plan'};
-  var ALLTABS=['pack','plan','booking','drive','money','cash','bill','rules','more'];
+  var LAST={acct:'bill',trip:'plan'};
+  var ALLTABS=['pack','plan','booking','drive','money','cash','bill','daily','rules','more'];
 
   function showTab(t){
     ALLTABS.forEach(function(x){
@@ -1210,7 +1275,8 @@ Signature: ______________    Date: ______________</pre>
   renderMoney();
   renderCash();
   renderBill();
-  showTab('money');
+  renderDaily();
+  showTab('bill');
 </script>
 </body>
 </html>
