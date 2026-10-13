@@ -826,31 +826,63 @@ Signature: ______________    Date: ______________</pre>
       </table>
       <div id="money-sum" class="mtot"></div>
 
-      <h4>🧮 结算是怎么算出来的</h4>
-      <div class="note"><b>核心只有一条</b>：<code>某人应收/应补 = 他实际付出去的钱 − 他应该承担的钱</code>
-        <br>每笔都先折成人民币，再同时记两件事：<b>①「谁付的」</b>（算进 paid）<b>②「两人各担多少」</b>（算进 应承担）。
-        <br>每笔的承担比例 <b>share</b>：默认 <b>0.5</b> 对半；<span class="pill alt">非均分</span> 用指定比例；<span class="pill no">不分摊</span> 则付款人承担 100%；<span class="pill no">仅记录</span> 完全不参与。</div>
-      <table>
-        <thead><tr><th style="width:150px">情形</th><th>算法</th><th style="width:230px">本次实例</th></tr></thead>
-        <tbody>
-          <tr><td><b>普通共同开支</b></td><td>share = 0.5，两人各担一半</td><td class="rn">绝大多数条目</td></tr>
-          <tr><td><b>退款 / 返还</b></td><td><b>记成负数，走同一套公式</b>：付款人的 paid 减少，两人的「应承担」也各减一半 → 等价于<b>只分摊净额</b>，无需手工调整</td>
-            <td class="rn"><b>跳伞</b>：+¥7,553.45 与 −¥7,463.88（均 jia、均 0.5）→ jia 实付净 <b>¥89.57</b>，两人各担 <b>¥44.79</b></td></tr>
-          <tr><td><b>第三人分摊</b></td><td>同样记成<b>负数收入</b>，由两人共享这份减免</td>
-            <td class="rn"><b>加购子弹</b>：+¥381.85 与 −¥200.00（均 yu、均 0.5）→ 净 <b>¥181.85</b>，两人各担 <b>¥90.93</b></td></tr>
-          <tr><td><b>一人代付、按件归属</b></td><td>拆成两行：自己那份 <b>share=1</b>、对方那份 <b>share=0</b>（付款人仍是代付者）→ 对方<b>全额欠付</b>，不再减半</td>
-            <td class="rn"><b>Aotea 羊毛</b>（jia 支付宝付 ¥3,660）：jia 份 ¥2,021.10 share=1；yu 份 ¥1,638.90 share=0<br><b>皇后镇纪念品</b>（jia 微信付 ¥777.74）：¥448.10 / ¥329.64 同理</td></tr>
-          <tr><td><b>买赠 / 整单折扣</b></td><td>先按各人<b>原价</b>占比分配<b>实付总额</b>，使两人<b>折扣力度相同</b>，再按上一行拆成两份</td>
-            <td class="rn">Aotea：原价 jia NZ$727 / yu NZ$588 → 55.29% / 44.71%，两人折扣同为 <b>24.88%</b></td></tr>
-          <tr><td><b>个人消费</b></td><td><b>split:false</b> → 付款人承担 100%，另一方 0</td>
-            <td class="rn">yu 个人用品 ¥35.28 全归 yu</td></tr>
-          <tr><td><b>换汇</b></td><td><b>memo:true 仅记录</b>，不进总额与结算（换汇不是消费，只是换了形式）；<b>只有实际花掉的现金才分摊</b>，剩余现金归换汇人</td>
-            <td class="rn">换出 ¥8,553.80 − 收回 ¥2,841.18 = 净 ¥5,712.62 = 纽元现金 ¥3,818.50 + 澳元现金 ¥1,894.12 ✅</td></tr>
-        </tbody>
-      </table>
-      <div class="warn"><b>两个自检恒等式</b>（页面每次重算都会满足）：
-        <br>① <code>已付 jia + 已付 yu = 总支出</code>　　② <code>应承担 jia + 应承担 yu = 总支出</code>
-        <br>任一条不成立就说明数据有错。目前：已付 ¥16,395.13 + ¥16,232.65 = 应承担 ¥16,546.58 + ¥16,081.20 = <b>¥32,627.78</b> ✅</div>
+      <h4>🧮 结算是怎么算出来的（四步）</h4>
+
+      <div class="note"><b>第 1 步 · 每笔折成人民币</b>
+        <br>有账单确定值就用确定值；没有就用<b>估算汇率</b>折算（表里显示 <b>≈</b>）。
+        <br><code>人民币 = cny（已确定） 或 原币金额 × 汇率</code></div>
+
+      <div class="note"><b>第 2 步 · 总支出 = 正向支出 − 负向冲减</b>　<span class="rn">退款和他人返还都记成<b>负数条目</b>，所以总支出<b>已经是净额</b></span>
+        <table style="margin-top:8px">
+          <tbody>
+            <tr><td>正向支出（60 笔）</td><td class="num">¥ 40,291.66</td></tr>
+            <tr><td>跳伞退款</td><td class="num">− ¥ 7,463.88</td></tr>
+            <tr><td>第三人分摊子弹 · 返还 yu</td><td class="num">− ¥ 200.00</td></tr>
+            <tr><td><b>总支出（净额）</b></td><td class="num"><b>¥ 32,627.78</b></td></tr>
+          </tbody>
+        </table></div>
+
+      <div class="note"><b>第 3 步 · 每笔同时记两件事</b>
+        <br><code>已付[付款人] += 人民币</code>　　<code>应承担[jia] += 人民币 × share</code>　　<code>应承担[yu] += 人民币 × (1 − share)</code>
+        <table style="margin-top:8px">
+          <thead><tr><th style="width:130px">类型</th><th style="width:88px">share</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td>普通共同开支</td><td><b>0.5</b></td><td>两人各担一半（绝大多数条目）</td></tr>
+            <tr><td><span class="pill alt">非均分</span> 自己那份</td><td><b>1</b></td><td>jia 担全额、yu 担 0</td></tr>
+            <tr><td><span class="pill alt">非均分</span> 对方那份</td><td><b>0</b></td><td>jia 担 0、yu 担全额（<b>欠款不减半</b>）</td></tr>
+            <tr><td><span class="pill no">不分摊</span> 个人消费</td><td>付款人 <b>1</b>／另一方 <b>0</b></td><td>谁买谁担</td></tr>
+            <tr><td><span class="pill no">仅记录</span> 换汇</td><td>—</td><td>完全不计入总支出与结算</td></tr>
+          </tbody>
+        </table></div>
+
+      <div class="note"><b>第 4 步 · 结算 = 已付 − 应承担</b>
+        <table style="margin-top:8px">
+          <thead><tr><th style="width:70px"></th><th class="num">已付</th><th class="num">应承担</th><th class="num">差额</th></tr></thead>
+          <tbody>
+            <tr><td><span class="who jia">jia</span></td><td class="num">¥ 16,395.13</td><td class="num">¥ 16,546.58</td><td class="num"><b>− ¥ 151.45</b></td></tr>
+            <tr><td><span class="who yu">yu</span></td><td class="num">¥ 16,232.65</td><td class="num">¥ 16,081.20</td><td class="num"><b>+ ¥ 151.45</b></td></tr>
+            <tr><td><b>合计</b></td><td class="num"><b>¥ 32,627.78</b></td><td class="num"><b>¥ 32,627.78</b></td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+        <b>差额为负 = 少付了，要补；为正 = 多付了，应收</b>　→　<b>jia 需付 yu ¥151.45</b>
+        <br><span class="rn">自检：两列合计都必须等于总支出 ¥32,627.78，否则数据有错。目前 ✅</span></div>
+
+      <h4>📐 两个特殊情形的完整算式</h4>
+      <div class="warn"><b>① 退款（跳伞 · jia 付款、jia 收退款、均 share 0.5）</b>
+        <pre style="margin:6px 0">原支出   +7553.45   → 已付 jia +7553.45 ｜ 应承担 jia +3776.73  yu +3776.73
+退款     -7463.88   → 已付 jia -7463.88 ｜ 应承担 jia -3731.94  yu -3731.94
+─────────────────────────────────────────────────────────────
+净效果     +89.57   → 已付 jia   +89.57 ｜ 应承担 jia   +44.79  yu   +44.79</pre>
+        负数走同一套公式，<b>等价于只分摊净额 ¥89.57</b>，不需要任何手工调整。
+
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:10px 0">
+        <b>② 第三人分摊（加购子弹 · yu 付款、yu 收返还、均 share 0.5）</b>
+        <pre style="margin:6px 0">加购一盒弹  +381.85  → 已付 yu +381.85 ｜ 应承担 jia +190.93  yu +190.93
+第三人返还  -200.00  → 已付 yu -200.00 ｜ 应承担 jia -100.00  yu -100.00
+─────────────────────────────────────────────────────────────
+净效果      +181.85  → 已付 yu +181.85 ｜ 应承担 jia  +90.93  yu  +90.93</pre>
+        那盒弹是两人共同买的，所以第三人给的 ¥200 <b>由两人共享减免</b>（各减 ¥100），不是只归 yu。</div>
+
       <div class="note" style="margin-top:12px">✈️🎟 <b>各自购买、不入账、不分摊</b>：<b>机票</b>（四段）· <b>悉尼野生动物园门票</b>（10.2）· <b>10.2 早饭</b> · <b>10.3 回程路上午餐</b> · NZeTA / eSIM / 旅行保险（<span class="rn">如其实是一人代付，告我补入</span>）。<br>🚫 <b>未发生</b>：悉尼歌剧院演出（<b>没去</b>）· 蒂卡波观星团（改为湖边自行观星，免费）· 大洋路一日团（未参加）。<br>❓ <b>仍存疑（仅一处）</b>：<b>10.2 的午餐 / 晚餐</b> —— 早饭已确认各自购买，门票也各自买，当天共同账上只有打车 ¥40 + Coles A$14.82（可能就是当天的吃喝）。<b>等账单出来扫一眼 10.2 的扣款即可</b>，没有就说明确实都各自解决了。<br>🧾 发我时说清 <b>项目 · 金额 · 币种 · 谁付的</b>（现金请注明）。</div>
     </div>
 
