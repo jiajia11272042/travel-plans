@@ -78,6 +78,7 @@
       <button id="btn-booking" onclick="showTab('booking')">📝 预订清单</button>
       <button id="btn-drive" onclick="showTab('drive')">🚗 自驾须知</button>
       <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
+      <button id="btn-bill" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
       <button id="btn-rules" onclick="showTab('rules')" style="border-color:#7c3aed;color:#7c3aed">🛣 新西兰交规</button>
       <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
       <button id="btn-more" onclick="showTab('more')" style="border-color:#b45309;color:#b45309">🎯 活动大全（参考）</button>
@@ -547,6 +548,14 @@ Signature: ______________    Date: ______________</pre>
         <br>换汇本身<b>不计入分摊</b>；每笔现金消费按当地币<b>逐笔计入分摊</b>，<b>剩余现金仍是 yu 自己的钱</b>。</div>
       <div id="cash-body"></div>
       <div class="warn" style="margin-top:12px">✅ <b>纽元现金已轧平</b>：实际已全部花完，账面差额 <b>NZ$60.30</b> 已作为「<b>现金差额 · 未记明细</b>」一笔入账（按均分计）。<br>这笔对应 6 天里未逐笔记录的零散现金支出（<b>Mt John 上山路费、咖啡、停车、小费</b>等）。<b>以后想起具体明细，告我就拆开替换</b>，这页会自动更新。<br><span class="rn">⚠️ 另一个可能：换汇当天实际到手是否正好 NZ$1,000（若有手续费会少拿一点）。差额不大的话不必深究。</span></div>
+    </div>
+
+    <!-- ========== TAB: 待对账单 ========== -->
+    <div id="tab-bill">
+      <div class="note">🧾 本页<b>自动列出所有还按估算汇率折算的外币条目</b>（即记账表里显示 <b>≈</b> 的行），按付款人分开，方便账单到了逐笔核对。
+        <br><b>怎么用</b>：信用卡账单出来后，把每笔的<b>实际人民币金额</b>发我，我填成确定值，<b>≈ 消失、这一页也会自动变短</b>。全部填完就是最终结算。
+        <br><span class="rn">⚠️ <b>USD→CNY 默认 7.10 是纯估算</b>，偏差可能最大；NZD 3.85 / AUD 4.7353 相对接近实际。</span></div>
+      <div id="bill-body"></div>
     </div>
 
     <!-- ========== TAB: 新西兰交规 ========== -->
@@ -1086,6 +1095,7 @@ Signature: ______________    Date: ______________</pre>
       +'<span class="rn">💵 换汇不算消费（已标不分摊）；现金消费逐笔计入，剩余现金仍是 yu 的钱。⚠️ 小额现金也要记全。</span>';
     document.getElementById('money-sum').innerHTML=out;
     renderCash();
+    renderBill();
   }
 
   var CASH_IN={NZD:1000,AUD:1000};
@@ -1125,14 +1135,59 @@ Signature: ______________    Date: ______________</pre>
     box.innerHTML=html;
   }
 
+  function renderBill(){
+    var box=document.getElementById('bill-body'); if(!box) return;
+    var rU=parseFloat(document.getElementById('rateUsd').value)||0;
+    var rA=parseFloat(document.getElementById('rateAud').value)||0;
+    var rN=parseFloat(document.getElementById('rate').value)||0;
+    var SYM={USD:'US$',AUD:'A$',NZD:'NZ$'};
+    var g={jia:[],yu:[]};
+    EXP.forEach(function(e){
+      if(e.memo||e.pending) return;
+      if(e.cny!=null||e.ccy==='CNY') return;
+      var rate=(e.ccy==='NZD')?rN:(e.ccy==='AUD')?rA:(e.ccy==='USD')?rU:1;
+      var m=/^(\d{1,2}\.\d{1,2})/.exec(e.note||'');
+      g[e.by].push({d:m?m[1]:'\u2014', item:e.item, ccy:e.ccy, amt:e.amt, est:e.amt*rate,
+                    cash:(e.note||'').indexOf('\u{1F4B5}')>=0});
+    });
+    var html='', grand=0, cnt=0;
+    [['jia','jia 付款（信用卡走美元结算）'],['yu','yu 付款（当地币结算）']].forEach(function(w){
+      var k=w[0], list=g[k];
+      html+='<h3><span class="who '+k+'">'+k+'</span>\u3000'+w[1]+'\u3000<span class="rn">'+list.length+' 笔待确认</span></h3>';
+      if(!list.length){ html+='<div class="note">\u2705 全部已按账单填入确定值，无待对项。</div>'; return; }
+      var byc={};
+      list.forEach(function(x){ byc[x.ccy]=(byc[x.ccy]||0)+x.amt; });
+      html+='<table><thead><tr><th style="width:52px">日期</th><th>项目</th><th style="width:56px">方式</th>'
+         +'<th style="width:104px">原币金额</th><th style="width:104px">估算人民币</th><th style="width:118px">实际人民币</th></tr></thead><tbody>';
+      var sum=0;
+      list.forEach(function(x){
+        sum+=x.est; grand+=x.est; cnt++;
+        html+='<tr><td><b>'+x.d+'</b></td><td>'+x.item+'</td>'
+           +'<td class="rn">'+(x.cash?'现金':'刷卡')+'</td>'
+           +'<td class="num">'+SYM[x.ccy]+fm(x.amt)+'</td>'
+           +'<td class="num rn">\u2248 '+fm(x.est)+'</td>'
+           +'<td class="num" style="color:#cbd5e1">____ . __</td></tr>';
+      });
+      html+='</tbody></table>';
+      var parts=[];
+      Object.keys(byc).forEach(function(c){ parts.push(SYM[c]+fm(byc[c])); });
+      html+='<div class="mtot">原币小计 <b>'+parts.join('\u3000')+'</b>\u3000\u2192\u3000估算合计 <b>\u2248 \u00a5'+fm(sum)+'</b>'
+         +'<br><span class="rn">账单到了把「实际人民币」逐笔发我即可，不必一次发全。</span></div>';
+    });
+    html+='<div class="warn" style="margin-top:12px">\u{1F4CC} <b>共 '+cnt+' 笔待确认，估算合计 \u2248 \u00a5'+fm(grand)+'</b>'
+       +'<br>这些金额一旦换成账单实际值，<b>最终结算数会变动</b> \u2014\u2014 所以<b>建议账单齐了再一次性结账</b>，现在别转账。</div>';
+    box.innerHTML=html;
+  }
+
   function showTab(t){
-    ['pack','plan','booking','drive','money','cash','rules','more'].forEach(function(x){
+    ['pack','plan','booking','drive','money','cash','bill','rules','more'].forEach(function(x){
       document.getElementById('tab-'+x).style.display = (x===t) ? '' : 'none';
       document.getElementById('btn-'+x).classList.toggle('active', x===t);
     });
   }
   renderMoney();
   renderCash();
+  renderBill();
   showTab('pack');
 </script>
 </body>
