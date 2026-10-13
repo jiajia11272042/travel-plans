@@ -820,10 +820,7 @@ Signature: ______________    Date: ______________</pre>
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
       <div class="note">💱 <b>估算汇率</b>　USD <input id="rateUsd" type="number" step="0.0001" value="7.10" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　AUD <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　NZD <input id="rate" type="number" step="0.0001" value="3.85" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:4px 11px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button><br><span class="rn"><b>先按原币记账</b>（jia 记美元 · yu 记当地币），上面汇率只用于<b>估算</b>（显示 ≈）；<b>账单出来后填人民币确定值，最后统一结算</b>。<br><b>参考汇率</b>（已出账单实测）：NZD→CNY <b>3.771</b>（租车）· <b>3.847</b>（跳伞）｜AUD 现金换汇 <b>4.7353</b><br><b>规则</b>：共同开支 50/50；标 <span class="pill alt">非均分</span> / <span class="pill no">不分摊</span> 的按实际归属；<b>默认刷卡</b>，现金会注明。</span></div>
-      <table>
-        <thead><tr><th style="width:24px">#</th><th>项目</th><th style="width:52px">付款</th><th style="width:96px">原币金额</th><th style="width:104px">人民币 CNY</th><th style="width:140px">备注</th></tr></thead>
-        <tbody id="money-body"></tbody>
-      </table>
+      <div id="money-table"></div>
       <div id="money-sum" class="mtot"></div>
 
       <h4>🧮 结算是怎么算出来的（四步）</h4>
@@ -1141,83 +1138,101 @@ Signature: ______________    Date: ______________</pre>
     var rN=parseFloat(document.getElementById('rate').value)||0;
     var rA=parseFloat(document.getElementById('rateAud').value)||0;
     var rU=parseFloat(document.getElementById('rateUsd').value)||0;
-    var h='', fx={jia:{USD:0,AUD:0,NZD:0},yu:{USD:0,AUD:0,NZD:0}}, cn={jia:0,yu:0}, tot={jia:0,yu:0}, solo={jia:0,yu:0}, paid={jia:0,yu:0}, bur={jia:0,yu:0}, np=0;
-    EXP.forEach(function(e,i){
-      var noSplit=(e.split===false);
-      if(e.pending){
-        np++;
-        h+='<tr style="opacity:.62"><td>'+(i+1)+'</td><td>'+e.item+'</td>'
-         + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
-         + '<td class="num">'+(e.orig||'—')+'</td><td class="num"><b>待填</b></td>'
-         + '<td class="rn">'+(e.note||'')+'</td></tr>';
-        return;
-      }
-      var rate = (e.ccy==='NZD') ? rN : (e.ccy==='AUD' ? rA : (e.ccy==='USD' ? rU : 1));
-      var cny = (e.cny!=null) ? e.cny : e.amt*rate;
-      var est = (e.cny==null && e.ccy!=='CNY');
-      var disp = e.orig ? e.orig
-               : (e.ccy==='NZD' ? 'NZ$'+fm(e.amt)
-               : (e.ccy==='AUD' ? 'A$'+fm(e.amt)
-               : (e.ccy==='USD' ? 'US$'+fm(e.amt) : '—')));
-      // share = jia 承担的比例（默认 0.5 均分）；split:false 等同付款方全额承担
-      var sh = (e.share!=null) ? e.share : (noSplit ? (e.by==='jia'?1:0) : 0.5);
+    var SYM={NZD:'NZ$',AUD:'A$',USD:'US$',CNY:''};
+    var rows='',memoRows='',pendRows='',i=0;
+    var T={cny:0,pj:0,py:0,bj:0,by:0};
+    var fxj={USD:0,AUD:0,NZD:0},fxy={USD:0,AUD:0,NZD:0},cnj=0,cny_=0;
+
+    EXP.forEach(function(e){
+      var rate=(e.ccy==='NZD')?rN:(e.ccy==='AUD')?rA:(e.ccy==='USD')?rU:1;
+      var cny=(e.cny!=null)?e.cny:e.amt*rate;
+      var est=(e.cny==null&&e.ccy!=='CNY');
+      var disp=(e.ccy==='CNY')?'\u2014':SYM[e.ccy]+fm(e.amt);
+      var nm='<b>'+e.item+'</b>'
+            +(e.split===false?' <span class="pill no">\u4e0d\u5206\u644a</span>':'')
+            +(e.share!=null?' <span class="pill alt">\u975e\u5747\u5206</span>':'')
+            +(e.memo?' <span class="pill no">\u4ec5\u8bb0\u5f55</span>':'')
+            +'<br><span class="rn">'+(e.note||'')+'</span>';
+
       if(e.memo){
-        h+='<tr style="background:#fafafa;opacity:.75"><td>'+(i+1)+'</td>'
-         + '<td>'+e.item+' <span class="pill no">仅记录</span></td>'
-         + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
-         + '<td class="num">'+disp+'</td><td class="num">'+fm(cny)+'</td>'
-         + '<td class="rn">'+(e.note||'')+'</td></tr>';
+        memoRows+='<tr style="opacity:.7"><td>'+nm+'</td><td><span class="who '+e.by+'">'+e.by+'</span></td>'
+          +'<td class="num">'+disp+'</td><td class="num">'+fm(cny)+'</td></tr>';
         return;
       }
-      paid[e.by]+=cny;
-      bur.jia += cny*sh; bur.yu += cny*(1-sh);
-      if(noSplit||e.share!=null){ solo[e.by]+=cny; }
-      if(e.ccy==='NZD') fx[e.by].NZD+=e.amt;
-      else if(e.ccy==='AUD') fx[e.by].AUD+=e.amt;
-      else if(e.ccy==='USD') fx[e.by].USD+=e.amt;
-      else cn[e.by]+=e.amt;
-      tot[e.by]+=cny;
-      h+='<tr'+(noSplit?' style="background:#fafafa"':'')+'><td>'+(i+1)+'</td>'
-       + '<td>'+e.item+(noSplit?' <span class="pill no">不分摊</span>':'')+(e.share!=null?' <span class="pill alt">非均分</span>':'')+'</td>'
-       + '<td><span class="who '+e.by+'">'+e.by+'</span></td>'
-       + '<td class="num">'+disp+'</td>'
-       + '<td class="num">'+(est?'≈ ':'')+fm(cny)+'</td>'
-       + '<td class="rn">'+(e.note||'')+'</td></tr>';
+      if(e.pending){
+        pendRows+='<tr style="opacity:.7"><td>'+nm+'</td><td><span class="who '+e.by+'">'+e.by+'</span></td>'
+          +'<td class="num">'+disp+'</td><td class="num"><b>\u5f85\u586b</b></td></tr>';
+        return;
+      }
+
+      i++;
+      var sh=(e.share!=null)?e.share:(e.split===false?(e.by==='jia'?1:0):0.5);
+      var pj=(e.by==='jia')?cny:0, py=(e.by==='yu')?cny:0;
+      var bj=cny*sh, by=cny*(1-sh);
+      T.cny+=cny; T.pj+=pj; T.py+=py; T.bj+=bj; T.by+=by;
+      if(e.ccy==='CNY'){ if(e.by==='jia') cnj+=e.amt; else cny_+=e.amt; }
+      else { var box=(e.by==='jia')?fxj:fxy; box[e.ccy]+=e.amt; }
+
+      var neg=(cny<0);
+      rows+='<tr'+(neg?' style="background:#f0fdf4"':(sh!==0.5?' style="background:#fafafa"':''))+'>'
+        +'<td class="rn">'+i+'</td><td>'+nm+'</td>'
+        +'<td class="num">'+disp+'</td>'
+        +'<td class="num"'+(neg?' style="color:#15803d"':'')+'>'+(est?'\u2248 ':'')+fm(cny)+'</td>'
+        +'<td class="num rn">'+(sh===0.5?'\u00bd':fm(sh))+'</td>'
+        +'<td class="num"'+(neg?' style="color:#15803d"':'')+'>'+(pj?fm(pj):'')+'</td>'
+        +'<td class="num"'+(neg?' style="color:#15803d"':'')+'>'+(py?fm(py):'')+'</td>'
+        +'<td class="num"'+(neg?' style="color:#15803d"':'')+'>'+(bj?fm(bj):'0.00')+'</td>'
+        +'<td class="num"'+(neg?' style="color:#15803d"':'')+'>'+(by?fm(by):'0.00')+'</td></tr>';
     });
-    document.getElementById('money-body').innerHTML=h;
-    function line(w){
-      var p=[];
-      if(fx[w].USD) p.push('美元 US$'+fm(fx[w].USD));
-      if(fx[w].AUD) p.push('澳元 A$'+fm(fx[w].AUD));
-      if(fx[w].NZD) p.push('纽币 NZ$'+fm(fx[w].NZD));
-      if(cn[w])     p.push('人民币 ¥'+fm(cn[w]));
-      return '<span class="who '+w+'">'+w+'</span> '+(p.join('　')||'—')+'　→ <b>合计 ≈ ¥'+fm(tot[w])+'</b>';
+
+    var html='<table><thead><tr><th style="width:22px">#</th><th>项目 / 备注</th>'
+      +'<th style="width:84px">原币</th><th style="width:94px">人民币</th><th style="width:42px">share</th>'
+      +'<th style="width:88px">jia 付</th><th style="width:88px">yu 付</th>'
+      +'<th style="width:88px">jia 担</th><th style="width:88px">yu 担</th></tr></thead>'
+      +'<tbody>'+rows+'</tbody>'
+      +'<tfoot><tr style="background:var(--soft);font-weight:700">'
+      +'<td colspan="3">合计（'+i+' 笔）</td>'
+      +'<td class="num">'+fm(T.cny)+'</td><td></td>'
+      +'<td class="num">'+fm(T.pj)+'</td><td class="num">'+fm(T.py)+'</td>'
+      +'<td class="num">'+fm(T.bj)+'</td><td class="num">'+fm(T.by)+'</td></tr></tfoot></table>';
+
+    html+='<div class="note">\u2705 <b>每一列直接相加就是最终账单</b>：'
+      +'<b>人民币</b>列合计 = 总支出 <b>\u00a5'+fm(T.cny)+'</b>；'
+      +'<b>jia 付 + yu 付</b> = \u00a5'+fm(T.pj+T.py)+'；'
+      +'<b>jia 担 + yu 担</b> = \u00a5'+fm(T.bj+T.by)+'。'
+      +'三者相等 '+((Math.abs(T.pj+T.py-T.cny)<0.02&&Math.abs(T.bj+T.by-T.cny)<0.02)?'\u2705':'\u274c')
+      +'　<span class="rn">绿色行是退款/返还（负数）。share 为 \u00bd 即对半。</span></div>';
+
+    if(pendRows) html+='<h4>\u23f3 待填金额（不计入合计）</h4><table><thead><tr><th>项目 / 备注</th><th style="width:44px">付款</th><th style="width:84px">原币</th><th style="width:94px">人民币</th></tr></thead><tbody>'+pendRows+'</tbody></table>';
+    if(memoRows) html+='<h4>\u{1F4B1} 换汇流水（仅记录，不计入合计与结算）</h4><table><thead><tr><th>项目 / 备注</th><th style="width:44px">付款</th><th style="width:84px">原币</th><th style="width:94px">人民币</th></tr></thead><tbody>'+memoRows+'</tbody></table>';
+
+    document.getElementById('money-table').innerHTML=html;
+
+    function line(w,fx,cn,paid){
+      var pp=[];
+      if(fx.USD) pp.push('\u7f8e\u5143 US$'+fm(fx.USD));
+      if(fx.AUD) pp.push('\u6fb3\u5143 A$'+fm(fx.AUD));
+      if(fx.NZD) pp.push('\u7ebd\u5e01 NZ$'+fm(fx.NZD));
+      if(cn)     pp.push('\u4eba\u6c11\u5e01 \u00a5'+fm(cn));
+      return '<span class="who '+w+'">'+w+'</span> '+(pp.join('\u3000')||'\u2014')+'\u3000\u2192 <b>\u5df2\u4ed8 \u2248 \u00a5'+fm(paid)+'</b>';
     }
-    var T=tot.jia+tot.yu, diff=paid.jia-bur.jia;
-    var out='<b>已付金额 · 分币种小计</b><br>'+line('jia')+'<br>'+line('yu')+'<br>'
+    var diff=T.pj-T.bj;
+    var out='<b>\u5df2\u4ed8\u91d1\u989d \u00b7 \u5206\u5e01\u79cd\u5c0f\u8ba1</b><br>'
+      +line('jia',fxj,cnj,T.pj)+'<br>'+line('yu',fxy,cny_,T.py)+'<br>'
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<b>总支出 ≈ ¥'+fm(T)+'</b>　｜　已付：jia ≈ ¥'+fm(paid.jia)+'　yu ≈ ¥'+fm(paid.yu)+'<br>'
-      +'<b>应承担：jia ≈ ¥'+fm(bur.jia)+'　yu ≈ ¥'+fm(bur.yu)+'</b>'
-      +'<span class="rn">（共同开支各半；标<b>非均分/不分摊</b>的按实际归属）</span><br>'
-      + (Math.abs(diff)<0.01 ? '✅ 两人已平'
-        : (diff>0 ? '👉 <b><span class="who yu">yu</span> 需付给 <span class="who jia">jia</span> ≈ ¥'+fm(diff)+'</b>'
-                  : '👉 <b><span class="who jia">jia</span> 需付给 <span class="who yu">yu</span> ≈ ¥'+fm(-diff)+'</b>'));
-    if(solo.jia>0||solo.yu>0){
-      out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-        +'<span class="rn"><b>非均分 / 不分摊小计</b>：jia ≈ ¥'+fm(solo.jia)+'　yu ≈ ¥'+fm(solo.yu)+'　—— 已按实际归属计入上面的「应承担」</span>';
-    }
-    if(np>0) out+='<br><span style="color:#b45309">⚠️ 还有 '+np+' 项「待填」未计入。</span>';
-    out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<span class="rn">💱 <b>换汇流水（标「仅记录」，不计入上面的总额与结算）</b>：'
-      +'换出 ¥8,553.80（A$1,000 + NZ$1,000）− 剩余 A$600 收回 ¥2,841.18 = <b>净 ¥5,712.62</b>，'
-      +'正好等于<b>纽元现金 ¥3,818.50 + 澳元现金 ¥1,894.12</b> —— 两边对平，现金没有被重复计算。</span>';
-    out+='<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<span class="rn">💵 换汇不算消费（已标不分摊）；现金消费逐笔计入，剩余现金仍是 yu 的钱。⚠️ 小额现金也要记全。</span>';
+      +'<b>\u603b\u652f\u51fa \u2248 \u00a5'+fm(T.cny)+'</b>\u3000（\u5df2\u6263\u9664\u8df3\u4f1e\u9000\u6b3e\u4e0e\u7b2c\u4e09\u4eba\u8fd4\u8fd8）<br>'
+      +'<b>\u5e94\u627f\u62c5\uff1ajia \u2248 \u00a5'+fm(T.bj)+'\u3000yu \u2248 \u00a5'+fm(T.by)+'</b><br>'
+      + (Math.abs(diff)<0.01 ? '\u2705 \u4e24\u4eba\u5df2\u5e73'
+        : (diff>0 ? '\u{1F449} <b><span class="who yu">yu</span> \u9700\u4ed8\u7ed9 <span class="who jia">jia</span> \u2248 \u00a5'+fm(diff)+'</b>'
+                  : '\u{1F449} <b><span class="who jia">jia</span> \u9700\u4ed8\u7ed9 <span class="who yu">yu</span> \u2248 \u00a5'+fm(-diff)+'</b>'))
+      +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
+      +'<span class="rn">\u{1F4B5} \u6362\u6c47\u4e0d\u7b97\u6d88\u8d39\uff08\u5df2\u6807\u4ec5\u8bb0\u5f55\uff09\uff1b\u73b0\u91d1\u6d88\u8d39\u9010\u7b14\u8ba1\u5165\uff0c\u5269\u4f59\u73b0\u91d1\u4ecd\u662f yu \u7684\u94b1\u3002</span>';
     document.getElementById('money-sum').innerHTML=out;
     renderCash();
     renderBill();
     renderDaily();
   }
+
 
   var CASH_IN={NZD:1000,AUD:1000};
   function renderCash(){
