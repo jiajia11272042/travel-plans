@@ -571,7 +571,7 @@ Signature: ______________    Date: ______________</pre>
     <!-- ========== TAB: 待对账单 ========== -->
     <div id="tab-bill">
       <div class="note">🧾 本页<b>自动列出所有还按估算汇率折算的外币条目</b>（即记账表里显示 <b>≈</b> 的行），按付款人分开，方便账单到了逐笔核对。
-        <br><b>怎么用</b>：信用卡账单出来后，把每笔的<b>实际人民币金额</b>发我，我填成确定值，<b>≈ 消失、这一页也会自动变短</b>。全部填完就是最终结算。
+        <br><b>怎么用</b>：信用卡账单出来后，把每笔的<b>实际人民币金额</b>发我，我填成确定值。<b>对完账的不会删除，会标 ✅已对账 并留在表里存档</b>；只有「待确认」计数变少。全部填完就是最终结算。
         <br><span class="rn">⚠️ <b>USD→CNY 默认 7.10 是纯估算</b>，偏差可能最大；NZD 3.85 / AUD 4.7353 相对接近实际。</span></div>
       <div id="bill-body"></div>
     </div>
@@ -1336,38 +1336,61 @@ Signature: ______________    Date: ______________</pre>
     var g={jia:[],yu:[]};
     EXP.forEach(function(e){
       if(e.memo||e.pending) return;
-      if(e.cny!=null||e.ccy==='CNY') return;
+      if(e.ccy==='CNY') return;              /* 本来就是人民币的不在对账范围 */
+      var isCash=(e.note||'').indexOf('\u{1F4B5}')>=0;
+      var done=(e.cny!=null);
+      if(isCash && done) return;             /* 现金已在「现金对账」页折算，这里只管刷卡外币 */
       var rate=(e.ccy==='NZD')?rN:(e.ccy==='AUD')?rA:(e.ccy==='USD')?rU:1;
       var m=/^(\d{1,2}\.\d{1,2})/.exec(e.note||'');
       g[e.by].push({d:m?m[1]:'\u2014', item:e.item, ccy:e.ccy, amt:e.amt, est:e.amt*rate,
-                    cash:(e.note||'').indexOf('\u{1F4B5}')>=0});
+                    cash:isCash, done:done, cny:e.cny});
     });
     var html='', grand=0, cnt=0;
     [['jia','jia 付款（信用卡走美元结算）'],['yu','yu 付款（当地币结算）']].forEach(function(w){
       var k=w[0], list=g[k];
-      html+='<h3><span class="who '+k+'">'+k+'</span>\u3000'+w[1]+'\u3000<span class="rn">'+list.length+' 笔待确认</span></h3>';
-      if(!list.length){ html+='<div class="note">\u2705 全部已按账单填入确定值，无待对项。</div>'; return; }
+      var pend=list.filter(function(x){return !x.done;});
+      var donel=list.filter(function(x){return x.done;});
+      html+='<h3><span class="who '+k+'">'+k+'</span>\u3000'+w[1]
+          +'\u3000<span class="rn">'+pend.length+' 笔待确认'
+          +(donel.length?(' \u00b7 '+donel.length+' 笔\u2705已对账'):'')+'</span></h3>';
+      if(!list.length){ html+='<div class="note">\u2014 无外币刷卡条目。</div>'; return; }
       var byc={};
-      list.forEach(function(x){ byc[x.ccy]=(byc[x.ccy]||0)+x.amt; });
+      pend.forEach(function(x){ byc[x.ccy]=(byc[x.ccy]||0)+x.amt; });
       html+='<table><thead><tr><th style="width:52px">日期</th><th>项目</th><th style="width:56px">方式</th>'
-         +'<th style="width:104px">原币金额</th><th style="width:104px">估算人民币</th><th style="width:118px">实际人民币</th></tr></thead><tbody>';
+         +'<th style="width:104px">原币金额</th><th style="width:104px">估算人民币</th><th style="width:132px">实际人民币</th></tr></thead><tbody>';
       var sum=0;
       list.forEach(function(x){
-        sum+=x.est; grand+=x.est; cnt++;
-        html+='<tr><td><b>'+x.d+'</b></td><td>'+x.item+'</td>'
-           +'<td class="rn">'+(x.cash?'现金':'刷卡')+'</td>'
-           +'<td class="num">'+SYM[x.ccy]+fm(x.amt)+'</td>'
-           +'<td class="num rn">\u2248 '+fm(x.est)+'</td>'
-           +'<td class="num" style="color:#cbd5e1">____ . __</td></tr>';
+        if(x.done){
+          html+='<tr style="background:#f0fdf4;color:#15803d"><td><b>'+x.d+'</b></td><td>'+x.item+' <span class="pill yes">\u2705已对账</span></td>'
+             +'<td class="rn">'+(x.cash?'现金':'刷卡')+'</td>'
+             +'<td class="num">'+SYM[x.ccy]+fm(x.amt)+'</td>'
+             +'<td class="num rn" style="color:#94a3b8">\u2014</td>'
+             +'<td class="num"><b>\u00a5'+fm(x.cny)+'</b></td></tr>';
+        }else{
+          sum+=x.est; grand+=x.est; cnt++;
+          html+='<tr><td><b>'+x.d+'</b></td><td>'+x.item+'</td>'
+             +'<td class="rn">'+(x.cash?'现金':'刷卡')+'</td>'
+             +'<td class="num">'+SYM[x.ccy]+fm(x.amt)+'</td>'
+             +'<td class="num rn">\u2248 '+fm(x.est)+'</td>'
+             +'<td class="num" style="color:#cbd5e1">____ . __</td></tr>';
+        }
       });
       html+='</tbody></table>';
-      var parts=[];
-      Object.keys(byc).forEach(function(c){ parts.push(SYM[c]+fm(byc[c])); });
-      html+='<div class="mtot">原币小计 <b>'+parts.join('\u3000')+'</b>\u3000\u2192\u3000估算合计 <b>\u2248 \u00a5'+fm(sum)+'</b>'
-         +'<br><span class="rn">账单到了把「实际人民币」逐笔发我即可，不必一次发全。</span></div>';
+      if(pend.length){
+        var parts=[];
+        Object.keys(byc).forEach(function(c){ parts.push(SYM[c]+fm(byc[c])); });
+        html+='<div class="mtot">待确认原币小计 <b>'+parts.join('\u3000')+'</b>\u3000\u2192\u3000估算合计 <b>\u2248 \u00a5'+fm(sum)+'</b>'
+           +'<br><span class="rn">账单到了把「实际人民币」逐笔发我即可，不必一次发全。对完的会标 \u2705已对账 并留在表里。</span></div>';
+      }else{
+        html+='<div class="note" style="margin-top:6px">\u2705 '+k+' 的外币刷卡项<b>全部已对账</b>，确定值见上表（共 '+donel.length+' 笔，保留存档）。</div>';
+      }
     });
-    html+='<div class="warn" style="margin-top:12px">\u{1F4CC} <b>共 '+cnt+' 笔待确认，估算合计 \u2248 \u00a5'+fm(grand)+'</b>'
-       +'<br>这些金额一旦换成账单实际值，<b>最终结算数会变动</b> \u2014\u2014 所以<b>建议账单齐了再一次性结账</b>，现在别转账。</div>';
+    if(cnt>0){
+      html+='<div class="warn" style="margin-top:12px">\u{1F4CC} <b>共 '+cnt+' 笔待确认，估算合计 \u2248 \u00a5'+fm(grand)+'</b>'
+         +'<br>这些金额一旦换成账单实际值，<b>最终结算数会变动</b> \u2014\u2014 所以<b>建议账单齐了再一次性结账</b>，现在别转账。</div>';
+    }else{
+      html+='<div class="note" style="margin-top:12px;background:#f0fdf4;border-color:#86efac">\u2705 <b>所有外币刷卡项已全部对完账</b>，上表已填入账单确定值并\u2705标记保留。最终结算以「记账」页为准。</div>';
+    }
     box.innerHTML=html;
   }
 
