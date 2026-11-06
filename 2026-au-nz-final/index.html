@@ -81,10 +81,10 @@
     </div>
 
     <div class="tabs" id="bar-acct">
-      <button id="btn-bill" class="active" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
+      <button id="btn-money" class="active" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账（总账）</button>
       <button id="btn-daily" onclick="showTab('daily')" style="border-color:#c2410c;color:#c2410c">📅 日程记账</button>
       <button id="btn-cash" onclick="showTab('cash')" style="border-color:#a16207;color:#a16207">💵 现金对账</button>
-      <button id="btn-money" onclick="showTab('money')" style="border-color:#047857;color:#047857">💰 记账</button>
+      <button id="btn-bill" onclick="showTab('bill')" style="border-color:#0e7490;color:#0e7490">🧾 待对账单</button>
     </div>
     <div class="tabs" id="bar-trip">
       <button id="btn-plan" class="active" onclick="showTab('plan')">📋 逐日行程</button>
@@ -819,6 +819,7 @@ Signature: ______________    Date: ______________</pre>
 
     <!-- ========== TAB 5: 记账 ========== -->
     <div id="tab-money">
+      <div id="money-headline"></div>
       <div class="note">💱 <b>估算汇率</b>　USD <input id="rateUsd" type="number" step="0.0001" value="7.10" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　AUD <input id="rateAud" type="number" step="0.0001" value="4.7353" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px">　NZD <input id="rate" type="number" step="0.0001" value="3.85" style="width:78px;padding:3px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px"> <button onclick="renderMoney()" style="padding:4px 11px;border:1px solid var(--brand);background:#fff;color:var(--brand);border-radius:6px;font-weight:600;cursor:pointer">重算</button><br><span class="rn"><b>先按原币记账</b>（jia 记美元 · yu 记当地币），上面汇率只用于<b>估算</b>（显示 ≈）；<b>账单出来后填人民币确定值，最后统一结算</b>。<br><b>参考汇率</b>（已出账单实测）：NZD→CNY <b>3.771</b>（租车）· <b>3.847</b>（跳伞）｜AUD 现金换汇 <b>4.7353</b><br><b>规则</b>：共同开支 50/50；标 <span class="pill alt">非均分</span> / <span class="pill no">不分摊</span> 的按实际归属；<b>默认刷卡</b>，现金会注明。</span></div>
       <div id="money-table"></div>
       <div id="money-sum" class="mtot"></div>
@@ -1228,6 +1229,19 @@ Signature: ______________    Date: ______________</pre>
                   : '\u{1F449} <b><span class="who jia">jia</span> \u9700\u4ed8\u7ed9 <span class="who yu">yu</span> '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(-diff)+'</b>'))
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
       +'<span class="rn">\u{1F4B5} \u6362\u6c47\u4e0d\u7b97\u6d88\u8d39\uff08\u5df2\u6807\u4ec5\u8bb0\u5f55\uff09\uff1b\u73b0\u91d1\u6d88\u8d39\u9010\u7b14\u8ba1\u5165\uff0c\u5269\u4f59\u73b0\u91d1\u4ecd\u662f yu \u7684\u94b1\u3002</span>';
+    var approx=(EST_ANY?'\u2248 ':'');
+    var concl, sub;
+    if(Math.abs(diff)<0.01){ concl='\u2705 \u4e24\u4eba\u5df2\u7ed3\u5e73\uff0c\u4e92\u4e0d\u6b20\u6b3e'; sub=''; }
+    else if(diff>0){ concl='\u{1F449} <span class="who yu">yu</span> \u9700\u4ed8\u7ed9 <span class="who jia">jia</span>\u3000<span style="font-size:26px">'+approx+'\u00a5'+fm(diff)+'</span>'; }
+    else { concl='\u{1F449} <span class="who jia">jia</span> \u9700\u4ed8\u7ed9 <span class="who yu">yu</span>\u3000<span style="font-size:26px">'+approx+'\u00a5'+fm(-diff)+'</span>'; }
+    var hl='<div style="background:linear-gradient(135deg,#065f46,#059669);color:#fff;border-radius:14px;padding:18px 20px;margin:0 0 14px;box-shadow:0 4px 14px rgba(5,150,105,.25)">'
+      +'<div style="font-size:13px;opacity:.9;font-weight:600;letter-spacing:.5px">\u{1F4B0} \u6700\u7ec8\u7ed3\u7b97</div>'
+      +'<div style="font-size:21px;font-weight:800;margin-top:6px;line-height:1.5">'+concl+'</div>'
+      +'<div style="font-size:13px;opacity:.92;margin-top:8px;border-top:1px solid rgba(255,255,255,.25);padding-top:8px">'
+      +'\u603b\u652f\u51fa '+approx+'\u00a5'+fm(T.cny)+'\u3000\u00b7\u3000jia \u5df2\u4ed8 \u00a5'+fm(T.pj)+' / \u5e94\u62c5 \u00a5'+fm(T.bj)
+      +'\u3000\u00b7\u3000yu \u5df2\u4ed8 \u00a5'+fm(T.py)+' / \u5e94\u62c5 \u00a5'+fm(T.by)
+      +(EST_ANY?'\u3000\u00b7\u3000<b>\u5c1a\u6709\u5f85\u8d26\u5355\u9879\uff0c\u6570\u5b57\u53ef\u80fd\u5fae\u8c03</b>':'\u3000\u00b7\u3000<b>\u5df2\u5168\u90e8\u6309\u8d26\u5355\u786e\u5b9a\u503c</b>')+'</div></div>';
+    var hlbox=document.getElementById('money-headline'); if(hlbox) hlbox.innerHTML=hl;
     document.getElementById('money-sum').innerHTML=out;
     renderCash();
     renderBill();
@@ -1398,7 +1412,7 @@ Signature: ______________    Date: ______________</pre>
 
   var GRP={bill:'acct',daily:'acct',cash:'acct',money:'acct',
             plan:'trip',booking:'trip',drive:'trip',rules:'trip',pack:'trip',more:'trip'};
-  var LAST={acct:'bill',trip:'plan'};
+  var LAST={acct:'money',trip:'plan'};
   var ALLTABS=['pack','plan','booking','drive','money','cash','bill','daily','rules','more'];
 
   function showTab(t){
@@ -1418,7 +1432,7 @@ Signature: ______________    Date: ______________</pre>
   renderCash();
   renderBill();
   renderDaily();
-  showTab('bill');
+  showTab('money');
 </script>
 </body>
 </html>
