@@ -1140,7 +1140,7 @@ Signature: ______________    Date: ______________</pre>
     var rU=parseFloat(document.getElementById('rateUsd').value)||0;
     var SYM={NZD:'NZ$',AUD:'A$',USD:'US$',CNY:''};
     var rows='',memoRows='',pendRows='',i=0;
-    var T={cny:0,pj:0,py:0,bj:0,by:0};
+    var T={cny:0,pj:0,py:0,bj:0,by:0}, EST_ANY=false;
     var fxj={USD:0,AUD:0,NZD:0},fxy={USD:0,AUD:0,NZD:0},cnj=0,cny_=0;
 
     EXP.forEach(function(e){
@@ -1166,6 +1166,7 @@ Signature: ______________    Date: ______________</pre>
       }
 
       i++;
+      if(est) EST_ANY=true;
       var sh=(e.share!=null)?e.share:(e.split===false?(e.by==='jia'?1:0):0.5);
       var pj=(e.by==='jia')?cny:0, py=(e.by==='yu')?cny:0;
       var bj=cny*sh, by=cny*(1-sh);
@@ -1214,17 +1215,17 @@ Signature: ______________    Date: ______________</pre>
       if(fx.AUD) pp.push('\u6fb3\u5143 A$'+fm(fx.AUD));
       if(fx.NZD) pp.push('\u7ebd\u5e01 NZ$'+fm(fx.NZD));
       if(cn)     pp.push('\u4eba\u6c11\u5e01 \u00a5'+fm(cn));
-      return '<span class="who '+w+'">'+w+'</span> '+(pp.join('\u3000')||'\u2014')+'\u3000\u2192 <b>\u5df2\u4ed8 \u2248 \u00a5'+fm(paid)+'</b>';
+      return '<span class="who '+w+'">'+w+'</span> '+(pp.join('\u3000')||'\u2014')+'\u3000\u2192 <b>\u5df2\u4ed8 '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(paid)+'</b>';
     }
     var diff=T.pj-T.bj;
     var out='<b>\u5df2\u4ed8\u91d1\u989d \u00b7 \u5206\u5e01\u79cd\u5c0f\u8ba1</b><br>'
       +line('jia',fxj,cnj,T.pj)+'<br>'+line('yu',fxy,cny_,T.py)+'<br>'
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
-      +'<b>\u603b\u652f\u51fa \u2248 \u00a5'+fm(T.cny)+'</b>\u3000（\u5df2\u6263\u9664\u8df3\u4f1e\u9000\u6b3e\u4e0e\u7b2c\u4e09\u4eba\u8fd4\u8fd8）<br>'
-      +'<b>\u5e94\u627f\u62c5\uff1ajia \u2248 \u00a5'+fm(T.bj)+'\u3000yu \u2248 \u00a5'+fm(T.by)+'</b><br>'
+      +'<b>\u603b\u652f\u51fa '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(T.cny)+'</b>\u3000（\u5df2\u6263\u9664\u8df3\u4f1e\u9000\u6b3e\u4e0e\u7b2c\u4e09\u4eba\u8fd4\u8fd8）<br>'
+      +'<b>\u5e94\u627f\u62c5\uff1ajia '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(T.bj)+'\u3000yu '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(T.by)+'</b><br>'
       + (Math.abs(diff)<0.01 ? '\u2705 \u4e24\u4eba\u5df2\u5e73'
-        : (diff>0 ? '\u{1F449} <b><span class="who yu">yu</span> \u9700\u4ed8\u7ed9 <span class="who jia">jia</span> \u2248 \u00a5'+fm(diff)+'</b>'
-                  : '\u{1F449} <b><span class="who jia">jia</span> \u9700\u4ed8\u7ed9 <span class="who yu">yu</span> \u2248 \u00a5'+fm(-diff)+'</b>'))
+        : (diff>0 ? '\u{1F449} <b><span class="who yu">yu</span> \u9700\u4ed8\u7ed9 <span class="who jia">jia</span> '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(diff)+'</b>'
+                  : '\u{1F449} <b><span class="who jia">jia</span> \u9700\u4ed8\u7ed9 <span class="who yu">yu</span> '+(EST_ANY?'\u2248 ':'')+'\u00a5'+fm(-diff)+'</b>'))
       +'<hr style="border:none;border-top:1px solid #e2e8f0;margin:8px 0">'
       +'<span class="rn">\u{1F4B5} \u6362\u6c47\u4e0d\u7b97\u6d88\u8d39\uff08\u5df2\u6807\u4ec5\u8bb0\u5f55\uff09\uff1b\u73b0\u91d1\u6d88\u8d39\u9010\u7b14\u8ba1\u5165\uff0c\u5269\u4f59\u73b0\u91d1\u4ecd\u662f yu \u7684\u94b1\u3002</span>';
     document.getElementById('money-sum').innerHTML=out;
@@ -1296,13 +1297,14 @@ Signature: ______________    Date: ______________</pre>
     });
     function key(d){var a=d.split('.');return parseInt(a[0])*100+parseInt(a[1]);}
     var ds=Object.keys(days).sort(function(x,y){return key(x)-key(y);});
-    var html='', grand=0;
+    var html='', grand=0, anyEst=false;
     function table(list){
       var t='<table><thead><tr><th>项目</th><th style="width:52px">付款</th><th style="width:50px">方式</th>'
           +'<th style="width:98px">原币</th><th style="width:104px">人民币</th></tr></thead><tbody>';
       var sub=0;
       list.forEach(function(x){
         sub+=x.pend?0:x.cny;
+        if(x.est&&!x.pend) anyEst=true;
         t+='<tr'+(x.tag?' style="background:#fafafa"':'')+'><td>'+x.item
           +(x.tag?' <span class="pill '+(x.tag==='\u4e0d\u5206\u644a'?'no':'alt')+'">'+x.tag+'</span>':'')+'</td>'
           +'<td><span class="who '+x.by+'">'+x.by+'</span></td>'
@@ -1322,8 +1324,8 @@ Signature: ______________    Date: ______________</pre>
       var r2=table(undated); grand+=r2[1];
       html+='<h3>未标日期\u3000<span class="rn">\u00a5'+fm(r2[1])+'</span></h3>'+r2[0];
     }
-    html+='<div class="mtot">\u{1F4CA} <b>全程合计 \u2248 \u00a5'+fm(grand)+'</b>'
-       +'<br><span class="rn">与「💰 记账」的总支出一致（换汇流水已排除）。按天小计可用来核对信用卡账单的扣款日期。</span></div>';
+    html+='<div class="mtot">\u{1F4CA} <b>全程合计 '+(anyEst?'\u2248 ':'')+'\u00a5'+fm(grand)+'</b>'
+       +'<br><span class="rn">与「💰 记账」的总支出一致（换汇流水已排除）。'+(anyEst?'部分条目仍按估算汇率（显示 \u2248）。':'<b>全部已按账单确定值。</b>')+'按天小计可用来核对信用卡账单的扣款日期。</span></div>';
     box.innerHTML=html;
   }
 
