@@ -865,9 +865,9 @@ Signature: ______________    Date: ______________</pre>
 
           <tr><td rowspan="2"><b>② 一人代付 + 按件归属</b><br><span class="rn">拆两行，<b>付款人都是 jia</b>；<br>yu 那份<b>全额欠付不减半</b></span></td>
             <td>Aotea 羊毛 · <b>jia 的部分</b> <span class="pill alt">非均分</span></td><td><span class="who jia">jia</span></td>
-            <td class="num">2,021.10</td><td class="num"><b>1</b></td><td class="num"><b>2,021.10</b></td><td class="num">0</td></tr>
+            <td class="num">1,528.89</td><td class="num"><b>1</b></td><td class="num"><b>1,528.89</b></td><td class="num">0</td></tr>
           <tr><td>Aotea 羊毛 · <b>yu 的部分</b> <span class="pill alt">非均分</span></td><td><span class="who jia">jia</span></td>
-            <td class="num">1,638.90</td><td class="num"><b>0</b></td><td class="num">0</td><td class="num"><b>1,638.90</b></td></tr>
+            <td class="num">2,131.11</td><td class="num"><b>0</b></td><td class="num">0</td><td class="num"><b>2,131.11</b></td></tr>
 
           <tr><td><b>③ 个人消费</b><br><span class="rn">谁买谁担</span></td>
             <td>yu 个人用品 · 卫生巾 + 纸 <span class="pill no">不分摊</span></td><td><span class="who yu">yu</span></td>
@@ -893,7 +893,7 @@ Signature: ______________    Date: ______________</pre>
         </tbody>
       </table>
       <div class="note">🔑 <b>一眼区分 ② 和 ③</b>：两者 share 都是极值（0 或 1），区别在<b>谁付的钱</b>。
-        <br>· ②「<b>jia 付钱、yu 承担</b>」→ 产生<b>欠款</b>（yu 欠 jia ¥1,638.90）
+        <br>· ②「<b>jia 付钱、yu 承担</b>」→ 产生<b>欠款</b>（yu 欠 jia ¥2,131.11）
         <br>· ③「<b>yu 付钱、yu 承担</b>」→ <b>自付自担，不产生任何欠款</b>，只是留个流水记录
         <br>🔑 <b>④⑤ 为什么不用手工调整</b>：负数让「已付」和「应承担」<b>同时等比减少</b>，所以结果天然等于「只分摊净额」。</div>
 
@@ -901,12 +901,12 @@ Signature: ______________    Date: ______________</pre>
         <table style="margin-top:8px">
           <thead><tr><th style="width:70px"></th><th class="num">已付</th><th class="num">应承担</th><th class="num">差额</th></tr></thead>
           <tbody>
-            <tr><td><span class="who jia">jia</span></td><td class="num">¥ 16,378.25</td><td class="num">¥ 16,495.98</td><td class="num"><b>− ¥ 117.73</b></td></tr>
-            <tr><td><span class="who yu">yu</span></td><td class="num">¥ 16,148.33</td><td class="num">¥ 16,030.60</td><td class="num"><b>+ ¥ 117.73</b></td></tr>
+            <tr><td><span class="who jia">jia</span></td><td class="num">¥ 16,378.25</td><td class="num">¥ 16,003.77</td><td class="num"><b>+ ¥ 374.48</b></td></tr>
+            <tr><td><span class="who yu">yu</span></td><td class="num">¥ 16,148.33</td><td class="num">¥ 16,522.81</td><td class="num"><b>− ¥ 374.48</b></td></tr>
             <tr><td><b>合计</b></td><td class="num"><b>¥ 32,526.58</b></td><td class="num"><b>¥ 32,526.58</b></td><td class="num">0</td></tr>
           </tbody>
         </table>
-        <b>差额为负 = 少付了，要补；为正 = 多付了，应收</b>　→　<b>jia 需付 yu ¥117.73</b>
+        <b>差额为负 = 少付了，要补；为正 = 多付了，应收</b>　→　<b>yu 需付 jia ¥374.48</b>
         <br><span class="rn">自检：两列合计都必须等于总支出 ¥32,526.58，否则数据有错。目前 ✅</span></div>
 
       <h4>📐 两个特殊情形的完整算式</h4>
@@ -1078,8 +1078,8 @@ Signature: ______________    Date: ______________</pre>
     {item:'悉尼 Coles 超市（10.2）',                     by:'jia', ccy:'AUD', amt:14.82, cny:69.38,   note:'10.2 · 刷卡 · <b>账单 ¥69.38</b>（A$14.82，卡汇率 4.6815）'},
     {item:'皇后镇 Skyline 缆车（10.4）',                by:'jia', ccy:'NZD', amt:138.00, cny:523.19,  note:'10.4 · 信用卡 · <b>账单 ¥523.19</b>（NZ$138，卡汇率 3.7913）'},
     {item:'蒂卡波 · 晚饭超市购物（10.7）',                by:'jia', ccy:'CNY', amt:309.00,  note:'10.7 · 已出人民币 ¥309'},
-    {item:'Aotea Tekapo 羊毛制品 · jia 的部分',           by:'jia', ccy:'CNY', amt:2021.10, share:1, note:'10.8 支付宝实付 ¥3660 / NZ$999.83（汇率 3.6606，GST $0 出口免税）· 原价 NZ$727（369+179+179）占 55.29% · <b>赠品与折扣按原价比例共享，两人折扣力度同为 24.88%</b>'},
-    {item:'Aotea Tekapo 羊毛制品 · yu 的部分（jia 代付）',  by:'jia', ccy:'CNY', amt:1638.90, share:0, note:'10.8 同一单 · 原价 NZ$588（409+179）占 44.71% + 保险对半 · <b>yu 全额欠 jia</b>'},
+    {item:'Aotea Tekapo 羊毛制品 · jia 的部分',           by:'jia', ccy:'CNY', amt:1528.89, share:1, note:'10.8 支付宝实付 ¥3660 / NZ$999.83（汇率 3.6606，GST $0 出口免税）· jia 的 2 件：围巾 Msilk Finerib 369 + 赠品护膝 179 = 原价 NZ$548，占 41.67% + 保险对半 · <b>赠品与折扣按原价比例共享，两人折扣力度同为 24.88%</b> · <s>原误算为 ¥2021.10</s>'},
+    {item:'Aotea Tekapo 羊毛制品 · yu 的部分（jia 代付）',  by:'jia', ccy:'CNY', amt:2131.11, share:0, note:'10.8 同一单 · yu 的 3 件：Lodge Travel Wrap 409 + 护膝 179 + 护膝 179 = 原价 NZ$767，占 58.33% + 保险对半 · <b>yu 全额欠 jia</b> · <s>原误算为 ¥1638.90</s>'},
     {item:'皇后镇纪念品 · jia 的部分',                  by:'jia', ccy:'CNY', amt:448.10, share:1, note:'10.4 Pure NZ Gifts #98720 · 小票标 J 的 6 件 NZ$93.94 + 对半件 NZ$27 = NZ$120.94 · 汇率 3.70503'},
     {item:'皇后镇纪念品 · yu 的部分（jia 代付）',      by:'jia', ccy:'CNY', amt:329.64, share:0, note:'10.4 同一小票 · 标 Y 的 3 件 NZ$61.97 + 对半件 NZ$27 = NZ$88.97 · <b>yu 全额欠 jia</b>'},
     /* ---- yu 付款（当地币种） ---- */
